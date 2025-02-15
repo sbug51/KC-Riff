@@ -1,4 +1,4 @@
-module github.com/KC-Riff/KC-Riff
+module github.com/sbug51/KC-Riff
 
 go 1.23.4
 
@@ -38,6 +38,7 @@ require (
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/google/flatbuffers v24.3.25+incompatible // indirect
 	github.com/kr/text v0.2.0 // indirect
+	github.com/ollama/ollama v0.5.11 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
