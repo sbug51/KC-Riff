@@ -1,4 +1,4 @@
-module github.com/ollama/ollama
+module github.com/KC-Riff/KC-Riff
 
 go 1.23.4
 

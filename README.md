@@ -1,81 +1,81 @@
 <div align="center">
-  <a href="https://ollama.com" />
-    <img alt="ollama" height="200px" src="https://github.com/ollama/ollama/assets/3325447/0d0b44e2-8f4a-4e99-9b52-a5c1c741c8f7">
+  <a href="https://KC Riff.com" />
+    <img alt="KC Riff" height="200px" src="https://github.com/KC Riff/KC Riff/assets/3325447/0d0b44e2-8f4a-4e99-9b52-a5c1c741c8f7">
   </a>
 </div>
 
-# Ollama
+# KC Riff
 
 Get up and running with large language models.
 
 ### macOS
 
-[Download](https://ollama.com/download/Ollama-darwin.zip)
+[Download](https://KC Riff.com/download/KC Riff-darwin.zip)
 
 ### Windows
 
-[Download](https://ollama.com/download/OllamaSetup.exe)
+[Download](https://KC Riff.com/download/KC RiffSetup.exe)
 
 ### Linux
 
 ```shell
-curl -fsSL https://ollama.com/install.sh | sh
+curl -fsSL https://KC Riff.com/install.sh | sh
 ```
 
-[Manual install instructions](https://github.com/ollama/ollama/blob/main/docs/linux.md)
+[Manual install instructions](https://github.com/KC Riff/KC Riff/blob/main/docs/linux.md)
 
 ### Docker
 
-The official [Ollama Docker image](https://hub.docker.com/r/ollama/ollama) `ollama/ollama` is available on Docker Hub.
+The official [KC Riff Docker image](https://hub.docker.com/r/KC Riff/KC Riff) `KC Riff/KC Riff` is available on Docker Hub.
 
 ### Libraries
 
-- [ollama-python](https://github.com/ollama/ollama-python)
-- [ollama-js](https://github.com/ollama/ollama-js)
+- [KC Riff-python](https://github.com/KC Riff/KC Riff-python)
+- [KC Riff-js](https://github.com/KC Riff/KC Riff-js)
 
 ### Community
 
-- [Discord](https://discord.gg/ollama)
-- [Reddit](https://reddit.com/r/ollama)
+- [Discord](https://discord.gg/KC Riff)
+- [Reddit](https://reddit.com/r/KC Riff)
 
 ## Quickstart
 
-To run and chat with [Llama 3.2](https://ollama.com/library/llama3.2):
+To run and chat with [Llama 3.2](https://KC Riff.com/library/llama3.2):
 
 ```shell
-ollama run llama3.2
+KC Riff run llama3.2
 ```
 
 ## Model library
 
-Ollama supports a list of models available on [ollama.com/library](https://ollama.com/library 'ollama model library')
+KC Riff supports a list of models available on [KC Riff.com/library](https://KC Riff.com/library 'KC Riff model library')
 
 Here are some example models that can be downloaded:
 
 | Model              | Parameters | Size  | Download                         |
 | ------------------ | ---------- | ----- | -------------------------------- |
-| DeepSeek-R1        | 7B         | 4.7GB | `ollama run deepseek-r1`         |
-| DeepSeek-R1        | 671B       | 404GB | `ollama run deepseek-r1:671b`    |
-| Llama 3.3          | 70B        | 43GB  | `ollama run llama3.3`            |
-| Llama 3.2          | 3B         | 2.0GB | `ollama run llama3.2`            |
-| Llama 3.2          | 1B         | 1.3GB | `ollama run llama3.2:1b`         |
-| Llama 3.2 Vision   | 11B        | 7.9GB | `ollama run llama3.2-vision`     |
-| Llama 3.2 Vision   | 90B        | 55GB  | `ollama run llama3.2-vision:90b` |
-| Llama 3.1          | 8B         | 4.7GB | `ollama run llama3.1`            |
-| Llama 3.1          | 405B       | 231GB | `ollama run llama3.1:405b`       |
-| Phi 4              | 14B        | 9.1GB | `ollama run phi4`                |
-| Phi 3 Mini         | 3.8B       | 2.3GB | `ollama run phi3`                |
-| Gemma 2            | 2B         | 1.6GB | `ollama run gemma2:2b`           |
-| Gemma 2            | 9B         | 5.5GB | `ollama run gemma2`              |
-| Gemma 2            | 27B        | 16GB  | `ollama run gemma2:27b`          |
-| Mistral            | 7B         | 4.1GB | `ollama run mistral`             |
-| Moondream 2        | 1.4B       | 829MB | `ollama run moondream`           |
-| Neural Chat        | 7B         | 4.1GB | `ollama run neural-chat`         |
-| Starling           | 7B         | 4.1GB | `ollama run starling-lm`         |
-| Code Llama         | 7B         | 3.8GB | `ollama run codellama`           |
-| Llama 2 Uncensored | 7B         | 3.8GB | `ollama run llama2-uncensored`   |
-| LLaVA              | 7B         | 4.5GB | `ollama run llava`               |
-| Solar              | 10.7B      | 6.1GB | `ollama run solar`               |
+| DeepSeek-R1        | 7B         | 4.7GB | `KC Riff run deepseek-r1`         |
+| DeepSeek-R1        | 671B       | 404GB | `KC Riff run deepseek-r1:671b`    |
+| Llama 3.3          | 70B        | 43GB  | `KC Riff run llama3.3`            |
+| Llama 3.2          | 3B         | 2.0GB | `KC Riff run llama3.2`            |
+| Llama 3.2          | 1B         | 1.3GB | `KC Riff run llama3.2:1b`         |
+| Llama 3.2 Vision   | 11B        | 7.9GB | `KC Riff run llama3.2-vision`     |
+| Llama 3.2 Vision   | 90B        | 55GB  | `KC Riff run llama3.2-vision:90b` |
+| Llama 3.1          | 8B         | 4.7GB | `KC Riff run llama3.1`            |
+| Llama 3.1          | 405B       | 231GB | `KC Riff run llama3.1:405b`       |
+| Phi 4              | 14B        | 9.1GB | `KC Riff run phi4`                |
+| Phi 3 Mini         | 3.8B       | 2.3GB | `KC Riff run phi3`                |
+| Gemma 2            | 2B         | 1.6GB | `KC Riff run gemma2:2b`           |
+| Gemma 2            | 9B         | 5.5GB | `KC Riff run gemma2`              |
+| Gemma 2            | 27B        | 16GB  | `KC Riff run gemma2:27b`          |
+| Mistral            | 7B         | 4.1GB | `KC Riff run mistral`             |
+| Moondream 2        | 1.4B       | 829MB | `KC Riff run moondream`           |
+| Neural Chat        | 7B         | 4.1GB | `KC Riff run neural-chat`         |
+| Starling           | 7B         | 4.1GB | `KC Riff run starling-lm`         |
+| Code Llama         | 7B         | 3.8GB | `KC Riff run codellama`           |
+| Llama 2 Uncensored | 7B         | 3.8GB | `KC Riff run llama2-uncensored`   |
+| LLaVA              | 7B         | 4.5GB | `KC Riff run llava`               |
+| Solar              | 10.7B      | 6.1GB | `KC Riff run solar`               |
 
 > [!NOTE]
 > You should have at least 8 GB of RAM available to run the 7B models, 16 GB to run the 13B models, and 32 GB to run the 33B models.
@@ -84,7 +84,7 @@ Here are some example models that can be downloaded:
 
 ### Import from GGUF
 
-Ollama supports importing GGUF models in the Modelfile:
+KC Riff supports importing GGUF models in the Modelfile:
 
 1. Create a file named `Modelfile`, with a `FROM` instruction with the local filepath to the model you want to import.
 
@@ -92,16 +92,16 @@ Ollama supports importing GGUF models in the Modelfile:
    FROM ./vicuna-33b.Q4_0.gguf
    ```
 
-2. Create the model in Ollama
+2. Create the model in KC Riff
 
    ```shell
-   ollama create example -f Modelfile
+   KC Riff create example -f Modelfile
    ```
 
 3. Run the model
 
    ```shell
-   ollama run example
+   KC Riff run example
    ```
 
 ### Import from Safetensors
@@ -110,10 +110,10 @@ See the [guide](docs/import.md) on importing models for more information.
 
 ### Customize a prompt
 
-Models from the Ollama library can be customized with a prompt. For example, to customize the `llama3.2` model:
+Models from the KC Riff library can be customized with a prompt. For example, to customize the `llama3.2` model:
 
 ```shell
-ollama pull llama3.2
+KC Riff pull llama3.2
 ```
 
 Create a `Modelfile`:
@@ -133,8 +133,8 @@ You are Mario from Super Mario Bros. Answer as Mario, the assistant, only.
 Next, create and run the model:
 
 ```
-ollama create mario -f ./Modelfile
-ollama run mario
+KC Riff create mario -f ./Modelfile
+KC Riff run mario
 >>> hi
 Hello! It's your friend Mario.
 ```
@@ -145,16 +145,16 @@ For more information on working with a Modelfile, see the [Modelfile](docs/model
 
 ### Create a model
 
-`ollama create` is used to create a model from a Modelfile.
+`KC Riff create` is used to create a model from a Modelfile.
 
 ```shell
-ollama create mymodel -f ./Modelfile
+KC Riff create mymodel -f ./Modelfile
 ```
 
 ### Pull a model
 
 ```shell
-ollama pull llama3.2
+KC Riff pull llama3.2
 ```
 
 > This command can also be used to update a local model. Only the diff will be pulled.
@@ -162,13 +162,13 @@ ollama pull llama3.2
 ### Remove a model
 
 ```shell
-ollama rm llama3.2
+KC Riff rm llama3.2
 ```
 
 ### Copy a model
 
 ```shell
-ollama cp llama3.2 my-model
+KC Riff cp llama3.2 my-model
 ```
 
 ### Multiline input
@@ -185,7 +185,7 @@ I'm a basic program that prints the famous "Hello, world!" message to the consol
 ### Multimodal models
 
 ```
-ollama run llava "What's in this image? /Users/jmorgan/Desktop/smile.png"
+KC Riff run llava "What's in this image? /Users/jmorgan/Desktop/smile.png"
 ```
 
 > **Output**: The image features a yellow smiley face, which is likely the central focus of the picture.
@@ -193,60 +193,60 @@ ollama run llava "What's in this image? /Users/jmorgan/Desktop/smile.png"
 ### Pass the prompt as an argument
 
 ```shell
-ollama run llama3.2 "Summarize this file: $(cat README.md)"
+KC Riff run llama3.2 "Summarize this file: $(cat README.md)"
 ```
 
-> **Output**: Ollama is a lightweight, extensible framework for building and running language models on the local machine. It provides a simple API for creating, running, and managing models, as well as a library of pre-built models that can be easily used in a variety of applications.
+> **Output**: KC Riff is a lightweight, extensible framework for building and running language models on the local machine. It provides a simple API for creating, running, and managing models, as well as a library of pre-built models that can be easily used in a variety of applications.
 
 ### Show model information
 
 ```shell
-ollama show llama3.2
+KC Riff show llama3.2
 ```
 
 ### List models on your computer
 
 ```shell
-ollama list
+KC Riff list
 ```
 
 ### List which models are currently loaded
 
 ```shell
-ollama ps
+KC Riff ps
 ```
 
 ### Stop a model which is currently running
 
 ```shell
-ollama stop llama3.2
+KC Riff stop llama3.2
 ```
 
-### Start Ollama
+### Start KC Riff
 
-`ollama serve` is used when you want to start ollama without running the desktop application.
+`KC Riff serve` is used when you want to start KC Riff without running the desktop application.
 
 ## Building
 
-See the [developer guide](https://github.com/ollama/ollama/blob/main/docs/development.md)
+See the [developer guide](https://github.com/KC Riff/KC Riff/blob/main/docs/development.md)
 
 ### Running local builds
 
 Next, start the server:
 
 ```shell
-./ollama serve
+./KC Riff serve
 ```
 
 Finally, in a separate shell, run a model:
 
 ```shell
-./ollama run llama3.2
+./KC Riff run llama3.2
 ```
 
 ## REST API
 
-Ollama has a REST API for running and managing models.
+KC Riff has a REST API for running and managing models.
 
 ### Generate a response
 
@@ -276,58 +276,58 @@ See the [API documentation](./docs/api.md) for all endpoints.
 
 - [Open WebUI](https://github.com/open-webui/open-webui)
 - [Enchanted (macOS native)](https://github.com/AugustDev/enchanted)
-- [Hollama](https://github.com/fmaclen/hollama)
+- [HKC Riff](https://github.com/fmaclen/hKC Riff)
 - [Lollms-Webui](https://github.com/ParisNeo/lollms-webui)
 - [LibreChat](https://github.com/danny-avila/LibreChat)
 - [Bionic GPT](https://github.com/bionic-gpt/bionic-gpt)
-- [HTML UI](https://github.com/rtcfirefly/ollama-ui)
+- [HTML UI](https://github.com/rtcfirefly/KC Riff-ui)
 - [Saddle](https://github.com/jikkuatwork/saddle)
-- [Chatbot UI](https://github.com/ivanfioravanti/chatbot-ollama)
+- [Chatbot UI](https://github.com/ivanfioravanti/chatbot-KC Riff)
 - [Chatbot UI v2](https://github.com/mckaywrigley/chatbot-ui)
-- [Typescript UI](https://github.com/ollama-interface/Ollama-Gui?tab=readme-ov-file)
-- [Minimalistic React UI for Ollama Models](https://github.com/richawo/minimal-llm-ui)
-- [Ollamac](https://github.com/kevinhermawan/Ollamac)
-- [big-AGI](https://github.com/enricoros/big-AGI/blob/main/docs/config-local-ollama.md)
+- [Typescript UI](https://github.com/KC Riff-interface/KC Riff-Gui?tab=readme-ov-file)
+- [Minimalistic React UI for KC Riff Models](https://github.com/richawo/minimal-llm-ui)
+- [KC Riffc](https://github.com/kevinhermawan/KC Riffc)
+- [big-AGI](https://github.com/enricoros/big-AGI/blob/main/docs/config-local-KC Riff.md)
 - [Cheshire Cat assistant framework](https://github.com/cheshire-cat-ai/core)
 - [Amica](https://github.com/semperai/amica)
 - [chatd](https://github.com/BruceMacD/chatd)
-- [Ollama-SwiftUI](https://github.com/kghandour/Ollama-SwiftUI)
+- [KC Riff-SwiftUI](https://github.com/kghandour/KC Riff-SwiftUI)
 - [Dify.AI](https://github.com/langgenius/dify)
 - [MindMac](https://mindmac.app)
-- [NextJS Web Interface for Ollama](https://github.com/jakobhoeg/nextjs-ollama-llm-ui)
+- [NextJS Web Interface for KC Riff](https://github.com/jakobhoeg/nextjs-KC Riff-llm-ui)
 - [Msty](https://msty.app)
 - [Chatbox](https://github.com/Bin-Huang/Chatbox)
-- [WinForm Ollama Copilot](https://github.com/tgraupmann/WinForm_Ollama_Copilot)
-- [NextChat](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web) with [Get Started Doc](https://docs.nextchat.dev/models/ollama)
+- [WinForm KC Riff Copilot](https://github.com/tgraupmann/WinForm_KC Riff_Copilot)
+- [NextChat](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web) with [Get Started Doc](https://docs.nextchat.dev/models/KC Riff)
 - [Alpaca WebUI](https://github.com/mmo80/alpaca-webui)
-- [OllamaGUI](https://github.com/enoch1118/ollamaGUI)
+- [KC RiffGUI](https://github.com/enoch1118/KC RiffGUI)
 - [OpenAOE](https://github.com/InternLM/OpenAOE)
 - [Odin Runes](https://github.com/leonid20000/OdinRunes)
 - [LLM-X](https://github.com/mrdjohnson/llm-x) (Progressive Web App)
 - [AnythingLLM (Docker + MacOs/Windows/Linux native app)](https://github.com/Mintplex-Labs/anything-llm)
-- [Ollama Basic Chat: Uses HyperDiv Reactive UI](https://github.com/rapidarchitect/ollama_basic_chat)
-- [Ollama-chats RPG](https://github.com/drazdra/ollama-chats)
+- [KC Riff Basic Chat: Uses HyperDiv Reactive UI](https://github.com/rapidarchitect/KC Riff_basic_chat)
+- [KC Riff-chats RPG](https://github.com/drazdra/KC Riff-chats)
 - [IntelliBar](https://intellibar.app/) (AI-powered assistant for macOS)
-- [QA-Pilot](https://github.com/reid41/QA-Pilot) (Interactive chat tool that can leverage Ollama models for rapid understanding and navigation of GitHub code repositories)
-- [ChatOllama](https://github.com/sugarforever/chat-ollama) (Open Source Chatbot based on Ollama with Knowledge Bases)
-- [CRAG Ollama Chat](https://github.com/Nagi-ovo/CRAG-Ollama-Chat) (Simple Web Search with Corrective RAG)
+- [QA-Pilot](https://github.com/reid41/QA-Pilot) (Interactive chat tool that can leverage KC Riff models for rapid understanding and navigation of GitHub code repositories)
+- [ChatKC Riff](https://github.com/sugarforever/chat-KC Riff) (Open Source Chatbot based on KC Riff with Knowledge Bases)
+- [CRAG KC Riff Chat](https://github.com/Nagi-ovo/CRAG-KC Riff-Chat) (Simple Web Search with Corrective RAG)
 - [RAGFlow](https://github.com/infiniflow/ragflow) (Open-source Retrieval-Augmented Generation engine based on deep document understanding)
 - [StreamDeploy](https://github.com/StreamDeploy-DevRel/streamdeploy-llm-app-scaffold) (LLM Application Scaffold)
 - [chat](https://github.com/swuecho/chat) (chat web app for teams)
-- [Lobe Chat](https://github.com/lobehub/lobe-chat) with [Integrating Doc](https://lobehub.com/docs/self-hosting/examples/ollama)
-- [Ollama RAG Chatbot](https://github.com/datvodinh/rag-chatbot.git) (Local Chat with multiple PDFs using Ollama and RAG)
+- [Lobe Chat](https://github.com/lobehub/lobe-chat) with [Integrating Doc](https://lobehub.com/docs/self-hosting/examples/KC Riff)
+- [KC Riff RAG Chatbot](https://github.com/datvodinh/rag-chatbot.git) (Local Chat with multiple PDFs using KC Riff and RAG)
 - [BrainSoup](https://www.nurgo-software.com/products/brainsoup) (Flexible native client with RAG & multi-agent automation)
-- [macai](https://github.com/Renset/macai) (macOS client for Ollama, ChatGPT, and other compatible API back-ends)
-- [RWKV-Runner](https://github.com/josStorer/RWKV-Runner) (RWKV offline LLM deployment tool, also usable as a client for ChatGPT and Ollama)
-- [Ollama Grid Search](https://github.com/dezoito/ollama-grid-search) (app to evaluate and compare models)
-- [Olpaka](https://github.com/Otacon/olpaka) (User-friendly Flutter Web App for Ollama)
-- [OllamaSpring](https://github.com/CrazyNeil/OllamaSpring) (Ollama Client for macOS)
-- [LLocal.in](https://github.com/kartikm7/llocal) (Easy to use Electron Desktop Client for Ollama)
-- [Shinkai Desktop](https://github.com/dcSpark/shinkai-apps) (Two click install Local AI using Ollama + Files + RAG)
-- [AiLama](https://github.com/zeyoyt/ailama) (A Discord User App that allows you to interact with Ollama anywhere in discord )
-- [Ollama with Google Mesop](https://github.com/rapidarchitect/ollama_mesop/) (Mesop Chat Client implementation with Ollama)
+- [macai](https://github.com/Renset/macai) (macOS client for KC Riff, ChatGPT, and other compatible API back-ends)
+- [RWKV-Runner](https://github.com/josStorer/RWKV-Runner) (RWKV offline LLM deployment tool, also usable as a client for ChatGPT and KC Riff)
+- [KC Riff Grid Search](https://github.com/dezoito/KC Riff-grid-search) (app to evaluate and compare models)
+- [Olpaka](https://github.com/Otacon/olpaka) (User-friendly Flutter Web App for KC Riff)
+- [KC RiffSpring](https://github.com/CrazyNeil/KC RiffSpring) (KC Riff Client for macOS)
+- [LLocal.in](https://github.com/kartikm7/llocal) (Easy to use Electron Desktop Client for KC Riff)
+- [Shinkai Desktop](https://github.com/dcSpark/shinkai-apps) (Two click install Local AI using KC Riff + Files + RAG)
+- [AiLama](https://github.com/zeyoyt/ailama) (A Discord User App that allows you to interact with KC Riff anywhere in discord )
+- [KC Riff with Google Mesop](https://github.com/rapidarchitect/KC Riff_mesop/) (Mesop Chat Client implementation with KC Riff)
 - [R2R](https://github.com/SciPhi-AI/R2R) (Open-source RAG engine)
-- [Ollama-Kis](https://github.com/elearningshow/ollama-kis) (A simple easy to use GUI with sample custom LLM for Drivers Education)
+- [KC Riff-Kis](https://github.com/elearningshow/KC Riff-kis) (A simple easy to use GUI with sample custom LLM for Drivers Education)
 - [OpenGPA](https://opengpa.org) (Open-source offline-first Enterprise Agentic Application)
 - [Painting Droid](https://github.com/mateuszmigas/painting-droid) (Painting app with AI integrations)
 - [Kerlig AI](https://www.kerlig.com/) (AI writing assistant for macOS)
@@ -335,69 +335,69 @@ See the [API documentation](./docs/api.md) for all endpoints.
 - [Sidellama](https://github.com/gyopak/sidellama) (browser-based LLM client)
 - [LLMStack](https://github.com/trypromptly/LLMStack) (No-code multi-agent framework to build LLM agents and workflows)
 - [BoltAI for Mac](https://boltai.com) (AI Chat Client for Mac)
-- [Harbor](https://github.com/av/harbor) (Containerized LLM Toolkit with Ollama as default backend)
+- [Harbor](https://github.com/av/harbor) (Containerized LLM Toolkit with KC Riff as default backend)
 - [PyGPT](https://github.com/szczyglis-dev/py-gpt) (AI desktop assistant for Linux, Windows and Mac)
-- [Alpaca](https://github.com/Jeffser/Alpaca) (An Ollama client application for linux and macos made with GTK4 and Adwaita)
-- [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT/blob/master/docs/content/platform/ollama.md) (AutoGPT Ollama integration)
+- [Alpaca](https://github.com/Jeffser/Alpaca) (An KC Riff client application for linux and macos made with GTK4 and Adwaita)
+- [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT/blob/master/docs/content/platform/KC Riff.md) (AutoGPT KC Riff integration)
 - [Go-CREW](https://www.jonathanhecl.com/go-crew/) (Powerful Offline RAG in Golang)
 - [PartCAD](https://github.com/openvmp/partcad/) (CAD model generation with OpenSCAD and CadQuery)
-- [Ollama4j Web UI](https://github.com/ollama4j/ollama4j-web-ui) - Java-based Web UI for Ollama built with Vaadin, Spring Boot and Ollama4j
-- [PyOllaMx](https://github.com/kspviswa/pyOllaMx) - macOS application capable of chatting with both Ollama and Apple MLX models.
+- [KC Riff4j Web UI](https://github.com/KC Riff4j/KC Riff4j-web-ui) - Java-based Web UI for KC Riff built with Vaadin, Spring Boot and KC Riff4j
+- [PyOllaMx](https://github.com/kspviswa/pyOllaMx) - macOS application capable of chatting with both KC Riff and Apple MLX models.
 - [Claude Dev](https://github.com/saoudrizwan/claude-dev) - VSCode extension for multi-file/whole-repo coding
-- [Cherry Studio](https://github.com/kangfenmao/cherry-studio) (Desktop client with Ollama support)
+- [Cherry Studio](https://github.com/kangfenmao/cherry-studio) (Desktop client with KC Riff support)
 - [ConfiChat](https://github.com/1runeberg/confichat) (Lightweight, standalone, multi-platform, and privacy focused LLM chat interface with optional encryption)
 - [Archyve](https://github.com/nickthecook/archyve) (RAG-enabling document library)
-- [crewAI with Mesop](https://github.com/rapidarchitect/ollama-crew-mesop) (Mesop Web Interface to run crewAI with Ollama)
-- [Tkinter-based client](https://github.com/chyok/ollama-gui) (Python tkinter-based Client for Ollama)
+- [crewAI with Mesop](https://github.com/rapidarchitect/KC Riff-crew-mesop) (Mesop Web Interface to run crewAI with KC Riff)
+- [Tkinter-based client](https://github.com/chyok/KC Riff-gui) (Python tkinter-based Client for KC Riff)
 - [LLMChat](https://github.com/trendy-design/llmchat) (Privacy focused, 100% local, intuitive all-in-one chat interface)
-- [Local Multimodal AI Chat](https://github.com/Leon-Sander/Local-Multimodal-AI-Chat) (Ollama-based LLM Chat with support for multiple features, including PDF RAG, voice chat, image-based interactions, and integration with OpenAI.)
-- [ARGO](https://github.com/xark-argo/argo) (Locally download and run Ollama and Huggingface models with RAG on Mac/Windows/Linux)
+- [Local Multimodal AI Chat](https://github.com/Leon-Sander/Local-Multimodal-AI-Chat) (KC Riff-based LLM Chat with support for multiple features, including PDF RAG, voice chat, image-based interactions, and integration with OpenAI.)
+- [ARGO](https://github.com/xark-argo/argo) (Locally download and run KC Riff and Huggingface models with RAG on Mac/Windows/Linux)
 - [OrionChat](https://github.com/EliasPereirah/OrionChat) - OrionChat is a web interface for chatting with different AI providers
 - [G1](https://github.com/bklieger-groq/g1) (Prototype of using prompting strategies to improve the LLM's reasoning through o1-like reasoning chains.)
-- [Web management](https://github.com/lemonit-eric-mao/ollama-web-management) (Web management page)
-- [Promptery](https://github.com/promptery/promptery) (desktop client for Ollama.)
-- [Ollama App](https://github.com/JHubi1/ollama-app) (Modern and easy-to-use multi-platform client for Ollama)
-- [chat-ollama](https://github.com/annilq/chat-ollama) (a React Native client for Ollama)
-- [SpaceLlama](https://github.com/tcsenpai/spacellama) (Firefox and Chrome extension to quickly summarize web pages with ollama in a sidebar)
+- [Web management](https://github.com/lemonit-eric-mao/KC Riff-web-management) (Web management page)
+- [Promptery](https://github.com/promptery/promptery) (desktop client for KC Riff.)
+- [KC Riff App](https://github.com/JHubi1/KC Riff-app) (Modern and easy-to-use multi-platform client for KC Riff)
+- [chat-KC Riff](https://github.com/annilq/chat-KC Riff) (a React Native client for KC Riff)
+- [SpaceLlama](https://github.com/tcsenpai/spacellama) (Firefox and Chrome extension to quickly summarize web pages with KC Riff in a sidebar)
 - [YouLama](https://github.com/tcsenpai/youlama) (Webapp to quickly summarize any YouTube video, supporting Invidious as well)
 - [DualMind](https://github.com/tcsenpai/dualmind) (Experimental app allowing two models to talk to each other in the terminal or in a web interface)
-- [ollamarama-matrix](https://github.com/h1ddenpr0cess20/ollamarama-matrix) (Ollama chatbot for the Matrix chat protocol)
-- [ollama-chat-app](https://github.com/anan1213095357/ollama-chat-app) (Flutter-based chat app)
+- [KC Rifframa-matrix](https://github.com/h1ddenpr0cess20/KC Rifframa-matrix) (KC Riff chatbot for the Matrix chat protocol)
+- [KC Riff-chat-app](https://github.com/anan1213095357/KC Riff-chat-app) (Flutter-based chat app)
 - [Perfect Memory AI](https://www.perfectmemory.ai/) (Productivity AI assists personalized by what you have seen on your screen, heard and said in the meetings)
 - [Hexabot](https://github.com/hexastack/hexabot) (A conversational AI builder)
 - [Reddit Rate](https://github.com/rapidarchitect/reddit_analyzer) (Search and Rate Reddit topics with a weighted summation)
-- [OpenTalkGpt](https://github.com/adarshM84/OpenTalkGpt) (Chrome Extension to manage open-source models supported by Ollama, create custom models, and chat with models from a user-friendly UI)
-- [VT](https://github.com/vinhnx/vt.ai) (A minimal multimodal AI chat app, with dynamic conversation routing. Supports local models via Ollama)
-- [Nosia](https://github.com/nosia-ai/nosia) (Easy to install and use RAG platform based on Ollama)
+- [OpenTalkGpt](https://github.com/adarshM84/OpenTalkGpt) (Chrome Extension to manage open-source models supported by KC Riff, create custom models, and chat with models from a user-friendly UI)
+- [VT](https://github.com/vinhnx/vt.ai) (A minimal multimodal AI chat app, with dynamic conversation routing. Supports local models via KC Riff)
+- [Nosia](https://github.com/nosia-ai/nosia) (Easy to install and use RAG platform based on KC Riff)
 - [Witsy](https://github.com/nbonamy/witsy) (An AI Desktop application available for Mac/Windows/Linux)
 - [Abbey](https://github.com/US-Artificial-Intelligence/abbey) (A configurable AI interface server with notebooks, document storage, and YouTube support)
 - [Minima](https://github.com/dmayboroda/minima) (RAG with on-premises or fully local workflow)
-- [aidful-ollama-model-delete](https://github.com/AidfulAI/aidful-ollama-model-delete) (User interface for simplified model cleanup)
+- [aidful-KC Riff-model-delete](https://github.com/AidfulAI/aidful-KC Riff-model-delete) (User interface for simplified model cleanup)
 - [Perplexica](https://github.com/ItzCrazyKns/Perplexica) (An AI-powered search engine & an open-source alternative to Perplexity AI)
-- [Ollama Chat WebUI for Docker ](https://github.com/oslook/ollama-webui) (Support for local docker deployment, lightweight ollama webui)
-- [AI Toolkit for Visual Studio Code](https://aka.ms/ai-tooklit/ollama-docs) (Microsoft-official VSCode extension to chat, test, evaluate models with Ollama support, and use them in your AI applications.)
-- [MinimalNextOllamaChat](https://github.com/anilkay/MinimalNextOllamaChat) (Minimal Web UI for Chat and Model Control)
-- [Chipper](https://github.com/TilmanGriesel/chipper) AI interface for tinkerers (Ollama, Haystack RAG, Python)
-- [ChibiChat](https://github.com/CosmicEventHorizon/ChibiChat) (Kotlin-based Android app to chat with Ollama and Koboldcpp API endpoints)
-- [LocalLLM](https://github.com/qusaismael/localllm) (Minimal Web-App to run ollama models on it with a GUI)
-- [Ollamazing](https://github.com/buiducnhat/ollamazing) (Web extension to run Ollama models)
+- [KC Riff Chat WebUI for Docker ](https://github.com/oslook/KC Riff-webui) (Support for local docker deployment, lightweight KC Riff webui)
+- [AI Toolkit for Visual Studio Code](https://aka.ms/ai-tooklit/KC Riff-docs) (Microsoft-official VSCode extension to chat, test, evaluate models with KC Riff support, and use them in your AI applications.)
+- [MinimalNextKC RiffChat](https://github.com/anilkay/MinimalNextKC RiffChat) (Minimal Web UI for Chat and Model Control)
+- [Chipper](https://github.com/TilmanGriesel/chipper) AI interface for tinkerers (KC Riff, Haystack RAG, Python)
+- [ChibiChat](https://github.com/CosmicEventHorizon/ChibiChat) (Kotlin-based Android app to chat with KC Riff and Koboldcpp API endpoints)
+- [LocalLLM](https://github.com/qusaismael/localllm) (Minimal Web-App to run KC Riff models on it with a GUI)
+- [KC Riffzing](https://github.com/buiducnhat/KC Riffzing) (Web extension to run KC Riff models)
 
 ### Cloud
 
-- [Google Cloud](https://cloud.google.com/run/docs/tutorials/gpu-gemma2-with-ollama)
-- [Fly.io](https://fly.io/docs/python/do-more/add-ollama/)
-- [Koyeb](https://www.koyeb.com/deploy/ollama)
+- [Google Cloud](https://cloud.google.com/run/docs/tutorials/gpu-gemma2-with-KC Riff)
+- [Fly.io](https://fly.io/docs/python/do-more/add-KC Riff/)
+- [Koyeb](https://www.koyeb.com/deploy/KC Riff)
 
 ### Terminal
 
 - [oterm](https://github.com/ggozad/oterm)
 - [Ellama Emacs client](https://github.com/s-kostyaev/ellama)
-- [Emacs client](https://github.com/zweifisch/ollama)
-- [neollama](https://github.com/paradoxical-dev/neollama) UI client for interacting with models from within Neovim
+- [Emacs client](https://github.com/zweifisch/KC Riff)
+- [neKC Riff](https://github.com/paradoxical-dev/neKC Riff) UI client for interacting with models from within Neovim
 - [gen.nvim](https://github.com/David-Kunz/gen.nvim)
-- [ollama.nvim](https://github.com/nomnivore/ollama.nvim)
+- [KC Riff.nvim](https://github.com/nomnivore/KC Riff.nvim)
 - [ollero.nvim](https://github.com/marco-souza/ollero.nvim)
-- [ollama-chat.nvim](https://github.com/gerazov/ollama-chat.nvim)
+- [KC Riff-chat.nvim](https://github.com/gerazov/KC Riff-chat.nvim)
 - [ogpt.nvim](https://github.com/huynle/ogpt.nvim)
 - [gptel Emacs client](https://github.com/karthink/gptel)
 - [Oatmeal](https://github.com/dustinblackman/oatmeal)
@@ -405,22 +405,22 @@ See the [API documentation](./docs/api.md) for all endpoints.
 - [ooo](https://github.com/npahlfer/ooo)
 - [shell-pilot](https://github.com/reid41/shell-pilot)(Interact with models via pure shell scripts on Linux or macOS)
 - [tenere](https://github.com/pythops/tenere)
-- [llm-ollama](https://github.com/taketwo/llm-ollama) for [Datasette's LLM CLI](https://llm.datasette.io/en/stable/).
+- [llm-KC Riff](https://github.com/taketwo/llm-KC Riff) for [Datasette's LLM CLI](https://llm.datasette.io/en/stable/).
 - [typechat-cli](https://github.com/anaisbetts/typechat-cli)
 - [ShellOracle](https://github.com/djcopley/ShellOracle)
 - [tlm](https://github.com/yusufcanb/tlm)
-- [podman-ollama](https://github.com/ericcurtin/podman-ollama)
-- [gollama](https://github.com/sammcj/gollama)
+- [podman-KC Riff](https://github.com/ericcurtin/podman-KC Riff)
+- [gKC Riff](https://github.com/sammcj/gKC Riff)
 - [ParLlama](https://github.com/paulrobello/parllama)
-- [Ollama eBook Summary](https://github.com/cognitivetech/ollama-ebook-summary/)
-- [Ollama Mixture of Experts (MOE) in 50 lines of code](https://github.com/rapidarchitect/ollama_moe)
-- [vim-intelligence-bridge](https://github.com/pepo-ec/vim-intelligence-bridge) Simple interaction of "Ollama" with the Vim editor
-- [x-cmd ollama](https://x-cmd.com/mod/ollama)
+- [KC Riff eBook Summary](https://github.com/cognitivetech/KC Riff-ebook-summary/)
+- [KC Riff Mixture of Experts (MOE) in 50 lines of code](https://github.com/rapidarchitect/KC Riff_moe)
+- [vim-intelligence-bridge](https://github.com/pepo-ec/vim-intelligence-bridge) Simple interaction of "KC Riff" with the Vim editor
+- [x-cmd KC Riff](https://x-cmd.com/mod/KC Riff)
 - [bb7](https://github.com/drunkwcodes/bb7)
-- [SwollamaCLI](https://github.com/marcusziade/Swollama) bundled with the Swollama Swift package. [Demo](https://github.com/marcusziade/Swollama?tab=readme-ov-file#cli-usage)
-- [aichat](https://github.com/sigoden/aichat) All-in-one LLM CLI tool featuring Shell Assistant, Chat-REPL, RAG, AI tools & agents, with access to OpenAI, Claude, Gemini, Ollama, Groq, and more.
-- [PowershAI](https://github.com/rrg92/powershai) PowerShell module that brings AI to terminal on Windows, including support for Ollama
-- [orbiton](https://github.com/xyproto/orbiton) Configuration-free text editor and IDE with support for tab completion with Ollama.
+- [SwKC RiffCLI](https://github.com/marcusziade/SwKC Riff) bundled with the SwKC Riff Swift package. [Demo](https://github.com/marcusziade/SwKC Riff?tab=readme-ov-file#cli-usage)
+- [aichat](https://github.com/sigoden/aichat) All-in-one LLM CLI tool featuring Shell Assistant, Chat-REPL, RAG, AI tools & agents, with access to OpenAI, Claude, Gemini, KC Riff, Groq, and more.
+- [PowershAI](https://github.com/rrg92/powershai) PowerShell module that brings AI to terminal on Windows, including support for KC Riff
+- [orbiton](https://github.com/xyproto/orbiton) Configuration-free text editor and IDE with support for tab completion with KC Riff.
 
 ### Apple Vision Pro
 
@@ -428,124 +428,124 @@ See the [API documentation](./docs/api.md) for all endpoints.
 
 ### Database
 
-- [pgai](https://github.com/timescale/pgai) - PostgreSQL as a vector database (Create and search embeddings from Ollama models using pgvector)
+- [pgai](https://github.com/timescale/pgai) - PostgreSQL as a vector database (Create and search embeddings from KC Riff models using pgvector)
    - [Get started guide](https://github.com/timescale/pgai/blob/main/docs/vectorizer-quick-start.md)
-- [MindsDB](https://github.com/mindsdb/mindsdb/blob/staging/mindsdb/integrations/handlers/ollama_handler/README.md) (Connects Ollama models with nearly 200 data platforms and apps)
-- [chromem-go](https://github.com/philippgille/chromem-go/blob/v0.5.0/embed_ollama.go) with [example](https://github.com/philippgille/chromem-go/tree/v0.5.0/examples/rag-wikipedia-ollama)
+- [MindsDB](https://github.com/mindsdb/mindsdb/blob/staging/mindsdb/integrations/handlers/KC Riff_handler/README.md) (Connects KC Riff models with nearly 200 data platforms and apps)
+- [chromem-go](https://github.com/philippgille/chromem-go/blob/v0.5.0/embed_KC Riff.go) with [example](https://github.com/philippgille/chromem-go/tree/v0.5.0/examples/rag-wikipedia-KC Riff)
 - [Kangaroo](https://github.com/dbkangaroo/kangaroo) (AI-powered SQL client and admin tool for popular databases)
 
 ### Package managers
 
-- [Pacman](https://archlinux.org/packages/extra/x86_64/ollama/)
-- [Gentoo](https://github.com/gentoo/guru/tree/master/app-misc/ollama)
-- [Homebrew](https://formulae.brew.sh/formula/ollama)
-- [Helm Chart](https://artifacthub.io/packages/helm/ollama-helm/ollama)
-- [Guix channel](https://codeberg.org/tusharhero/ollama-guix)
-- [Nix package](https://search.nixos.org/packages?show=ollama&from=0&size=50&sort=relevance&type=packages&query=ollama)
-- [Flox](https://flox.dev/blog/ollama-part-one)
+- [Pacman](https://archlinux.org/packages/extra/x86_64/KC Riff/)
+- [Gentoo](https://github.com/gentoo/guru/tree/master/app-misc/KC Riff)
+- [Homebrew](https://formulae.brew.sh/formula/KC Riff)
+- [Helm Chart](https://artifacthub.io/packages/helm/KC Riff-helm/KC Riff)
+- [Guix channel](https://codeberg.org/tusharhero/KC Riff-guix)
+- [Nix package](https://search.nixos.org/packages?show=KC Riff&from=0&size=50&sort=relevance&type=packages&query=KC Riff)
+- [Flox](https://flox.dev/blog/KC Riff-part-one)
 
 ### Libraries
 
-- [LangChain](https://python.langchain.com/docs/integrations/llms/ollama) and [LangChain.js](https://js.langchain.com/docs/integrations/chat/ollama/) with [example](https://js.langchain.com/docs/tutorials/local_rag/)
-- [Firebase Genkit](https://firebase.google.com/docs/genkit/plugins/ollama)
+- [LangChain](https://python.langchain.com/docs/integrations/llms/KC Riff) and [LangChain.js](https://js.langchain.com/docs/integrations/chat/KC Riff/) with [example](https://js.langchain.com/docs/tutorials/local_rag/)
+- [Firebase Genkit](https://firebase.google.com/docs/genkit/plugins/KC Riff)
 - [crewAI](https://github.com/crewAIInc/crewAI)
 - [Yacana](https://remembersoftwares.github.io/yacana/) (User-friendly multi-agent framework for brainstorming and executing predetermined flows with built-in tool integration)
-- [Spring AI](https://github.com/spring-projects/spring-ai) with [reference](https://docs.spring.io/spring-ai/reference/api/chat/ollama-chat.html) and [example](https://github.com/tzolov/ollama-tools)
-- [LangChainGo](https://github.com/tmc/langchaingo/) with [example](https://github.com/tmc/langchaingo/tree/main/examples/ollama-completion-example)
-- [LangChain4j](https://github.com/langchain4j/langchain4j) with [example](https://github.com/langchain4j/langchain4j-examples/tree/main/ollama-examples/src/main/java)
-- [LangChainRust](https://github.com/Abraxas-365/langchain-rust) with [example](https://github.com/Abraxas-365/langchain-rust/blob/main/examples/llm_ollama.rs)
+- [Spring AI](https://github.com/spring-projects/spring-ai) with [reference](https://docs.spring.io/spring-ai/reference/api/chat/KC Riff-chat.html) and [example](https://github.com/tzolov/KC Riff-tools)
+- [LangChainGo](https://github.com/tmc/langchaingo/) with [example](https://github.com/tmc/langchaingo/tree/main/examples/KC Riff-completion-example)
+- [LangChain4j](https://github.com/langchain4j/langchain4j) with [example](https://github.com/langchain4j/langchain4j-examples/tree/main/KC Riff-examples/src/main/java)
+- [LangChainRust](https://github.com/Abraxas-365/langchain-rust) with [example](https://github.com/Abraxas-365/langchain-rust/blob/main/examples/llm_KC Riff.rs)
 - [LangChain for .NET](https://github.com/tryAGI/LangChain) with [example](https://github.com/tryAGI/LangChain/blob/main/examples/LangChain.Samples.OpenAI/Program.cs)
-- [LLPhant](https://github.com/theodo-group/LLPhant?tab=readme-ov-file#ollama)
-- [LlamaIndex](https://docs.llamaindex.ai/en/stable/examples/llm/ollama/) and [LlamaIndexTS](https://ts.llamaindex.ai/modules/llms/available_llms/ollama)
+- [LLPhant](https://github.com/theodo-group/LLPhant?tab=readme-ov-file#KC Riff)
+- [LlamaIndex](https://docs.llamaindex.ai/en/stable/examples/llm/KC Riff/) and [LlamaIndexTS](https://ts.llamaindex.ai/modules/llms/available_llms/KC Riff)
 - [LiteLLM](https://github.com/BerriAI/litellm)
-- [OllamaFarm for Go](https://github.com/presbrey/ollamafarm)
-- [OllamaSharp for .NET](https://github.com/awaescher/OllamaSharp)
-- [Ollama for Ruby](https://github.com/gbaptista/ollama-ai)
-- [Ollama-rs for Rust](https://github.com/pepperoni21/ollama-rs)
-- [Ollama-hpp for C++](https://github.com/jmont-dev/ollama-hpp)
-- [Ollama4j for Java](https://github.com/ollama4j/ollama4j)
-- [ModelFusion Typescript Library](https://modelfusion.dev/integration/model-provider/ollama)
-- [OllamaKit for Swift](https://github.com/kevinhermawan/OllamaKit)
-- [Ollama for Dart](https://github.com/breitburg/dart-ollama)
-- [Ollama for Laravel](https://github.com/cloudstudio/ollama-laravel)
+- [KC RiffFarm for Go](https://github.com/presbrey/KC Rifffarm)
+- [KC RiffSharp for .NET](https://github.com/awaescher/KC RiffSharp)
+- [KC Riff for Ruby](https://github.com/gbaptista/KC Riff-ai)
+- [KC Riff-rs for Rust](https://github.com/pepperoni21/KC Riff-rs)
+- [KC Riff-hpp for C++](https://github.com/jmont-dev/KC Riff-hpp)
+- [KC Riff4j for Java](https://github.com/KC Riff4j/KC Riff4j)
+- [ModelFusion Typescript Library](https://modelfusion.dev/integration/model-provider/KC Riff)
+- [KC RiffKit for Swift](https://github.com/kevinhermawan/KC RiffKit)
+- [KC Riff for Dart](https://github.com/breitburg/dart-KC Riff)
+- [KC Riff for Laravel](https://github.com/cloudstudio/KC Riff-laravel)
 - [LangChainDart](https://github.com/davidmigloz/langchain_dart)
-- [Semantic Kernel - Python](https://github.com/microsoft/semantic-kernel/tree/main/python/semantic_kernel/connectors/ai/ollama)
-- [Haystack](https://github.com/deepset-ai/haystack-integrations/blob/main/integrations/ollama.md)
+- [Semantic Kernel - Python](https://github.com/microsoft/semantic-kernel/tree/main/python/semantic_kernel/connectors/ai/KC Riff)
+- [Haystack](https://github.com/deepset-ai/haystack-integrations/blob/main/integrations/KC Riff.md)
 - [Elixir LangChain](https://github.com/brainlid/langchain)
-- [Ollama for R - rollama](https://github.com/JBGruber/rollama)
-- [Ollama for R - ollama-r](https://github.com/hauselin/ollama-r)
-- [Ollama-ex for Elixir](https://github.com/lebrunel/ollama-ex)
-- [Ollama Connector for SAP ABAP](https://github.com/b-tocs/abap_btocs_ollama)
-- [Testcontainers](https://testcontainers.com/modules/ollama/)
-- [Portkey](https://portkey.ai/docs/welcome/integration-guides/ollama)
-- [PromptingTools.jl](https://github.com/svilupp/PromptingTools.jl) with an [example](https://svilupp.github.io/PromptingTools.jl/dev/examples/working_with_ollama)
+- [KC Riff for R - rKC Riff](https://github.com/JBGruber/rKC Riff)
+- [KC Riff for R - KC Riff-r](https://github.com/hauselin/KC Riff-r)
+- [KC Riff-ex for Elixir](https://github.com/lebrunel/KC Riff-ex)
+- [KC Riff Connector for SAP ABAP](https://github.com/b-tocs/abap_btocs_KC Riff)
+- [Testcontainers](https://testcontainers.com/modules/KC Riff/)
+- [Portkey](https://portkey.ai/docs/welcome/integration-guides/KC Riff)
+- [PromptingTools.jl](https://github.com/svilupp/PromptingTools.jl) with an [example](https://svilupp.github.io/PromptingTools.jl/dev/examples/working_with_KC Riff)
 - [LlamaScript](https://github.com/Project-Llama/llamascript)
 - [llm-axe](https://github.com/emirsahin1/llm-axe) (Python Toolkit for Building LLM Powered Apps)
-- [Gollm](https://docs.gollm.co/examples/ollama-example)
-- [Gollama for Golang](https://github.com/jonathanhecl/gollama)
-- [Ollamaclient for Golang](https://github.com/xyproto/ollamaclient)
+- [Gollm](https://docs.gollm.co/examples/KC Riff-example)
+- [GKC Riff for Golang](https://github.com/jonathanhecl/gKC Riff)
+- [KC Riffclient for Golang](https://github.com/xyproto/KC Riffclient)
 - [High-level function abstraction in Go](https://gitlab.com/tozd/go/fun)
-- [Ollama PHP](https://github.com/ArdaGnsrn/ollama-php)
-- [Agents-Flex for Java](https://github.com/agents-flex/agents-flex) with [example](https://github.com/agents-flex/agents-flex/tree/main/agents-flex-llm/agents-flex-llm-ollama/src/test/java/com/agentsflex/llm/ollama)
-- [Parakeet](https://github.com/parakeet-nest/parakeet) is a GoLang library, made to simplify the development of small generative AI applications with Ollama.
+- [KC Riff PHP](https://github.com/ArdaGnsrn/KC Riff-php)
+- [Agents-Flex for Java](https://github.com/agents-flex/agents-flex) with [example](https://github.com/agents-flex/agents-flex/tree/main/agents-flex-llm/agents-flex-llm-KC Riff/src/test/java/com/agentsflex/llm/KC Riff)
+- [Parakeet](https://github.com/parakeet-nest/parakeet) is a GoLang library, made to simplify the development of small generative AI applications with KC Riff.
 - [Haverscript](https://github.com/andygill/haverscript) with [examples](https://github.com/andygill/haverscript/tree/main/examples)
-- [Ollama for Swift](https://github.com/mattt/ollama-swift)
-- [Swollama for Swift](https://github.com/marcusziade/Swollama) with [DocC](https://marcusziade.github.io/Swollama/documentation/swollama/)
+- [KC Riff for Swift](https://github.com/mattt/KC Riff-swift)
+- [SwKC Riff for Swift](https://github.com/marcusziade/SwKC Riff) with [DocC](https://marcusziade.github.io/SwKC Riff/documentation/swKC Riff/)
 - [GoLamify](https://github.com/prasad89/golamify)
-- [Ollama for Haskell](https://github.com/tusharad/ollama-haskell)
+- [KC Riff for Haskell](https://github.com/tusharad/KC Riff-haskell)
 - [multi-llm-ts](https://github.com/nbonamy/multi-llm-ts) (A Typescript/JavaScript library allowing access to different LLM in unified API)
 - [LlmTornado](https://github.com/lofcz/llmtornado) (C# library providing a unified interface for major FOSS & Commercial inference APIs)
-- [Ollama for Zig](https://github.com/dravenk/ollama-zig)
+- [KC Riff for Zig](https://github.com/dravenk/KC Riff-zig)
 - [Abso](https://github.com/lunary-ai/abso) (OpenAI-compatible TypeScript SDK for any LLM provider)
 
 ### Mobile
 
 - [Enchanted](https://github.com/AugustDev/enchanted)
 - [Maid](https://github.com/Mobile-Artificial-Intelligence/maid)
-- [Ollama App](https://github.com/JHubi1/ollama-app) (Modern and easy-to-use multi-platform client for Ollama)
+- [KC Riff App](https://github.com/JHubi1/KC Riff-app) (Modern and easy-to-use multi-platform client for KC Riff)
 - [ConfiChat](https://github.com/1runeberg/confichat) (Lightweight, standalone, multi-platform, and privacy focused LLM chat interface with optional encryption)
 
 ### Extensions & Plugins
 
-- [Raycast extension](https://github.com/MassimilianoPasquini97/raycast_ollama)
-- [Discollama](https://github.com/mxyng/discollama) (Discord bot inside the Ollama discord channel)
+- [Raycast extension](https://github.com/MassimilianoPasquini97/raycast_KC Riff)
+- [DiscKC Riff](https://github.com/mxyng/discKC Riff) (Discord bot inside the KC Riff discord channel)
 - [Continue](https://github.com/continuedev/continue)
-- [Vibe](https://github.com/thewh1teagle/vibe) (Transcribe and analyze meetings with Ollama)
-- [Obsidian Ollama plugin](https://github.com/hinterdupfinger/obsidian-ollama)
-- [Logseq Ollama plugin](https://github.com/omagdy7/ollama-logseq)
-- [NotesOllama](https://github.com/andersrex/notesollama) (Apple Notes Ollama plugin)
+- [Vibe](https://github.com/thewh1teagle/vibe) (Transcribe and analyze meetings with KC Riff)
+- [Obsidian KC Riff plugin](https://github.com/hinterdupfinger/obsidian-KC Riff)
+- [Logseq KC Riff plugin](https://github.com/omagdy7/KC Riff-logseq)
+- [NotesKC Riff](https://github.com/andersrex/notesKC Riff) (Apple Notes KC Riff plugin)
 - [Dagger Chatbot](https://github.com/samalba/dagger-chatbot)
 - [Discord AI Bot](https://github.com/mekb-turtle/discord-ai-bot)
-- [Ollama Telegram Bot](https://github.com/ruecat/ollama-telegram)
-- [Hass Ollama Conversation](https://github.com/ej52/hass-ollama-conversation)
-- [Rivet plugin](https://github.com/abrenneke/rivet-plugin-ollama)
+- [KC Riff Telegram Bot](https://github.com/ruecat/KC Riff-telegram)
+- [Hass KC Riff Conversation](https://github.com/ej52/hass-KC Riff-conversation)
+- [Rivet plugin](https://github.com/abrenneke/rivet-plugin-KC Riff)
 - [Obsidian BMO Chatbot plugin](https://github.com/longy2k/obsidian-bmo-chatbot)
-- [Cliobot](https://github.com/herval/cliobot) (Telegram bot with Ollama support)
+- [Cliobot](https://github.com/herval/cliobot) (Telegram bot with KC Riff support)
 - [Copilot for Obsidian plugin](https://github.com/logancyang/obsidian-copilot)
 - [Obsidian Local GPT plugin](https://github.com/pfrankov/obsidian-local-gpt)
-- [Open Interpreter](https://docs.openinterpreter.com/language-model-setup/local-models/ollama)
-- [Llama Coder](https://github.com/ex3ndr/llama-coder) (Copilot alternative using Ollama)
-- [Ollama Copilot](https://github.com/bernardo-bruning/ollama-copilot) (Proxy that allows you to use ollama as a copilot like Github copilot)
-- [twinny](https://github.com/rjmacarthy/twinny) (Copilot and Copilot chat alternative using Ollama)
-- [Wingman-AI](https://github.com/RussellCanfield/wingman-ai) (Copilot code and chat alternative using Ollama and Hugging Face)
+- [Open Interpreter](https://docs.openinterpreter.com/language-model-setup/local-models/KC Riff)
+- [Llama Coder](https://github.com/ex3ndr/llama-coder) (Copilot alternative using KC Riff)
+- [KC Riff Copilot](https://github.com/bernardo-bruning/KC Riff-copilot) (Proxy that allows you to use KC Riff as a copilot like Github copilot)
+- [twinny](https://github.com/rjmacarthy/twinny) (Copilot and Copilot chat alternative using KC Riff)
+- [Wingman-AI](https://github.com/RussellCanfield/wingman-ai) (Copilot code and chat alternative using KC Riff and Hugging Face)
 - [Page Assist](https://github.com/n4ze3m/page-assist) (Chrome Extension)
-- [Plasmoid Ollama Control](https://github.com/imoize/plasmoid-ollamacontrol) (KDE Plasma extension that allows you to quickly manage/control Ollama model)
-- [AI Telegram Bot](https://github.com/tusharhero/aitelegrambot) (Telegram bot using Ollama in backend)
-- [AI ST Completion](https://github.com/yaroslavyaroslav/OpenAI-sublime-text) (Sublime Text 4 AI assistant plugin with Ollama support)
-- [Discord-Ollama Chat Bot](https://github.com/kevinthedang/discord-ollama) (Generalized TypeScript Discord Bot w/ Tuning Documentation)
+- [Plasmoid KC Riff Control](https://github.com/imoize/plasmoid-KC Riffcontrol) (KDE Plasma extension that allows you to quickly manage/control KC Riff model)
+- [AI Telegram Bot](https://github.com/tusharhero/aitelegrambot) (Telegram bot using KC Riff in backend)
+- [AI ST Completion](https://github.com/yaroslavyaroslav/OpenAI-sublime-text) (Sublime Text 4 AI assistant plugin with KC Riff support)
+- [Discord-KC Riff Chat Bot](https://github.com/kevinthedang/discord-KC Riff) (Generalized TypeScript Discord Bot w/ Tuning Documentation)
 - [ChatGPTBox: All in one browser extension](https://github.com/josStorer/chatGPTBox) with [Integrating Tutorial](https://github.com/josStorer/chatGPTBox/issues/616#issuecomment-1975186467)
-- [Discord AI chat/moderation bot](https://github.com/rapmd73/Companion) Chat/moderation bot written in python. Uses Ollama to create personalities.
-- [Headless Ollama](https://github.com/nischalj10/headless-ollama) (Scripts to automatically install ollama client & models on any OS for apps that depends on ollama server)
-- [Terraform AWS Ollama & Open WebUI](https://github.com/xuyangbocn/terraform-aws-self-host-llm) (A Terraform module to deploy on AWS a ready-to-use Ollama service, together with its front end Open WebUI service.)
-- [node-red-contrib-ollama](https://github.com/jakubburkiewicz/node-red-contrib-ollama)
+- [Discord AI chat/moderation bot](https://github.com/rapmd73/Companion) Chat/moderation bot written in python. Uses KC Riff to create personalities.
+- [Headless KC Riff](https://github.com/nischalj10/headless-KC Riff) (Scripts to automatically install KC Riff client & models on any OS for apps that depends on KC Riff server)
+- [Terraform AWS KC Riff & Open WebUI](https://github.com/xuyangbocn/terraform-aws-self-host-llm) (A Terraform module to deploy on AWS a ready-to-use KC Riff service, together with its front end Open WebUI service.)
+- [node-red-contrib-KC Riff](https://github.com/jakubburkiewicz/node-red-contrib-KC Riff)
 - [Local AI Helper](https://github.com/ivostoykov/localAI) (Chrome and Firefox extensions that enable interactions with the active tab and customisable API endpoints. Includes secure storage for user prompts.)
-- [vnc-lm](https://github.com/jake83741/vnc-lm) (Discord bot for messaging with LLMs through Ollama and LiteLLM. Seamlessly move between local and flagship models.)
+- [vnc-lm](https://github.com/jake83741/vnc-lm) (Discord bot for messaging with LLMs through KC Riff and LiteLLM. Seamlessly move between local and flagship models.)
 - [LSP-AI](https://github.com/SilasMarvin/lsp-ai) (Open-source language server for AI-powered functionality)
 - [QodeAssist](https://github.com/Palm1r/QodeAssist) (AI-powered coding assistant plugin for Qt Creator)
 - [Obsidian Quiz Generator plugin](https://github.com/ECuiDev/obsidian-quiz-generator)
 - [AI Summmary Helper plugin](https://github.com/philffm/ai-summary-helper)
-- [TextCraft](https://github.com/suncloudsmoon/TextCraft) (Copilot in Word alternative using Ollama)
-- [Alfred Ollama](https://github.com/zeitlings/alfred-ollama) (Alfred Workflow)
+- [TextCraft](https://github.com/suncloudsmoon/TextCraft) (Copilot in Word alternative using KC Riff)
+- [Alfred KC Riff](https://github.com/zeitlings/alfred-KC Riff) (Alfred Workflow)
 - [TextLLaMA](https://github.com/adarshM84/TextLLaMA) A Chrome Extension that helps you write emails, correct grammar, and translate into any language
 - [Simple-Discord-AI](https://github.com/zyphixor/simple-discord-ai)
 
@@ -554,8 +554,8 @@ See the [API documentation](./docs/api.md) for all endpoints.
 - [llama.cpp](https://github.com/ggerganov/llama.cpp) project founded by Georgi Gerganov.
 
 ### Observability
-- [Lunary](https://lunary.ai/docs/integrations/ollama) is the leading open-source LLM observability platform. It provides a variety of enterprise-grade features such as real-time analytics, prompt templates management, PII masking, and comprehensive agent tracing.
-- [OpenLIT](https://github.com/openlit/openlit) is an OpenTelemetry-native tool for monitoring Ollama Applications & GPUs using traces and metrics.
-- [HoneyHive](https://docs.honeyhive.ai/integrations/ollama) is an AI observability and evaluation platform for AI agents. Use HoneyHive to evaluate agent performance, interrogate failures, and monitor quality in production.
-- [Langfuse](https://langfuse.com/docs/integrations/ollama) is an open source LLM observability platform that enables teams to collaboratively monitor, evaluate and debug AI applications.
+- [Lunary](https://lunary.ai/docs/integrations/KC Riff) is the leading open-source LLM observability platform. It provides a variety of enterprise-grade features such as real-time analytics, prompt templates management, PII masking, and comprehensive agent tracing.
+- [OpenLIT](https://github.com/openlit/openlit) is an OpenTelemetry-native tool for monitoring KC Riff Applications & GPUs using traces and metrics.
+- [HoneyHive](https://docs.honeyhive.ai/integrations/KC Riff) is an AI observability and evaluation platform for AI agents. Use HoneyHive to evaluate agent performance, interrogate failures, and monitor quality in production.
+- [Langfuse](https://langfuse.com/docs/integrations/KC Riff) is an open source LLM observability platform that enables teams to collaboratively monitor, evaluate and debug AI applications.
 - [MLflow Tracing](https://mlflow.org/docs/latest/llms/tracing/index.html#automatic-tracing) is an open source LLM observability tool with a convenient API to log and visualize traces, making it easy to debug and evaluate GenAI applications.
