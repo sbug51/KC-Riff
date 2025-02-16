@@ -1,4 +1,5 @@
-//go:build linux || solaris
+//go:build linux || solaris || windows
+// +build linux solaris windows
 
 package readline
 
