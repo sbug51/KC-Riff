@@ -13,14 +13,15 @@ import (
 )
 
 // Jetson devices have JETSON_JETPACK="x.y.z" factory set to the Jetpack version installed.
-// Included to drive logic for reducing Ollama-allocated overhead on L4T/Jetson devices.
+// This is only applicable on Linux; on Windows, it will be ignored.
 var CudaTegra string = os.Getenv("JETSON_JETPACK")
 
+// cudaGetVisibleDevicesEnv returns the environment variable and value for visible CUDA devices.
 func cudaGetVisibleDevicesEnv(gpuInfo []GpuInfo) (string, string) {
 	ids := []string{}
 	for _, info := range gpuInfo {
 		if info.Library != "cuda" {
-			// TODO shouldn't happen if things are wired correctly...
+			// This should not happen if things are wired correctly...
 			slog.Debug("cudaGetVisibleDevicesEnv skipping over non-cuda device", "library", info.Library)
 			continue
 		}
@@ -29,7 +30,18 @@ func cudaGetVisibleDevicesEnv(gpuInfo []GpuInfo) (string, string) {
 	return "CUDA_VISIBLE_DEVICES", strings.Join(ids, ",")
 }
 
+// cudaVariant returns a string representing the CUDA variant to use.
+// On Windows, Jetson-specific logic is skipped.
 func cudaVariant(gpuInfo CudaGPUInfo) string {
+	if runtime.GOOS == "windows" {
+		// For Windows, we rely solely on compute capability and driver versions.
+		if gpuInfo.computeMajor < 6 || gpuInfo.DriverMajor < 12 || (gpuInfo.DriverMajor == 12 && gpuInfo.DriverMinor == 0) {
+			return "v11"
+		}
+		return "v12"
+	}
+
+	// For Linux on ARM (Jetson), check for Jetson-specific environment variables.
 	if runtime.GOARCH == "arm64" && runtime.GOOS == "linux" {
 		if CudaTegra != "" {
 			ver := strings.Split(CudaTegra, ".")
@@ -40,11 +52,9 @@ func cudaVariant(gpuInfo CudaGPUInfo) string {
 			r := regexp.MustCompile(` R(\d+) `)
 			m := r.FindSubmatch(data)
 			if len(m) != 2 {
-				slog.Info("Unexpected format for /etc/nv_tegra_release.  Set JETSON_JETPACK to select version")
+				slog.Info("Unexpected format for /etc/nv_tegra_release. Set JETSON_JETPACK to select version")
 			} else {
 				if l4t, err := strconv.Atoi(string(m[1])); err == nil {
-					// Note: mapping from L4t -> JP is inconsistent (can't just subtract 30)
-					// https://developer.nvidia.com/embedded/jetpack-archive
 					switch l4t {
 					case 35:
 						return "jetpack5"
@@ -58,6 +68,7 @@ func cudaVariant(gpuInfo CudaGPUInfo) string {
 		}
 	}
 
+	// Default logic for non-Jetson devices.
 	if gpuInfo.computeMajor < 6 || gpuInfo.DriverMajor < 12 || (gpuInfo.DriverMajor == 12 && gpuInfo.DriverMinor == 0) {
 		return "v11"
 	}
