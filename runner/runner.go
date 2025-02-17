@@ -1,8 +1,8 @@
 package runner
 
 import (
-	"github.com/ollama/ollama/runner/llamarunner"
-	"github.com/ollama/ollama/runner/ollamarunner"
+	"github.com/sbug51/KC-Riff/api"   // KC Riff API
+	"github.com/sbug51/KC-Riff/llama" // KC Riff LLM execution
 )
 
 func Execute(args []string) error {
@@ -10,15 +10,15 @@ func Execute(args []string) error {
 		args = args[1:]
 	}
 
-	var newRunner bool
-	if args[0] == "--ollama-engine" {
+	var useNewEngine bool
+	if args[0] == "--kc-riff-engine" { // Change to KC Riff
 		args = args[1:]
-		newRunner = true
+		useNewEngine = true
 	}
 
-	if newRunner {
-		return ollamarunner.Execute(args)
+	if useNewEngine {
+		return api.Execute(args) // KC Riff API execution
 	} else {
-		return llamarunner.Execute(args)
+		return llama.Execute(args) // KC Riff LLM execution
 	}
 }

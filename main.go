@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/KC-Riff/KC-Riff/cmd"
+	"github.com/sbug51/KC-Riff/cmd"
 )
 
 func main() {
