@@ -14,12 +14,12 @@ import (
 	"time"
 )
 
-// Host returns the scheme and host. Host can be configured via the OLLAMA_HOST environment variable.
+// Host returns the scheme and host. Host can be configured via the kc-riff_HOST environment variable.
 // Default is scheme "http" and host "127.0.0.1:11434"
 func Host() *url.URL {
 	defaultPort := "11434"
 
-	s := strings.TrimSpace(Var("OLLAMA_HOST"))
+	s := strings.TrimSpace(Var("kc-riff_HOST"))
 	scheme, hostport, ok := strings.Cut(s, "://")
 	switch {
 	case !ok:
@@ -53,9 +53,9 @@ func Host() *url.URL {
 	}
 }
 
-// Origins returns a list of allowed origins. Origins can be configured via the OLLAMA_ORIGINS environment variable.
+// Origins returns a list of allowed origins. Origins can be configured via the kc-riff_ORIGINS environment variable.
 func Origins() (origins []string) {
-	if s := Var("OLLAMA_ORIGINS"); s != "" {
+	if s := Var("kc-riff_ORIGINS"); s != "" {
 		origins = strings.Split(s, ",")
 	}
 
@@ -78,10 +78,10 @@ func Origins() (origins []string) {
 	return origins
 }
 
-// Models returns the path to the models directory. Models directory can be configured via the OLLAMA_MODELS environment variable.
+// Models returns the path to the models directory. Models directory can be configured via the kc-riff_MODELS environment variable.
 // Default is $HOME/.kc-riff/models
 func Models() string {
-	if s := Var("OLLAMA_MODELS"); s != "" {
+	if s := Var("kc-riff_MODELS"); s != "" {
 		return s
 	}
 
@@ -93,12 +93,12 @@ func Models() string {
 	return filepath.Join(home, ".kc-riff", "models")
 }
 
-// KeepAlive returns the duration that models stay loaded in memory. KeepAlive can be configured via the OLLAMA_KEEP_ALIVE environment variable.
+// KeepAlive returns the duration that models stay loaded in memory. KeepAlive can be configured via the kc-riff_KEEP_ALIVE environment variable.
 // Negative values are treated as infinite. Zero is treated as no keep alive.
 // Default is 5 minutes.
 func KeepAlive() (keepAlive time.Duration) {
 	keepAlive = 5 * time.Minute
-	if s := Var("OLLAMA_KEEP_ALIVE"); s != "" {
+	if s := Var("kc-riff_KEEP_ALIVE"); s != "" {
 		if d, err := time.ParseDuration(s); err == nil {
 			keepAlive = d
 		} else if n, err := strconv.ParseInt(s, 10, 64); err == nil {
@@ -113,12 +113,12 @@ func KeepAlive() (keepAlive time.Duration) {
 	return keepAlive
 }
 
-// LoadTimeout returns the duration for stall detection during model loads. LoadTimeout can be configured via the OLLAMA_LOAD_TIMEOUT environment variable.
+// LoadTimeout returns the duration for stall detection during model loads. LoadTimeout can be configured via the kc-riff_LOAD_TIMEOUT environment variable.
 // Zero or Negative values are treated as infinite.
 // Default is 5 minutes.
 func LoadTimeout() (loadTimeout time.Duration) {
 	loadTimeout = 5 * time.Minute
-	if s := Var("OLLAMA_LOAD_TIMEOUT"); s != "" {
+	if s := Var("kc-riff_LOAD_TIMEOUT"); s != "" {
 		if d, err := time.ParseDuration(s); err == nil {
 			loadTimeout = d
 		} else if n, err := strconv.ParseInt(s, 10, 64); err == nil {
@@ -150,23 +150,23 @@ func Bool(k string) func() bool {
 
 var (
 	// Debug enabled additional debug information.
-	Debug = Bool("OLLAMA_DEBUG")
+	Debug = Bool("kc-riff_DEBUG")
 	// FlashAttention enables the experimental flash attention feature.
-	FlashAttention = Bool("OLLAMA_FLASH_ATTENTION")
+	FlashAttention = Bool("kc-riff_FLASH_ATTENTION")
 	// KvCacheType is the quantization type for the K/V cache.
-	KvCacheType = String("OLLAMA_KV_CACHE_TYPE")
+	KvCacheType = String("kc-riff_KV_CACHE_TYPE")
 	// NoHistory disables readline history.
-	NoHistory = Bool("OLLAMA_NOHISTORY")
+	NoHistory = Bool("kc-riff_NOHISTORY")
 	// NoPrune disables pruning of model blobs on startup.
-	NoPrune = Bool("OLLAMA_NOPRUNE")
+	NoPrune = Bool("kc-riff_NOPRUNE")
 	// SchedSpread allows scheduling models across all GPUs.
-	SchedSpread = Bool("OLLAMA_SCHED_SPREAD")
+	SchedSpread = Bool("kc-riff_SCHED_SPREAD")
 	// IntelGPU enables experimental Intel GPU detection.
-	IntelGPU = Bool("OLLAMA_INTEL_GPU")
+	IntelGPU = Bool("kc-riff_INTEL_GPU")
 	// MultiUserCache optimizes prompt caching for multi-user scenarios
-	MultiUserCache = Bool("OLLAMA_MULTIUSER_CACHE")
+	MultiUserCache = Bool("kc-riff_MULTIUSER_CACHE")
 	// Enable the new kc-riff engine
-	NewEngine = Bool("OLLAMA_NEW_ENGINE")
+	NewEngine = Bool("kc-riff_NEW_ENGINE")
 )
 
 func String(s string) func() string {
@@ -176,7 +176,7 @@ func String(s string) func() string {
 }
 
 var (
-	LLMLibrary = String("OLLAMA_LLM_LIBRARY")
+	LLMLibrary = String("kc-riff_LLM_LIBRARY")
 
 	CudaVisibleDevices    = String("CUDA_VISIBLE_DEVICES")
 	HipVisibleDevices     = String("HIP_VISIBLE_DEVICES")
@@ -200,14 +200,14 @@ func Uint(key string, defaultValue uint) func() uint {
 }
 
 var (
-	// NumParallel sets the number of parallel model requests. NumParallel can be configured via the OLLAMA_NUM_PARALLEL environment variable.
-	NumParallel = Uint("OLLAMA_NUM_PARALLEL", 0)
-	// MaxRunners sets the maximum number of loaded models. MaxRunners can be configured via the OLLAMA_MAX_LOADED_MODELS environment variable.
-	MaxRunners = Uint("OLLAMA_MAX_LOADED_MODELS", 0)
-	// MaxQueue sets the maximum number of queued requests. MaxQueue can be configured via the OLLAMA_MAX_QUEUE environment variable.
-	MaxQueue = Uint("OLLAMA_MAX_QUEUE", 512)
-	// MaxVRAM sets a maximum VRAM override in bytes. MaxVRAM can be configured via the OLLAMA_MAX_VRAM environment variable.
-	MaxVRAM = Uint("OLLAMA_MAX_VRAM", 0)
+	// NumParallel sets the number of parallel model requests. NumParallel can be configured via the kc-riff_NUM_PARALLEL environment variable.
+	NumParallel = Uint("kc-riff_NUM_PARALLEL", 0)
+	// MaxRunners sets the maximum number of loaded models. MaxRunners can be configured via the kc-riff_MAX_LOADED_MODELS environment variable.
+	MaxRunners = Uint("kc-riff_MAX_LOADED_MODELS", 0)
+	// MaxQueue sets the maximum number of queued requests. MaxQueue can be configured via the kc-riff_MAX_QUEUE environment variable.
+	MaxQueue = Uint("kc-riff_MAX_QUEUE", 512)
+	// MaxVRAM sets a maximum VRAM override in bytes. MaxVRAM can be configured via the kc-riff_MAX_VRAM environment variable.
+	MaxVRAM = Uint("kc-riff_MAX_VRAM", 0)
 )
 
 func Uint64(key string, defaultValue uint64) func() uint64 {
@@ -225,7 +225,7 @@ func Uint64(key string, defaultValue uint64) func() uint64 {
 }
 
 // Set aside VRAM per GPU
-var GpuOverhead = Uint64("OLLAMA_GPU_OVERHEAD", 0)
+var GpuOverhead = Uint64("kc-riff_GPU_OVERHEAD", 0)
 
 type EnvVar struct {
 	Name        string
@@ -235,24 +235,24 @@ type EnvVar struct {
 
 func AsMap() map[string]EnvVar {
 	ret := map[string]EnvVar{
-		"OLLAMA_DEBUG":             {"OLLAMA_DEBUG", Debug(), "Show additional debug information (e.g. OLLAMA_DEBUG=1)"},
-		"OLLAMA_FLASH_ATTENTION":   {"OLLAMA_FLASH_ATTENTION", FlashAttention(), "Enabled flash attention"},
-		"OLLAMA_KV_CACHE_TYPE":     {"OLLAMA_KV_CACHE_TYPE", KvCacheType(), "Quantization type for the K/V cache (default: f16)"},
-		"OLLAMA_GPU_OVERHEAD":      {"OLLAMA_GPU_OVERHEAD", GpuOverhead(), "Reserve a portion of VRAM per GPU (bytes)"},
-		"OLLAMA_HOST":              {"OLLAMA_HOST", Host(), "IP Address for the kc-riff server (default 127.0.0.1:11434)"},
-		"OLLAMA_KEEP_ALIVE":        {"OLLAMA_KEEP_ALIVE", KeepAlive(), "The duration that models stay loaded in memory (default \"5m\")"},
-		"OLLAMA_LLM_LIBRARY":       {"OLLAMA_LLM_LIBRARY", LLMLibrary(), "Set LLM library to bypass autodetection"},
-		"OLLAMA_LOAD_TIMEOUT":      {"OLLAMA_LOAD_TIMEOUT", LoadTimeout(), "How long to allow model loads to stall before giving up (default \"5m\")"},
-		"OLLAMA_MAX_LOADED_MODELS": {"OLLAMA_MAX_LOADED_MODELS", MaxRunners(), "Maximum number of loaded models per GPU"},
-		"OLLAMA_MAX_QUEUE":         {"OLLAMA_MAX_QUEUE", MaxQueue(), "Maximum number of queued requests"},
-		"OLLAMA_MODELS":            {"OLLAMA_MODELS", Models(), "The path to the models directory"},
-		"OLLAMA_NOHISTORY":         {"OLLAMA_NOHISTORY", NoHistory(), "Do not preserve readline history"},
-		"OLLAMA_NOPRUNE":           {"OLLAMA_NOPRUNE", NoPrune(), "Do not prune model blobs on startup"},
-		"OLLAMA_NUM_PARALLEL":      {"OLLAMA_NUM_PARALLEL", NumParallel(), "Maximum number of parallel requests"},
-		"OLLAMA_ORIGINS":           {"OLLAMA_ORIGINS", Origins(), "A comma separated list of allowed origins"},
-		"OLLAMA_SCHED_SPREAD":      {"OLLAMA_SCHED_SPREAD", SchedSpread(), "Always schedule model across all GPUs"},
-		"OLLAMA_MULTIUSER_CACHE":   {"OLLAMA_MULTIUSER_CACHE", MultiUserCache(), "Optimize prompt caching for multi-user scenarios"},
-		"OLLAMA_NEW_ENGINE":        {"OLLAMA_NEW_ENGINE", NewEngine(), "Enable the new kc-riff engine"},
+		"kc-riff_DEBUG":             {"kc-riff_DEBUG", Debug(), "Show additional debug information (e.g. kc-riff_DEBUG=1)"},
+		"kc-riff_FLASH_ATTENTION":   {"kc-riff_FLASH_ATTENTION", FlashAttention(), "Enabled flash attention"},
+		"kc-riff_KV_CACHE_TYPE":     {"kc-riff_KV_CACHE_TYPE", KvCacheType(), "Quantization type for the K/V cache (default: f16)"},
+		"kc-riff_GPU_OVERHEAD":      {"kc-riff_GPU_OVERHEAD", GpuOverhead(), "Reserve a portion of VRAM per GPU (bytes)"},
+		"kc-riff_HOST":              {"kc-riff_HOST", Host(), "IP Address for the kc-riff server (default 127.0.0.1:11434)"},
+		"kc-riff_KEEP_ALIVE":        {"kc-riff_KEEP_ALIVE", KeepAlive(), "The duration that models stay loaded in memory (default \"5m\")"},
+		"kc-riff_LLM_LIBRARY":       {"kc-riff_LLM_LIBRARY", LLMLibrary(), "Set LLM library to bypass autodetection"},
+		"kc-riff_LOAD_TIMEOUT":      {"kc-riff_LOAD_TIMEOUT", LoadTimeout(), "How long to allow model loads to stall before giving up (default \"5m\")"},
+		"kc-riff_MAX_LOADED_MODELS": {"kc-riff_MAX_LOADED_MODELS", MaxRunners(), "Maximum number of loaded models per GPU"},
+		"kc-riff_MAX_QUEUE":         {"kc-riff_MAX_QUEUE", MaxQueue(), "Maximum number of queued requests"},
+		"kc-riff_MODELS":            {"kc-riff_MODELS", Models(), "The path to the models directory"},
+		"kc-riff_NOHISTORY":         {"kc-riff_NOHISTORY", NoHistory(), "Do not preserve readline history"},
+		"kc-riff_NOPRUNE":           {"kc-riff_NOPRUNE", NoPrune(), "Do not prune model blobs on startup"},
+		"kc-riff_NUM_PARALLEL":      {"kc-riff_NUM_PARALLEL", NumParallel(), "Maximum number of parallel requests"},
+		"kc-riff_ORIGINS":           {"kc-riff_ORIGINS", Origins(), "A comma separated list of allowed origins"},
+		"kc-riff_SCHED_SPREAD":      {"kc-riff_SCHED_SPREAD", SchedSpread(), "Always schedule model across all GPUs"},
+		"kc-riff_MULTIUSER_CACHE":   {"kc-riff_MULTIUSER_CACHE", MultiUserCache(), "Optimize prompt caching for multi-user scenarios"},
+		"kc-riff_NEW_ENGINE":        {"kc-riff_NEW_ENGINE", NewEngine(), "Enable the new kc-riff engine"},
 
 		// Informational
 		"HTTP_PROXY":  {"HTTP_PROXY", String("HTTP_PROXY")(), "HTTP proxy"},
@@ -273,7 +273,7 @@ func AsMap() map[string]EnvVar {
 		ret["ROCR_VISIBLE_DEVICES"] = EnvVar{"ROCR_VISIBLE_DEVICES", RocrVisibleDevices(), "Set which AMD devices are visible by UUID or numeric ID"}
 		ret["GPU_DEVICE_ORDINAL"] = EnvVar{"GPU_DEVICE_ORDINAL", GpuDeviceOrdinal(), "Set which AMD devices are visible by numeric ID"}
 		ret["HSA_OVERRIDE_GFX_VERSION"] = EnvVar{"HSA_OVERRIDE_GFX_VERSION", HsaOverrideGfxVersion(), "Override the gfx used for all detected AMD GPUs"}
-		ret["OLLAMA_INTEL_GPU"] = EnvVar{"OLLAMA_INTEL_GPU", IntelGPU(), "Enable experimental Intel GPU detection"}
+		ret["kc-riff_INTEL_GPU"] = EnvVar{"kc-riff_INTEL_GPU", IntelGPU(), "Enable experimental Intel GPU detection"}
 	}
 
 	return ret

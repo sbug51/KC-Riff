@@ -30,9 +30,9 @@ import (
 func createTestFile(t *testing.T, name string) (string, string) {
 	t.Helper()
 
-	modelDir := os.Getenv("OLLAMA_MODELS")
+	modelDir := os.Getenv("kc-riff_MODELS")
 	if modelDir == "" {
-		t.Fatalf("OLLAMA_MODELS not specified")
+		t.Fatalf("kc-riff_MODELS not specified")
 	}
 
 	f, err := os.CreateTemp(t.TempDir(), name)
@@ -477,7 +477,7 @@ func Test_Routes(t *testing.T) {
 		},
 	}
 
-	t.Setenv("OLLAMA_MODELS", t.TempDir())
+	t.Setenv("kc-riff_MODELS", t.TempDir())
 
 	s := &Server{}
 	router := s.GenerateRoutes()
@@ -523,7 +523,7 @@ func casingShuffle(s string) string {
 }
 
 func TestManifestCaseSensitivity(t *testing.T) {
-	t.Setenv("OLLAMA_MODELS", t.TempDir())
+	t.Setenv("kc-riff_MODELS", t.TempDir())
 
 	r := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
@@ -553,7 +553,7 @@ func TestManifestCaseSensitivity(t *testing.T) {
 	checkManifestList := func() {
 		t.Helper()
 
-		mandir := filepath.Join(os.Getenv("OLLAMA_MODELS"), "manifests/")
+		mandir := filepath.Join(os.Getenv("kc-riff_MODELS"), "manifests/")
 		var entries []string
 		t.Logf("dir entries:")
 		fsys := os.DirFS(mandir)
@@ -650,7 +650,7 @@ func TestManifestCaseSensitivity(t *testing.T) {
 }
 
 func TestShow(t *testing.T) {
-	t.Setenv("OLLAMA_MODELS", t.TempDir())
+	t.Setenv("kc-riff_MODELS", t.TempDir())
 
 	var s Server
 

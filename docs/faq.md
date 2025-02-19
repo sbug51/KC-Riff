@@ -71,7 +71,7 @@ If kc-riff is run as a macOS application, environment variables should be set us
 1. For each environment variable, call `launchctl setenv`.
 
     ```bash
-    launchctl setenv OLLAMA_HOST "0.0.0.0:11434"
+    launchctl setenv KC-Riff_HOST "0.0.0.0:11434"
     ```
 
 2. Restart kc-riff application.
@@ -86,7 +86,7 @@ If kc-riff is run as a systemd service, environment variables should be set usin
 
     ```ini
     [Service]
-    Environment="OLLAMA_HOST=0.0.0.0:11434"
+    Environment="KC-Riff_HOST=0.0.0.0:11434"
     ```
 
 3. Save and exit.
@@ -108,7 +108,7 @@ On Windows, kc-riff inherits your user and system environment variables.
 
 3. Click on _Edit environment variables for your account_.
 
-4. Edit or create a new variable for your user account for `OLLAMA_HOST`, `OLLAMA_MODELS`, etc.
+4. Edit or create a new variable for your user account for `KC-Riff_HOST`, `KC-Riff_MODELS`, etc.
 
 5. Click OK/Apply to save.
 
@@ -148,7 +148,7 @@ No. kc-riff runs locally, and conversation data does not leave your machine.
 
 ## How can I expose kc-riff on my network?
 
-kc-riff binds 127.0.0.1 port 11434 by default. Change the bind address with the `OLLAMA_HOST` environment variable.
+kc-riff binds 127.0.0.1 port 11434 by default. Change the bind address with the `KC-Riff_HOST` environment variable.
 
 Refer to the section [above](#how-do-i-configure-kc-riff-server) for how to set environment variables on your platform.
 
@@ -185,7 +185,7 @@ cloudflared tunnel --url http://localhost:11434 --http-host-header="localhost:11
 
 ## How can I allow additional web origins to access kc-riff?
 
-kc-riff allows cross-origin requests from `127.0.0.1` and `0.0.0.0` by default. Additional origins can be configured with `OLLAMA_ORIGINS`.
+kc-riff allows cross-origin requests from `127.0.0.1` and `0.0.0.0` by default. Additional origins can be configured with `KC-Riff_ORIGINS`.
 
 Refer to the section [above](#how-do-i-configure-kc-riff-server) for how to set environment variables on your platform.
 
@@ -197,7 +197,7 @@ Refer to the section [above](#how-do-i-configure-kc-riff-server) for how to set 
 
 ### How do I set them to a different location?
 
-If a different directory needs to be used, set the environment variable `OLLAMA_MODELS` to the chosen directory.
+If a different directory needs to be used, set the environment variable `KC-Riff_MODELS` to the chosen directory.
 
 > Note: on Linux using the standard installer, the `kc-riff` user needs read and write access to the specified directory. To assign the directory to the `kc-riff` user run `sudo chown -R kc-riff:kc-riff <directory>`.
 
@@ -269,13 +269,13 @@ To unload the model and free up memory use:
 curl http://localhost:11434/api/generate -d '{"model": "llama3.2", "keep_alive": 0}'
 ```
 
-Alternatively, you can change the amount of time all models are loaded into memory by setting the `OLLAMA_KEEP_ALIVE` environment variable when starting the kc-riff server. The `OLLAMA_KEEP_ALIVE` variable uses the same parameter types as the `keep_alive` parameter types mentioned above. Refer to the section explaining [how to configure the kc-riff server](#how-do-i-configure-kc-riff-server) to correctly set the environment variable.
+Alternatively, you can change the amount of time all models are loaded into memory by setting the `KC-Riff_KEEP_ALIVE` environment variable when starting the kc-riff server. The `KC-Riff_KEEP_ALIVE` variable uses the same parameter types as the `keep_alive` parameter types mentioned above. Refer to the section explaining [how to configure the kc-riff server](#how-do-i-configure-kc-riff-server) to correctly set the environment variable.
 
-The `keep_alive` API parameter with the `/api/generate` and `/api/chat` API endpoints will override the `OLLAMA_KEEP_ALIVE` setting.
+The `keep_alive` API parameter with the `/api/generate` and `/api/chat` API endpoints will override the `KC-Riff_KEEP_ALIVE` setting.
 
 ## How do I manage the maximum number of requests the kc-riff server can queue?
 
-If too many requests are sent to the server, it will respond with a 503 error indicating the server is overloaded.  You can adjust how many requests may be queue by setting `OLLAMA_MAX_QUEUE`.
+If too many requests are sent to the server, it will respond with a 503 error indicating the server is overloaded.  You can adjust how many requests may be queue by setting `KC-Riff_MAX_QUEUE`.
 
 ## How does kc-riff handle concurrent requests?
 
@@ -287,9 +287,9 @@ Parallel request processing for a given model results in increasing the context 
 
 The following server settings may be used to adjust how kc-riff handles concurrent requests on most platforms:
 
-- `OLLAMA_MAX_LOADED_MODELS` - The maximum number of models that can be loaded concurrently provided they fit in available memory.  The default is 3 * the number of GPUs or 3 for CPU inference.
-- `OLLAMA_NUM_PARALLEL` - The maximum number of parallel requests each model will process at the same time.  The default will auto-select either 4 or 1 based on available memory.
-- `OLLAMA_MAX_QUEUE` - The maximum number of requests kc-riff will queue when busy before rejecting additional requests. The default is 512
+- `KC-Riff_MAX_LOADED_MODELS` - The maximum number of models that can be loaded concurrently provided they fit in available memory.  The default is 3 * the number of GPUs or 3 for CPU inference.
+- `KC-Riff_NUM_PARALLEL` - The maximum number of parallel requests each model will process at the same time.  The default will auto-select either 4 or 1 based on available memory.
+- `KC-Riff_MAX_QUEUE` - The maximum number of requests kc-riff will queue when busy before rejecting additional requests. The default is 512
 
 Note: Windows with Radeon GPUs currently default to 1 model maximum due to limitations in ROCm v5.7 for available VRAM reporting.  Once ROCm v6.2 is available, Windows Radeon will follow the defaults above.  You may enable concurrent model loads on Radeon on Windows, but ensure you don't load more models than will fit into your GPUs VRAM.
 
@@ -299,7 +299,7 @@ When loading a new model, kc-riff evaluates the required VRAM for the model agai
 
 ## How can I enable Flash Attention?
 
-Flash Attention is a feature of most modern models that can significantly reduce memory usage as the context size grows.  To enable Flash Attention, set the `OLLAMA_FLASH_ATTENTION` environment variable to `1` when starting the kc-riff server.
+Flash Attention is a feature of most modern models that can significantly reduce memory usage as the context size grows.  To enable Flash Attention, set the `KC-Riff_FLASH_ATTENTION` environment variable to `1` when starting the kc-riff server.
 
 ## How can I set the quantization type for the K/V cache?
 
@@ -307,7 +307,7 @@ The K/V context cache can be quantized to significantly reduce memory usage when
 
 To use quantized K/V cache with kc-riff you can set the following environment variable:
 
-- `OLLAMA_KV_CACHE_TYPE` - The quantization type for the K/V cache.  Default is `f16`.
+- `KC-Riff_KV_CACHE_TYPE` - The quantization type for the K/V cache.  Default is `f16`.
 
 > Note: Currently this is a global option - meaning all models will run with the specified quantization type.
 

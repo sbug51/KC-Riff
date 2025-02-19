@@ -1286,7 +1286,7 @@ func NewCLI() *cobra.Command {
 
 	envVars := envconfig.AsMap()
 
-	envs := []envconfig.EnvVar{envVars["OLLAMA_HOST"]}
+	envs := []envconfig.EnvVar{envVars["kc-riff_HOST"]}
 
 	for _, cmd := range []*cobra.Command{
 		createCmd,
@@ -1303,25 +1303,25 @@ func NewCLI() *cobra.Command {
 	} {
 		switch cmd {
 		case runCmd:
-			appendEnvDocs(cmd, []envconfig.EnvVar{envVars["OLLAMA_HOST"], envVars["OLLAMA_NOHISTORY"]})
+			appendEnvDocs(cmd, []envconfig.EnvVar{envVars["kc-riff_HOST"], envVars["kc-riff_NOHISTORY"]})
 		case serveCmd:
 			appendEnvDocs(cmd, []envconfig.EnvVar{
-				envVars["OLLAMA_DEBUG"],
-				envVars["OLLAMA_HOST"],
-				envVars["OLLAMA_KEEP_ALIVE"],
-				envVars["OLLAMA_MAX_LOADED_MODELS"],
-				envVars["OLLAMA_MAX_QUEUE"],
-				envVars["OLLAMA_MODELS"],
-				envVars["OLLAMA_NUM_PARALLEL"],
-				envVars["OLLAMA_NOPRUNE"],
-				envVars["OLLAMA_ORIGINS"],
-				envVars["OLLAMA_SCHED_SPREAD"],
-				envVars["OLLAMA_TMPDIR"],
-				envVars["OLLAMA_FLASH_ATTENTION"],
-				envVars["OLLAMA_KV_CACHE_TYPE"],
-				envVars["OLLAMA_LLM_LIBRARY"],
-				envVars["OLLAMA_GPU_OVERHEAD"],
-				envVars["OLLAMA_LOAD_TIMEOUT"],
+				envVars["kc-riff_DEBUG"],
+				envVars["kc-riff_HOST"],
+				envVars["kc-riff_KEEP_ALIVE"],
+				envVars["kc-riff_MAX_LOADED_MODELS"],
+				envVars["kc-riff_MAX_QUEUE"],
+				envVars["kc-riff_MODELS"],
+				envVars["kc-riff_NUM_PARALLEL"],
+				envVars["kc-riff_NOPRUNE"],
+				envVars["kc-riff_ORIGINS"],
+				envVars["kc-riff_SCHED_SPREAD"],
+				envVars["kc-riff_TMPDIR"],
+				envVars["kc-riff_FLASH_ATTENTION"],
+				envVars["kc-riff_KV_CACHE_TYPE"],
+				envVars["kc-riff_LLM_LIBRARY"],
+				envVars["kc-riff_GPU_OVERHEAD"],
+				envVars["kc-riff_LOAD_TIMEOUT"],
 			})
 		default:
 			appendEnvDocs(cmd, envs)

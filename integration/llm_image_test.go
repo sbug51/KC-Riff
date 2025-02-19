@@ -28,7 +28,7 @@ func TestIntegrationLlava(t *testing.T) {
 		},
 	}
 
-	// Note: sometimes it returns "the ollamas" sometimes "the ollams"
+	// Note: sometimes it returns "the kc-riffs" sometimes "the ollams"
 	resp := "the ollam"
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Minute)
 	defer cancel()
@@ -56,7 +56,7 @@ func TestIntegrationMllama(t *testing.T) {
 		},
 	}
 
-	resp := "the ollamas"
+	resp := "the kc-riffs"
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
 	defer cancel()
 	client, _, cleanup := InitServerConnection(ctx, t)

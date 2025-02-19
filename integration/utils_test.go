@@ -48,11 +48,11 @@ func FindPort() string {
 
 func GetTestEndpoint() (*api.Client, string) {
 	defaultPort := "11434"
-	ollamaHost := os.Getenv("OLLAMA_HOST")
+	kc-riffHost := os.Getenv("kc-riff_HOST")
 
-	scheme, hostport, ok := strings.Cut(ollamaHost, "://")
+	scheme, hostport, ok := strings.Cut(kc-riffHost, "://")
 	if !ok {
-		scheme, hostport = "http", ollamaHost
+		scheme, hostport = "http", kc-riffHost
 	}
 
 	// trim trailing slashes
@@ -68,7 +68,7 @@ func GetTestEndpoint() (*api.Client, string) {
 		}
 	}
 
-	if os.Getenv("OLLAMA_TEST_EXISTING") == "" && port == defaultPort {
+	if os.Getenv("kc-riff_TEST_EXISTING") == "" && port == defaultPort {
 		port = FindPort()
 	}
 
@@ -85,7 +85,7 @@ func GetTestEndpoint() (*api.Client, string) {
 var serverMutex sync.Mutex
 var serverReady bool
 
-func startServer(t *testing.T, ctx context.Context, ollamaHost string) error {
+func startServer(t *testing.T, ctx context.Context, kc-riffHost string) error {
 	// Make sure the server has been built
 	CLIName, err := filepath.Abs("../kc-riff")
 	if err != nil {
@@ -105,12 +105,12 @@ func startServer(t *testing.T, ctx context.Context, ollamaHost string) error {
 		return nil
 	}
 
-	if tmp := os.Getenv("OLLAMA_HOST"); tmp != ollamaHost {
-		slog.Info("setting env", "OLLAMA_HOST", ollamaHost)
-		t.Setenv("OLLAMA_HOST", ollamaHost)
+	if tmp := os.Getenv("kc-riff_HOST"); tmp != kc-riffHost {
+		slog.Info("setting env", "kc-riff_HOST", kc-riffHost)
+		t.Setenv("kc-riff_HOST", kc-riffHost)
 	}
 
-	slog.Info("starting server", "url", ollamaHost)
+	slog.Info("starting server", "url", kc-riffHost)
 	done, err := lifecycle.SpawnServer(ctx, "../kc-riff")
 	if err != nil {
 		return fmt.Errorf("failed to start server: %w", err)
@@ -192,7 +192,7 @@ var serverProcMutex sync.Mutex
 // Starts the server if needed
 func InitServerConnection(ctx context.Context, t *testing.T) (*api.Client, string, func()) {
 	client, testEndpoint := GetTestEndpoint()
-	if os.Getenv("OLLAMA_TEST_EXISTING") == "" {
+	if os.Getenv("kc-riff_TEST_EXISTING") == "" {
 		serverProcMutex.Lock()
 		fp, err := os.CreateTemp("", "kc-riff-server-*.log")
 		if err != nil {
@@ -204,7 +204,7 @@ func InitServerConnection(ctx context.Context, t *testing.T) (*api.Client, strin
 	}
 
 	return client, testEndpoint, func() {
-		if os.Getenv("OLLAMA_TEST_EXISTING") == "" {
+		if os.Getenv("kc-riff_TEST_EXISTING") == "" {
 			defer serverProcMutex.Unlock()
 			if t.Failed() {
 				fp, err := os.Open(lifecycle.ServerLogFile)

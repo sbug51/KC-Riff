@@ -1,4 +1,4 @@
-package ollamarunner
+package kc-riffrunner
 
 import (
 	"errors"

@@ -70,16 +70,16 @@ function checkEnv() {
         ${script:SignTool}=${env:SIGN_TOOL}
     }
     if ("${env:KEY_CONTAINER}") {
-        ${script:OLLAMA_CERT}=$(resolve-path "${script:SRC_DIR}\ollama_inc.crt")
+        ${script:KC-Riff_CERT}=$(resolve-path "${script:SRC_DIR}\KC-Riff_inc.crt")
         Write-host "Code signing enabled"
     } else {
-        write-host "Code signing disabled - please set KEY_CONTAINERS to sign and copy ollama_inc.crt to the top of the source tree"
+        write-host "Code signing disabled - please set KEY_CONTAINERS to sign and copy KC-Riff_inc.crt to the top of the source tree"
     }
 }
 
 
-function buildOllama() {
-    if ($null -eq ${env:OLLAMA_SKIP_GENERATE}) {
+function buildKC-Riff() {
+    if ($null -eq ${env:KC-Riff_SKIP_GENERATE}) {
         Remove-Item -ea 0 -recurse -force -path "${script:SRC_DIR}\dist\windows-${script:ARCH}"
         New-Item "${script:SRC_DIR}\dist\windows-${script:ARCH}\lib\kc-riff\" -ItemType Directory -ea 0
 
@@ -129,7 +129,7 @@ function buildOllama() {
         #     if ($LASTEXITCODE -ne 0) { exit($LASTEXITCODE)}
         # }
     } else {
-        write-host "Skipping generate step with OLLAMA_SKIP_GENERATE set"
+        write-host "Skipping generate step with KC-Riff_SKIP_GENERATE set"
     }
     write-host "Building kc-riff CLI"
     & go build -trimpath -ldflags "-s -w -X=github.com/sbug51/kc-riff/version.Version=$script:VERSION -X=github.com/sbug51/kc-riff/server.mode=release" .
@@ -178,15 +178,15 @@ function gatherDependencies() {
         copy-item -path "${env:VCToolsRedistDir}\vc_redist.arm64.exe" -destination "${script:DIST_DIR}" -verbose
     }
 
-    cp "${script:SRC_DIR}\app\ollama_welcome.ps1" "${script:SRC_DIR}\dist\"
+    cp "${script:SRC_DIR}\app\KC-Riff_welcome.ps1" "${script:SRC_DIR}\dist\"
 }
 
 function sign() {
     if ("${env:KEY_CONTAINER}") {
         write-host "Signing kc-riff executables, scripts and libraries"
-        & "${script:SignTool}" sign /v /fd sha256 /t http://timestamp.digicert.com /f "${script:OLLAMA_CERT}" `
+        & "${script:SignTool}" sign /v /fd sha256 /t http://timestamp.digicert.com /f "${script:KC-Riff_CERT}" `
             /csp "Google Cloud KMS Provider" /kc ${env:KEY_CONTAINER} `
-            $(get-childitem -path "${script:SRC_DIR}\dist" -r -include @('ollama_welcome.ps1')) `
+            $(get-childitem -path "${script:SRC_DIR}\dist" -r -include @('KC-Riff_welcome.ps1')) `
             $(get-childitem -path "${script:SRC_DIR}\dist\windows-*" -r -include @('*.exe', '*.dll'))
         if ($LASTEXITCODE -ne 0) { exit($LASTEXITCODE)}
     } else {
@@ -203,7 +203,7 @@ function buildInstaller() {
     cd "${script:SRC_DIR}\app"
     $env:PKG_VERSION=$script:PKG_VERSION
     if ("${env:KEY_CONTAINER}") {
-        & "${script:INNO_SETUP_DIR}\ISCC.exe" /DARCH=$script:TARGET_ARCH /SMySignTool="${script:SignTool} sign /fd sha256 /t http://timestamp.digicert.com /f ${script:OLLAMA_CERT} /csp `$qGoogle Cloud KMS Provider`$q /kc ${env:KEY_CONTAINER} `$f" .\kc-riff.iss
+        & "${script:INNO_SETUP_DIR}\ISCC.exe" /DARCH=$script:TARGET_ARCH /SMySignTool="${script:SignTool} sign /fd sha256 /t http://timestamp.digicert.com /f ${script:KC-Riff_CERT} /csp `$qGoogle Cloud KMS Provider`$q /kc ${env:KEY_CONTAINER} `$f" .\kc-riff.iss
     } else {
         & "${script:INNO_SETUP_DIR}\ISCC.exe" /DARCH=$script:TARGET_ARCH .\kc-riff.iss
     }
@@ -225,7 +225,7 @@ function distZip() {
 checkEnv
 try {
     if ($($args.count) -eq 0) {
-        buildOllama
+        buildKC-Riff
         buildApp
         gatherDependencies
         sign

@@ -78,16 +78,16 @@ func TestUnicodeModelDir(t *testing.T) {
 		t.Skip("Unicode test only applicable to windows")
 	}
 	// Only works for local testing
-	if os.Getenv("OLLAMA_TEST_EXISTING") != "" {
+	if os.Getenv("kc-riff_TEST_EXISTING") != "" {
 		t.Skip("TestUnicodeModelDir only works for local testing, skipping")
 	}
 
-	modelDir, err := os.MkdirTemp("", "ollama_埃")
+	modelDir, err := os.MkdirTemp("", "kc-riff_埃")
 	require.NoError(t, err)
 	defer os.RemoveAll(modelDir)
-	slog.Info("unicode", "OLLAMA_MODELS", modelDir)
+	slog.Info("unicode", "kc-riff_MODELS", modelDir)
 
-	t.Setenv("OLLAMA_MODELS", modelDir)
+	t.Setenv("kc-riff_MODELS", modelDir)
 
 	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Minute)
 	defer cancel()

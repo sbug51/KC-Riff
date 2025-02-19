@@ -27,18 +27,18 @@ The kc-riff install does not require Administrator, and installs in your home di
 To install the kc-riff application in a location different than your home directory, start the installer with the following flag
 
 ```powershell
-OllamaSetup.exe /DIR="d:\some\location"
+KC-RiffSetup.exe /DIR="d:\some\location"
 ```
 
 ### Changing Model Location
 
-To change where kc-riff stores the downloaded models instead of using your home directory, set the environment variable `OLLAMA_MODELS` in your user account.
+To change where kc-riff stores the downloaded models instead of using your home directory, set the environment variable `KC-Riff_MODELS` in your user account.
 
 1. Start the Settings (Windows 11) or Control Panel (Windows 10) application and search for _environment variables_.
 
 2. Click on _Edit environment variables for your account_.
 
-3. Edit or create a new variable for your user account for `OLLAMA_MODELS` where you want the models stored
+3. Edit or create a new variable for your user account for `KC-Riff_MODELS` where you want the models stored
 
 4. Click OK/Apply to save.
 
@@ -69,12 +69,12 @@ the explorer window by hitting `<cmd>+R` and type in:
 The kc-riff Windows installer registers an Uninstaller application.  Under `Add or remove programs` in Windows Settings, you can uninstall kc-riff.
 
 > [!NOTE]
-> If you have [changed the OLLAMA_MODELS location](#changing-model-location), the installer will not remove your downloaded models
+> If you have [changed the KC-Riff_MODELS location](#changing-model-location), the installer will not remove your downloaded models
 
 
 ## Standalone CLI
 
-The easiest way to install kc-riff on Windows is to use the `OllamaSetup.exe`
+The easiest way to install kc-riff on Windows is to use the `KC-RiffSetup.exe`
 installer. It installs in your account without requiring Administrator rights.
 We update kc-riff regularly to support the latest models, and this installer will
 help you keep up to date.

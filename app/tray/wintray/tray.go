@@ -94,7 +94,7 @@ func InitTray(icon, updateIcon []byte) (*winTray, error) {
 
 func (t *winTray) initInstance() error {
 	const (
-		className  = "OllamaClass"
+		className  = "kc-riffClass"
 		windowName = ""
 	)
 
@@ -413,7 +413,7 @@ func (t *winTray) getVisibleItemIndex(parent, val uint32) int {
 func iconBytesToFilePath(iconBytes []byte) (string, error) {
 	bh := md5.Sum(iconBytes)
 	dataHash := hex.EncodeToString(bh[:])
-	iconFilePath := filepath.Join(os.TempDir(), "ollama_temp_icon_"+dataHash)
+	iconFilePath := filepath.Join(os.TempDir(), "kc-riff_temp_icon_"+dataHash)
 
 	if _, err := os.Stat(iconFilePath); os.IsNotExist(err) {
 		if err := os.WriteFile(iconFilePath, iconBytes, 0o644); err != nil {

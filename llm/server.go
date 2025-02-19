@@ -230,9 +230,9 @@ func NewLlamaServer(gpus discover.GpuInfoList, model string, f *ggml.GGML, adapt
 	}
 
 	libs := make(map[string]string)
-	if entries, err := os.ReadDir(discover.LibOllamaPath); err == nil {
+	if entries, err := os.ReadDir(discover.Libkc - riffPath); err == nil {
 		for _, entry := range entries {
-			libs[entry.Name()] = filepath.Join(discover.LibOllamaPath, entry.Name())
+			libs[entry.Name()] = filepath.Join(discover.Libkc-riffPath, entry.Name())
 		}
 	}
 
@@ -313,7 +313,7 @@ func NewLlamaServer(gpus discover.GpuInfoList, model string, f *ggml.GGML, adapt
 		}
 
 		// finally, add the root library path
-		libraryPaths = append(libraryPaths, discover.LibOllamaPath)
+		libraryPaths = append(libraryPaths, discover.Libkc-riffPath)
 
 		exe, err := os.Executable()
 		if err != nil {

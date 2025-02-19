@@ -60,7 +60,7 @@ func TestGetBlobsPath(t *testing.T) {
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			t.Setenv("OLLAMA_MODELS", dir)
+			t.Setenv("kc-riff_MODELS", dir)
 
 			got, err := GetBlobsPath(tc.digest)
 

@@ -249,7 +249,7 @@ func TestDeleteHandler(t *testing.T) {
 		}
 	}))
 
-	t.Setenv("OLLAMA_HOST", mockServer.URL)
+	t.Setenv("kc-riff_HOST", mockServer.URL)
 	t.Cleanup(mockServer.Close)
 
 	cmd := &cobra.Command{}
@@ -441,7 +441,7 @@ func TestPushHandler(t *testing.T) {
 			}))
 			defer mockServer.Close()
 
-			t.Setenv("OLLAMA_HOST", mockServer.URL)
+			t.Setenv("kc-riff_HOST", mockServer.URL)
 
 			cmd := &cobra.Command{}
 			cmd.Flags().Bool("insecure", false, "")
@@ -553,7 +553,7 @@ func TestCreateHandler(t *testing.T) {
 				}
 				handler(w, r)
 			}))
-			t.Setenv("OLLAMA_HOST", mockServer.URL)
+			t.Setenv("kc-riff_HOST", mockServer.URL)
 			t.Cleanup(mockServer.Close)
 			tempFile, err := os.CreateTemp("", "modelfile")
 			if err != nil {

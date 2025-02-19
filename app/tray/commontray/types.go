@@ -15,7 +15,7 @@ type Callbacks struct {
 	ShowLogs   chan struct{}
 }
 
-type OllamaTray interface {
+type kc-riffTray interface {
 	GetCallbacks() Callbacks
 	Run()
 	UpdateAvailable(ver string) error

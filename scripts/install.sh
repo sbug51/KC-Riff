@@ -45,7 +45,7 @@ case "$KERN" in
     *) ;;
 esac
 
-VER_PARAM="${OLLAMA_VERSION:+?version=$OLLAMA_VERSION}"
+VER_PARAM="${kc-riff_VERSION:+?version=$kc-riff_VERSION}"
 
 SUDO=
 if [ "$(id -u)" -ne 0 ]; then
@@ -69,22 +69,22 @@ fi
 for BINDIR in /usr/local/bin /usr/bin /bin; do
     echo $PATH | grep -q $BINDIR && break || continue
 done
-OLLAMA_INSTALL_DIR=$(dirname ${BINDIR})
+kc-riff_INSTALL_DIR=$(dirname ${BINDIR})
 
-if [ -d "$OLLAMA_INSTALL_DIR/lib/kc-riff" ] ; then
-    status "Cleaning up old version at $OLLAMA_INSTALL_DIR/lib/kc-riff"
-    $SUDO rm -rf "$OLLAMA_INSTALL_DIR/lib/kc-riff"
+if [ -d "$kc-riff_INSTALL_DIR/lib/kc-riff" ] ; then
+    status "Cleaning up old version at $kc-riff_INSTALL_DIR/lib/kc-riff"
+    $SUDO rm -rf "$kc-riff_INSTALL_DIR/lib/kc-riff"
 fi
-status "Installing kc-riff to $OLLAMA_INSTALL_DIR"
+status "Installing kc-riff to $kc-riff_INSTALL_DIR"
 $SUDO install -o0 -g0 -m755 -d $BINDIR
-$SUDO install -o0 -g0 -m755 -d "$OLLAMA_INSTALL_DIR"
+$SUDO install -o0 -g0 -m755 -d "$kc-riff_INSTALL_DIR"
 status "Downloading Linux ${ARCH} bundle"
 curl --fail --show-error --location --progress-bar \
     "https://killchaos.app/download/kc-riff-linux-${ARCH}.tgz${VER_PARAM}" | \
-    $SUDO tar -xzf - -C "$OLLAMA_INSTALL_DIR"
-if [ "$OLLAMA_INSTALL_DIR/bin/kc-riff" != "$BINDIR/kc-riff" ] ; then
+    $SUDO tar -xzf - -C "$kc-riff_INSTALL_DIR"
+if [ "$kc-riff_INSTALL_DIR/bin/kc-riff" != "$BINDIR/kc-riff" ] ; then
     status "Making kc-riff accessible in the PATH in $BINDIR"
-    $SUDO ln -sf "$OLLAMA_INSTALL_DIR/kc-riff" "$BINDIR/kc-riff"
+    $SUDO ln -sf "$kc-riff_INSTALL_DIR/kc-riff" "$BINDIR/kc-riff"
 fi
 
 # Check for NVIDIA JetPack systems with additional downloads
@@ -93,12 +93,12 @@ if [ -f /etc/nv_tegra_release ] ; then
         status "Downloading JetPack 6 components"
         curl --fail --show-error --location --progress-bar \
             "https://killchaos.app/download/kc-riff-linux-${ARCH}-jetpack6.tgz${VER_PARAM}" | \
-            $SUDO tar -xzf - -C "$OLLAMA_INSTALL_DIR"
+            $SUDO tar -xzf - -C "$kc-riff_INSTALL_DIR"
     elif grep R35 /etc/nv_tegra_release > /dev/null ; then
         status "Downloading JetPack 5 components"
         curl --fail --show-error --location --progress-bar \
             "https://killchaos.app/download/kc-riff-linux-${ARCH}-jetpack5.tgz${VER_PARAM}" | \
-            $SUDO tar -xzf - -C "$OLLAMA_INSTALL_DIR"
+            $SUDO tar -xzf - -C "$kc-riff_INSTALL_DIR"
     else
         warning "Unsupported JetPack version detected.  GPU may not be supported"
     fi
@@ -224,7 +224,7 @@ if check_gpu lspci amdgpu || check_gpu lshw amdgpu; then
     status "Downloading Linux ROCm ${ARCH} bundle"
     curl --fail --show-error --location --progress-bar \
         "https://killchaos.app/download/kc-riff-linux-${ARCH}-rocm.tgz${VER_PARAM}" | \
-        $SUDO tar -xzf - -C "$OLLAMA_INSTALL_DIR"
+        $SUDO tar -xzf - -C "$kc-riff_INSTALL_DIR"
 
     install_success
     status "AMD GPU ready."

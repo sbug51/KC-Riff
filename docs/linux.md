@@ -127,7 +127,7 @@ Alternatively, create an override file manually in `/etc/systemd/system/kc-riff.
 
 ```ini
 [Service]
-Environment="OLLAMA_DEBUG=1"
+Environment="KC-Riff_DEBUG=1"
 ```
 
 ## Updating
@@ -147,12 +147,12 @@ sudo tar -C /usr -xzf kc-riff-linux-amd64.tgz
 
 ## Installing specific versions
 
-Use `OLLAMA_VERSION` environment variable with the install script to install a specific version of kc-riff, including pre-releases. You can find the version numbers in the [releases page](https://github.com/sbug51/kc-riff/releases).
+Use `KC-Riff_VERSION` environment variable with the install script to install a specific version of kc-riff, including pre-releases. You can find the version numbers in the [releases page](https://github.com/sbug51/kc-riff/releases).
 
 For example:
 
 ```shell
-# curl -fsSL https://kc-riff.com/install.sh | OLLAMA_VERSION=0.5.7 sh
+# curl -fsSL https://kc-riff.com/install.sh | KC-Riff_VERSION=0.5.7 sh
 ```
 
 ## Viewing logs

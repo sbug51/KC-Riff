@@ -14,7 +14,7 @@ import (
 func TestList(t *testing.T) {
 	gin.SetMode(gin.TestMode)
 
-	t.Setenv("OLLAMA_MODELS", t.TempDir())
+	t.Setenv("kc-riff_MODELS", t.TempDir())
 
 	expectNames := []string{
 		"mistral:7b-instruct-q4_0",

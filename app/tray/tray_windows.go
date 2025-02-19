@@ -5,6 +5,6 @@ import (
 	"github.com/sbug51/kc-riff/app/tray/wintray"
 )
 
-func InitPlatformTray(icon, updateIcon []byte) (commontray.OllamaTray, error) {
+func InitPlatformTray(icon, updateIcon []byte) (commontray.kc-riffTray, error) {
 	return wintray.InitTray(icon, updateIcon)
 }

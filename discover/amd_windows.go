@@ -162,7 +162,7 @@ func AMDValidateLibDir() (string, error) {
 	}
 
 	// Installer payload (if we're running from some other location)
-	rocmTargetDir := filepath.Join(LibOllamaPath, "rocm")
+	rocmTargetDir := filepath.Join(Libkc-riffPath, "rocm")
 	if rocmLibUsable(rocmTargetDir) {
 		slog.Debug("detected kc-riff installed ROCm at " + rocmTargetDir)
 		return rocmTargetDir, nil

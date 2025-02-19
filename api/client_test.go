@@ -30,7 +30,7 @@ func TestClientFromEnvironment(t *testing.T) {
 
 	for k, v := range testCases {
 		t.Run(k, func(t *testing.T) {
-			t.Setenv("OLLAMA_HOST", v.value)
+			t.Setenv("kc-riff_HOST", v.value)
 
 			client, err := ClientFromEnvironment()
 			if err != v.err {

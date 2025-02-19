@@ -17,10 +17,10 @@ var (
 	AppDataDir = "/opt/kc-riff"
 	// TODO - should there be a distinct log dir?
 	UpdateStageDir   = "/tmp"
-	AppLogFile       = "/tmp/ollama_app.log"
+	AppLogFile       = "/tmp/kc-riff_app.log"
 	ServerLogFile    = "/tmp/kc-riff.log"
-	UpgradeLogFile   = "/tmp/ollama_update.log"
-	Installer        = "OllamaSetup.exe"
+	UpgradeLogFile   = "/tmp/kc-riff_update.log"
+	Installer        = "kc-riffSetup.exe"
 	LogRotationCount = 5
 )
 

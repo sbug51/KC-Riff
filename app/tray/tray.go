@@ -8,7 +8,7 @@ import (
 	"github.com/sbug51/kc-riff/app/tray/commontray"
 )
 
-func NewTray() (commontray.OllamaTray, error) {
+func NewTray() (commontray.kc-riffTray, error) {
 	extension := ".png"
 	if runtime.GOOS == "windows" {
 		extension = ".ico"

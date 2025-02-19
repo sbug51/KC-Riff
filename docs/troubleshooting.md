@@ -31,7 +31,7 @@ When you run kc-riff on **Windows**, there are a few different locations. You ca
 To enable additional debug logging to help troubleshoot problems, first **Quit the running app from the tray menu** then in a powershell terminal
 
 ```powershell
-$env:OLLAMA_DEBUG="1"
+$env:KC-Riff_DEBUG="1"
 & "kc-riff app.exe"
 ```
 
@@ -49,10 +49,10 @@ Dynamic LLM libraries [rocm_v6 cpu cpu_avx cpu_avx2 cuda_v11 rocm_v5]
 
 **Experimental LLM Library Override**
 
-You can set OLLAMA_LLM_LIBRARY to any of the available LLM libraries to bypass autodetection, so for example, if you have a CUDA card, but want to force the CPU LLM library with AVX2 vector support, use:
+You can set KC-Riff_LLM_LIBRARY to any of the available LLM libraries to bypass autodetection, so for example, if you have a CUDA card, but want to force the CPU LLM library with AVX2 vector support, use:
 
 ```shell
-OLLAMA_LLM_LIBRARY="cpu_avx2" kc-riff serve
+KC-Riff_LLM_LIBRARY="cpu_avx2" kc-riff serve
 ```
 
 You can see what features your CPU has with the following.
@@ -66,12 +66,12 @@ cat /proc/cpuinfo| grep flags | head -1
 If you run into problems on Linux and want to install an older version, or you'd like to try out a pre-release before it's officially released, you can tell the install script which version to install.
 
 ```shell
-# curl -fsSL https://killchaos.app/install.sh | OLLAMA_VERSION=0.5.7 sh
+# curl -fsSL https://killchaos.app/install.sh | KC-Riff_VERSION=0.5.7 sh
 ```
 
 ## Linux tmp noexec 
 
-If your system is configured with the "noexec" flag where kc-riff stores its temporary executable files, you can specify an alternate location by setting OLLAMA_TMPDIR to a location writable by the user kc-riff runs as. For example OLLAMA_TMPDIR=/usr/share/kc-riff/
+If your system is configured with the "noexec" flag where kc-riff stores its temporary executable files, you can specify an alternate location by setting KC-Riff_TMPDIR to a location writable by the user kc-riff runs as. For example KC-Riff_TMPDIR=/usr/share/kc-riff/
 
 ## NVIDIA GPU Discovery
 
@@ -104,7 +104,7 @@ If kc-riff initially works on the GPU in a docker container, but then switches t
 
 If you are experiencing problems getting kc-riff to correctly discover or use your GPU for inference, the following may help isolate the failure.
 - `AMD_LOG_LEVEL=3` Enable info log levels in the AMD HIP/ROCm libraries.  This can help show more detailed error codes that can help troubleshoot problems
-- `OLLAMA_DEBUG=1` During GPU discovery additional information will be reported
+- `KC-Riff_DEBUG=1` During GPU discovery additional information will be reported
 - Check dmesg for any errors from amdgpu or kfd drivers `sudo dmesg | grep -i amdgpu` and `sudo dmesg | grep -i kfd`
 
 ## Multiple AMD GPUs

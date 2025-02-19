@@ -17,7 +17,7 @@ mkdir -p dist
 docker buildx build \
         --output type=local,dest=./dist/ \
         --platform=${PLATFORM} \
-        ${OLLAMA_COMMON_BUILD_ARGS} \
+        ${kc-riff_COMMON_BUILD_ARGS} \
         --target archive \
         -f Dockerfile \
         .

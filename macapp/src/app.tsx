@@ -5,7 +5,7 @@ import Store from 'electron-store'
 import { getCurrentWindow, app } from '@electron/remote'
 
 import { install } from './install'
-import OllamaIcon from './kc-riff.svg'
+import kc-riffIcon from './kc-riff.svg'
 
 const store = new Store()
 
@@ -39,7 +39,7 @@ export default function () {
               </button>
             </div>
             <div className='mx-auto'>
-              <OllamaIcon />
+              <kc-riffIcon />
             </div>
           </>
         )}

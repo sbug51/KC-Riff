@@ -97,7 +97,7 @@ func initCudaHandles() *cudaHandles {
 	slog.Debug("searching for GPU discovery libraries for NVIDIA")
 	var cudartMgmtPatterns []string
 	nvcudaMgmtPatterns := NvcudaGlobs
-	cudartMgmtPatterns = append(cudartMgmtPatterns, filepath.Join(LibOllamaPath, "cuda_v*", CudartMgmtName))
+	cudartMgmtPatterns = append(cudartMgmtPatterns, filepath.Join(Libkc-riffPath, "cuda_v*", CudartMgmtName))
 	cudartMgmtPatterns = append(cudartMgmtPatterns, CudartGlobs...)
 
 	if len(NvmlGlobs) > 0 {
@@ -278,7 +278,7 @@ func GetGPUInfo() GpuInfoList {
 
 				// Start with our bundled libraries
 				if variant != "" {
-					variantPath := filepath.Join(LibOllamaPath, "cuda_"+variant)
+					variantPath := filepath.Join(Libkc-riffPath, "cuda_"+variant)
 					if _, err := os.Stat(variantPath); err == nil {
 						gpuInfo.DependencyPath = append([]string{variantPath}, gpuInfo.DependencyPath...)
 					}
@@ -346,7 +346,7 @@ func GetGPUInfo() GpuInfoList {
 						gpuInfo.FreeMemory = uint64(memInfo.free)
 						gpuInfo.ID = C.GoString(&memInfo.gpu_id[0])
 						gpuInfo.Name = C.GoString(&memInfo.gpu_name[0])
-						gpuInfo.DependencyPath = []string{LibOllamaPath}
+						gpuInfo.DependencyPath = []string{Libkc - riffPath}
 						oneapiGPUs = append(oneapiGPUs, gpuInfo)
 					}
 				}
@@ -479,7 +479,7 @@ func GetGPUInfo() GpuInfoList {
 func FindGPULibs(baseLibName string, defaultPatterns []string) []string {
 	gpuLibPaths := []string{}
 	slog.Debug("Searching for GPU library", "name", baseLibName)
-	patterns := []string{filepath.Join(LibOllamaPath, baseLibName)}
+	patterns := []string{filepath.Join(Libkc-riffPath, baseLibName)}
 	var ldPaths []string
 	switch runtime.GOOS {
 	case "windows":
