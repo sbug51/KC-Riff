@@ -1,20 +1,20 @@
 # Examples
 
-This directory contains different examples of using kc-riff.
+This directory contains different examples of using kcriff.
 
 ## Python examples
-kc-riff Python examples at [kc-riff-python/examples](https://github.com/sbug51/kc-riff-python/tree/main/examples)
+kcriff Python examples at [kcriff-python/examples](https://github.com/sbug51/kcriff-python/tree/main/examples)
 
 
 ## JavaScript examples
-kc-riff JavaScript examples at [kc-riff-js/examples](https://github.com/sbug51/kc-riff-js/tree/main/examples)
+kcriff JavaScript examples at [kcriff-js/examples](https://github.com/sbug51/kcriff-js/tree/main/examples)
 
 
 ## OpenAI compatibility examples
-kc-riff OpenAI compatibility examples at [kc-riff/examples/openai](../docs/openai.md)
+kcriff OpenAI compatibility examples at [kcriff/examples/openai](../docs/openai.md)
 
 
 ## Community examples
 
-- [LangChain kc-riff Python](https://python.langchain.com/docs/integrations/chat/kc-riff/)
-- [LangChain kc-riff JS](https://js.langchain.com/docs/integrations/chat/kc-riff/)
+- [LangChain kcriff Python](https://python.langchain.com/docs/integrations/chat/kcriff/)
+- [LangChain kcriff JS](https://js.langchain.com/docs/integrations/chat/kcriff/)

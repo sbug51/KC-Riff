@@ -7,7 +7,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kcriff/api"
 )
 
 func startApp(ctx context.Context, client *api.Client) error {
@@ -19,11 +19,11 @@ func startApp(ctx context.Context, client *api.Client) error {
 	if err != nil {
 		return err
 	}
-	if !strings.Contains(link, "kc-riff.app") {
-		return errors.New("could not find kc-riff app")
+	if !strings.Contains(link, "kcriff.app") {
+		return errors.New("could not find kcriff app")
 	}
-	path := strings.Split(link, "kc-riff.app")
-	if err := exec.Command("/usr/bin/open", "-a", path[0]+"kc-riff.app").Run(); err != nil {
+	path := strings.Split(link, "kcriff.app")
+	if err := exec.Command("/usr/bin/open", "-a", path[0]+"kcriff.app").Run(); err != nil {
 		return err
 	}
 	return waitForServer(ctx, client)

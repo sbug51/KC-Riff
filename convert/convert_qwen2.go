@@ -1,6 +1,6 @@
 package convert
 
-import "github.com/sbug51/kc-riff/fs/ggml"
+import "github.com/sbug51/kcriff/fs/ggml"
 
 type qwen2Model struct {
 	ModelParameters

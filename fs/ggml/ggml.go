@@ -9,7 +9,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/sbug51/kc-riff/fs/util/bufioutil"
+	"github.com/sbug51/kcriff/fs/util/bufioutil"
 )
 
 type GGML struct {

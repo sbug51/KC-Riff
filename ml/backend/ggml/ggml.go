@@ -32,12 +32,12 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/sbug51/kc-riff/format"
-	fs "github.com/sbug51/kc-riff/fs/ggml"
-	"github.com/sbug51/kc-riff/ml"
+	"github.com/sbug51/kcriff/format"
+	fs "github.com/sbug51/kcriff/fs/ggml"
+	"github.com/sbug51/kcriff/ml"
 	"golang.org/x/sync/errgroup"
 
-	ggml "github.com/sbug51/kc-riff/ml/backend/ggml/ggml/src"
+	ggml "github.com/sbug51/kcriff/ml/backend/ggml/ggml/src"
 )
 
 type device struct {

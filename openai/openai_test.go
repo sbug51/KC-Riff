@@ -15,7 +15,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/go-cmp/cmp"
 
-	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kcriff/api"
 )
 
 const (

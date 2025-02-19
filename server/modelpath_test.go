@@ -11,7 +11,7 @@ import (
 
 func TestGetBlobsPath(t *testing.T) {
 	// GetBlobsPath expects an actual directory to exist
-	dir, err := os.MkdirTemp("", "kc-riff-test")
+	dir, err := os.MkdirTemp("", "kcriff-test")
 	require.NoError(t, err)
 	defer os.RemoveAll(dir)
 
@@ -60,7 +60,7 @@ func TestGetBlobsPath(t *testing.T) {
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			t.Setenv("kc-riff_MODELS", dir)
+			t.Setenv("kcriff_MODELS", dir)
 
 			got, err := GetBlobsPath(tc.digest)
 

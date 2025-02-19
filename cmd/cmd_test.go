@@ -14,7 +14,7 @@ import (
 	"github.com/google/go-cmp/cmp"
 	"github.com/spf13/cobra"
 
-	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kcriff/api"
 )
 
 func TestShowInfo(t *testing.T) {
@@ -179,7 +179,7 @@ Weigh anchor!
 
 	t.Run("license", func(t *testing.T) {
 		var b bytes.Buffer
-		license := "MIT License\nCopyright (c) kc-riff\n"
+		license := "MIT License\nCopyright (c) kcriff\n"
 		if err := showInfo(&api.ShowResponse{
 			Details: api.ModelDetails{
 				Family:            "test",
@@ -198,7 +198,7 @@ Weigh anchor!
 
   License
     MIT License             
-    Copyright (c) kc-riff    
+    Copyright (c) kcriff    
 
 `
 		if diff := cmp.Diff(expect, b.String()); diff != "" {
@@ -249,7 +249,7 @@ func TestDeleteHandler(t *testing.T) {
 		}
 	}))
 
-	t.Setenv("kc-riff_HOST", mockServer.URL)
+	t.Setenv("kcriff_HOST", mockServer.URL)
 	t.Cleanup(mockServer.Close)
 
 	cmd := &cobra.Command{}
@@ -409,7 +409,7 @@ func TestPushHandler(t *testing.T) {
 					}
 				},
 			},
-			expectedOutput: "\nYou can find your model at:\n\n\thttps://kc-riff.com/test-model\n",
+			expectedOutput: "\nYou can find your model at:\n\n\thttps://kcriff.com/test-model\n",
 		},
 		{
 			name:      "unauthorized push",
@@ -441,7 +441,7 @@ func TestPushHandler(t *testing.T) {
 			}))
 			defer mockServer.Close()
 
-			t.Setenv("kc-riff_HOST", mockServer.URL)
+			t.Setenv("kcriff_HOST", mockServer.URL)
 
 			cmd := &cobra.Command{}
 			cmd.Flags().Bool("insecure", false, "")
@@ -553,7 +553,7 @@ func TestCreateHandler(t *testing.T) {
 				}
 				handler(w, r)
 			}))
-			t.Setenv("kc-riff_HOST", mockServer.URL)
+			t.Setenv("kcriff_HOST", mockServer.URL)
 			t.Cleanup(mockServer.Close)
 			tempFile, err := os.CreateTemp("", "modelfile")
 			if err != nil {

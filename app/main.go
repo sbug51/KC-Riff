@@ -4,7 +4,7 @@ package main
 // go build -ldflags="-H windowsgui" .
 
 import (
-	"github.com/sbug51/kc-riff/app/lifecycle"
+	"github.com/sbug51/kcriff/app/lifecycle"
 )
 
 func main() {

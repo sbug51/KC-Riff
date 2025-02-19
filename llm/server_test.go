@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kcriff/api"
 	"golang.org/x/sync/semaphore"
 )
 

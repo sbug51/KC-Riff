@@ -9,11 +9,11 @@ import (
 	"log/slog"
 	"strings"
 
-	"github.com/sbug51/kc-riff/api"
-	"github.com/sbug51/kc-riff/envconfig"
-	"github.com/sbug51/kc-riff/llm"
-	"github.com/sbug51/kc-riff/model/models/mllama"
-	"github.com/sbug51/kc-riff/template"
+	"github.com/sbug51/kcriff/api"
+	"github.com/sbug51/kcriff/envconfig"
+	"github.com/sbug51/kcriff/llm"
+	"github.com/sbug51/kcriff/model/models/mllama"
+	"github.com/sbug51/kcriff/template"
 )
 
 type tokenizeFunc func(context.Context, string) ([]int, error)

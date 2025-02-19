@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kcriff/api"
 )
 
 func main() {

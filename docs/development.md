@@ -5,7 +5,7 @@ Install prerequisites:
 - [Go](https://go.dev/doc/install)
 - C/C++ Compiler e.g. Clang on macOS, [TDM-GCC](https://github.com/jmeubank/tdm-gcc/releases/latest) (Windows amd64) or [llvm-mingw](https://github.com/mstorsjo/llvm-mingw) (Windows arm64), GCC/Clang on Linux.
 
-Then build and run kc-riff from the root directory of the repository:
+Then build and run kcriff from the root directory of the repository:
 
 ```shell
 go run . serve
@@ -13,7 +13,7 @@ go run . serve
 
 ## macOS (Apple Silicon)
 
-macOS Apple Silicon supports Metal which is built-in to the kc-riff binary. No additional steps are required.
+macOS Apple Silicon supports Metal which is built-in to the kcriff binary. No additional steps are required.
 
 ## macOS (Intel)
 
@@ -28,7 +28,7 @@ cmake -B build
 cmake --build build
 ```
 
-Lastly, run kc-riff:
+Lastly, run kcriff:
 
 ```shell
 go run . serve
@@ -62,7 +62,7 @@ cmake -B build
 cmake --build build --config Release
 ```
 
-Lastly, run kc-riff:
+Lastly, run kcriff:
 
 ```shell
 go run . serve
@@ -93,7 +93,7 @@ cmake -B build
 cmake --build build
 ```
 
-Lastly, run kc-riff:
+Lastly, run kcriff:
 
 ```shell
 go run . serve
@@ -121,11 +121,11 @@ go test ./...
 
 ## Library detection
 
-kc-riff looks for acceleration libraries in the following paths relative to the `kc-riff` executable:
+kcriff looks for acceleration libraries in the following paths relative to the `kcriff` executable:
 
-* `./lib/kc-riff` (Windows)
-* `../lib/kc-riff` (Linux)
+* `./lib/kcriff` (Windows)
+* `../lib/kcriff` (Linux)
 * `.` (macOS)
-* `build/lib/kc-riff` (for development)
+* `build/lib/kcriff` (for development)
 
-If the libraries are not found, kc-riff will not run with any acceleration libraries.
+If the libraries are not found, kcriff will not run with any acceleration libraries.

@@ -34,12 +34,12 @@ func TestHost(t *testing.T) {
 		"http port":           {"http://1.2.3.4:4321", "http://1.2.3.4:4321"},
 		"https":               {"https://1.2.3.4", "https://1.2.3.4:443"},
 		"https port":          {"https://1.2.3.4:4321", "https://1.2.3.4:4321"},
-		"proxy path":          {"https://example.com/kc-riff", "https://example.com:443/kc-riff"},
+		"proxy path":          {"https://example.com/kcriff", "https://example.com:443/kcriff"},
 	}
 
 	for name, tt := range cases {
 		t.Run(name, func(t *testing.T) {
-			t.Setenv("kc-riff_HOST", tt.value)
+			t.Setenv("kcriff_HOST", tt.value)
 			if host := Host(); host.String() != tt.expect {
 				t.Errorf("%s: expected %s, got %s", name, tt.expect, host.String())
 			}
@@ -132,7 +132,7 @@ func TestOrigins(t *testing.T) {
 	}
 	for _, tt := range cases {
 		t.Run(tt.value, func(t *testing.T) {
-			t.Setenv("kc-riff_ORIGINS", tt.value)
+			t.Setenv("kcriff_ORIGINS", tt.value)
 
 			if diff := cmp.Diff(Origins(), tt.expect); diff != "" {
 				t.Errorf("%s: mismatch (-want +got):\n%s", tt.value, diff)
@@ -155,8 +155,8 @@ func TestBool(t *testing.T) {
 
 	for k, v := range cases {
 		t.Run(k, func(t *testing.T) {
-			t.Setenv("kc-riff_BOOL", k)
-			if b := Bool("kc-riff_BOOL")(); b != v {
+			t.Setenv("kcriff_BOOL", k)
+			if b := Bool("kcriff_BOOL")(); b != v {
 				t.Errorf("%s: expected %t, got %t", k, v, b)
 			}
 		})
@@ -178,8 +178,8 @@ func TestUint(t *testing.T) {
 
 	for k, v := range cases {
 		t.Run(k, func(t *testing.T) {
-			t.Setenv("kc-riff_UINT", k)
-			if i := Uint("kc-riff_UINT", 11434)(); i != v {
+			t.Setenv("kcriff_UINT", k)
+			if i := Uint("kcriff_UINT", 11434)(); i != v {
 				t.Errorf("%s: expected %d, got %d", k, v, i)
 			}
 		})
@@ -211,7 +211,7 @@ func TestKeepAlive(t *testing.T) {
 
 	for tt, expect := range cases {
 		t.Run(tt, func(t *testing.T) {
-			t.Setenv("kc-riff_KEEP_ALIVE", tt)
+			t.Setenv("kcriff_KEEP_ALIVE", tt)
 			if actual := KeepAlive(); actual != expect {
 				t.Errorf("%s: expected %s, got %s", tt, expect, actual)
 			}
@@ -245,7 +245,7 @@ func TestLoadTimeout(t *testing.T) {
 
 	for tt, expect := range cases {
 		t.Run(tt, func(t *testing.T) {
-			t.Setenv("kc-riff_LOAD_TIMEOUT", tt)
+			t.Setenv("kcriff_LOAD_TIMEOUT", tt)
 			if actual := LoadTimeout(); actual != expect {
 				t.Errorf("%s: expected %s, got %s", tt, expect, actual)
 			}
@@ -265,8 +265,8 @@ func TestVar(t *testing.T) {
 
 	for k, v := range cases {
 		t.Run(k, func(t *testing.T) {
-			t.Setenv("kc-riff_VAR", k)
-			if s := Var("kc-riff_VAR"); s != v {
+			t.Setenv("kcriff_VAR", k)
+			if s := Var("kcriff_VAR"); s != v {
 				t.Errorf("%s: expected %q, got %q", k, v, s)
 			}
 		})

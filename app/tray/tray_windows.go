@@ -1,10 +1,9 @@
 package tray
 
 import (
-	"github.com/sbug51/kc-riff/app/tray/commontray"
-	"github.com/sbug51/kc-riff/app/tray/wintray"
+	"github.com/sbug51/kcriff/app/tray/wintray"
 )
 
-func InitPlatformTray(icon, updateIcon []byte) (commontray.kc-riffTray, error) {
+func InitPlatformTray(icon, updateIcon []byte) (commontray.kcriffTray, error) {
 	return wintray.InitTray(icon, updateIcon)
 }

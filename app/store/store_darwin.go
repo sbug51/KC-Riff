@@ -9,5 +9,5 @@ func getStorePath() string {
 	// TODO - system wide location?
 
 	home := os.Getenv("HOME")
-	return filepath.Join(home, "Library", "Application Support", "kc-riff", "config.json")
+	return filepath.Join(home, "Library", "Application Support", "kcriff", "config.json")
 }

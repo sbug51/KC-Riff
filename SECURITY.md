@@ -1,10 +1,10 @@
 # Security
 
-The kc-riff maintainer team takes security seriously and will actively work to resolve security issues.
+The kcriff maintainer team takes security seriously and will actively work to resolve security issues.
 
 ## Reporting a vulnerability
 
-If you discover a security vulnerability, please do not open a public issue. Instead, please report it by emailing hello@kc-riff.com. We ask that you give us sufficient time to investigate and address the vulnerability before disclosing it publicly.
+If you discover a security vulnerability, please do not open a public issue. Instead, please report it by emailing hello@kcriff.com. We ask that you give us sufficient time to investigate and address the vulnerability before disclosing it publicly.
 
 Please include the following details in your report:
 - A description of the vulnerability
@@ -14,12 +14,12 @@ Please include the following details in your report:
 
 ## Security best practices
 
-While the maintainer team does their best to secure kc-riff, users are encouraged to implement their own security best practices, such as:
+While the maintainer team does their best to secure kcriff, users are encouraged to implement their own security best practices, such as:
 
-- Regularly updating to the latest version of kc-riff
-- Securing access to hosted instances of kc-riff
+- Regularly updating to the latest version of kcriff
+- Securing access to hosted instances of kcriff
 - Monitoring systems for unusual activity
 
 ## Contact
 
-For any other questions or concerns related to security, please contact us at hello@kc-riff.com
+For any other questions or concerns related to security, please contact us at hello@kcriff.com

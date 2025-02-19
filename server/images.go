@@ -21,13 +21,13 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/sbug51/kc-riff/api"
-	"github.com/sbug51/kc-riff/envconfig"
-	"github.com/sbug51/kc-riff/fs/ggml"
-	"github.com/sbug51/kc-riff/parser"
-	"github.com/sbug51/kc-riff/template"
-	"github.com/sbug51/kc-riff/types/model"
-	"github.com/sbug51/kc-riff/version"
+	"github.com/sbug51/kcriff/api"
+	"github.com/sbug51/kcriff/envconfig"
+	"github.com/sbug51/kcriff/fs/ggml"
+	"github.com/sbug51/kcriff/parser"
+	"github.com/sbug51/kcriff/template"
+	"github.com/sbug51/kcriff/types/model"
+	"github.com/sbug51/kcriff/version"
 )
 
 var (
@@ -265,19 +265,19 @@ func GetModel(name string) (*Model, error) {
 		}
 
 		switch layer.MediaType {
-		case "application/vnd.kc-riff.image.model":
+		case "application/vnd.kcriff.image.model":
 			model.ModelPath = filename
 			model.ParentModel = layer.From
-		case "application/vnd.kc-riff.image.embed":
+		case "application/vnd.kcriff.image.embed":
 			// Deprecated in versions  > 0.1.2
 			// TODO: remove this warning in a future version
 			slog.Info("WARNING: model contains embeddings, but embeddings in modelfiles have been deprecated and will be ignored.")
-		case "application/vnd.kc-riff.image.adapter":
+		case "application/vnd.kcriff.image.adapter":
 			model.AdapterPaths = append(model.AdapterPaths, filename)
-		case "application/vnd.kc-riff.image.projector":
+		case "application/vnd.kcriff.image.projector":
 			model.ProjectorPaths = append(model.ProjectorPaths, filename)
-		case "application/vnd.kc-riff.image.prompt",
-			"application/vnd.kc-riff.image.template":
+		case "application/vnd.kcriff.image.prompt",
+			"application/vnd.kcriff.image.template":
 			bts, err := os.ReadFile(filename)
 			if err != nil {
 				return nil, err
@@ -287,14 +287,14 @@ func GetModel(name string) (*Model, error) {
 			if err != nil {
 				return nil, err
 			}
-		case "application/vnd.kc-riff.image.system":
+		case "application/vnd.kcriff.image.system":
 			bts, err := os.ReadFile(filename)
 			if err != nil {
 				return nil, err
 			}
 
 			model.System = string(bts)
-		case "application/vnd.kc-riff.image.params":
+		case "application/vnd.kcriff.image.params":
 			params, err := os.Open(filename)
 			if err != nil {
 				return nil, err
@@ -305,7 +305,7 @@ func GetModel(name string) (*Model, error) {
 			if err = json.NewDecoder(params).Decode(&model.Options); err != nil {
 				return nil, err
 			}
-		case "application/vnd.kc-riff.image.messages":
+		case "application/vnd.kcriff.image.messages":
 			msgs, err := os.Open(filename)
 			if err != nil {
 				return nil, err
@@ -315,7 +315,7 @@ func GetModel(name string) (*Model, error) {
 			if err = json.NewDecoder(msgs).Decode(&model.Messages); err != nil {
 				return nil, err
 			}
-		case "application/vnd.kc-riff.image.license":
+		case "application/vnd.kcriff.image.license":
 			bts, err := os.ReadFile(filename)
 			if err != nil {
 				return nil, err
@@ -744,7 +744,7 @@ func makeRequest(ctx context.Context, method string, requestURL *url.URL, header
 		}
 	}
 
-	req.Header.Set("User-Agent", fmt.Sprintf("kc-riff/%s (%s %s) Go/%s", version.Version, runtime.GOARCH, runtime.GOOS, runtime.Version()))
+	req.Header.Set("User-Agent", fmt.Sprintf("kcriff/%s (%s %s) Go/%s", version.Version, runtime.GOARCH, runtime.GOOS, runtime.Version()))
 
 	if s := req.Header.Get("Content-Length"); s != "" {
 		contentLength, err := strconv.ParseInt(s, 10, 64)

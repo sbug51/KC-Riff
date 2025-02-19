@@ -1,6 +1,6 @@
 package nn
 
-import "github.com/sbug51/kc-riff/ml"
+import "github.com/sbug51/kcriff/ml"
 
 type Linear struct {
 	Weight ml.Tensor `gguf:"weight"`

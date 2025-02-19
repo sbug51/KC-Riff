@@ -69,11 +69,11 @@ func initStore() {
 }
 
 func writeStore(storeFilename string) {
-	kc - riffDir := filepath.Dir(storeFilename)
-	_, err := os.Stat(kc - riffDir)
+	kcriffDir := filepath.Dir(storeFilename)
+	_, err := os.Stat(kcriffDir)
 	if errors.Is(err, os.ErrNotExist) {
-		if err := os.MkdirAll(kc-riffDir, 0o755); err != nil {
-			slog.Error(fmt.Sprintf("create kc-riff dir %s: %v", kc-riffDir, err))
+		if err := os.MkdirAll(kcriffDir, 0o755); err != nil {
+			slog.Error(fmt.Sprintf("create kcriff dir %s: %v", kcriffDir, err))
 			return
 		}
 	}

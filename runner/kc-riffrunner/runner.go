@@ -1,4 +1,4 @@
-package kc
+package kcriffrunner
 
 import (
 	"context"
@@ -13,11 +13,11 @@ import (
 	"strconv"
 	"sync"
 
-	_ "github.com/sbug51/kc-riff/model/models"
+	_ "github.com/sbug51/kcriff/model/models"
 )
 
 func Execute(args []string) error {
-	fs := flag.NewFlagSet("kc-runner", flag.ExitOnError)
+	fs := flag.NewFlagSet("kcrunner", flag.ExitOnError)
 	mpath := fs.String("model", "", "Path to model binary file")
 	parallel := fs.Int("parallel", 1, "Number of sequences to handle simultaneously")
 	batchSize := fs.Int("batch-size", 512, "Batch size")
@@ -56,7 +56,7 @@ func Execute(args []string) error {
 		},
 	})
 	slog.SetDefault(slog.New(handler))
-	slog.Info("Starting KC Riff engine...")
+	slog.Info("Starting kcriff engine...")
 
 	server := &Server{
 		batchSize: *batchSize,
@@ -89,7 +89,7 @@ func Execute(args []string) error {
 		Handler: mux,
 	}
 
-	log.Println("KC Riff Runner listening on", addr)
+	log.Println("kcriff Runner listening on", addr)
 	if err := httpServer.Serve(listener); err != nil {
 		log.Fatal("Server error:", err)
 		return err

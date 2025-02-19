@@ -3,7 +3,7 @@ package kvcache
 import (
 	"errors"
 
-	"github.com/sbug51/kc-riff/ml"
+	"github.com/sbug51/kcriff/ml"
 )
 
 var (

@@ -7,5 +7,5 @@ import (
 
 func getStorePath() string {
 	localAppData := os.Getenv("LOCALAPPDATA")
-	return filepath.Join(localAppData, "kc-riff", "config.json")
+	return filepath.Join(localAppData, "kcriff", "config.json")
 }

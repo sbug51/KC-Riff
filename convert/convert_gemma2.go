@@ -1,6 +1,6 @@
 package convert
 
-import "github.com/sbug51/kc-riff/fs/ggml"
+import "github.com/sbug51/kcriff/fs/ggml"
 
 type gemma2Model struct {
 	gemmaModel

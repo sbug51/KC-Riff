@@ -9,14 +9,14 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/sbug51/kc-riff/api"
-	"github.com/sbug51/kc-riff/discover"
-	"github.com/sbug51/kc-riff/fs/ggml"
+	"github.com/sbug51/kcriff/api"
+	"github.com/sbug51/kcriff/discover"
+	"github.com/sbug51/kcriff/fs/ggml"
 )
 
 func TestEstimateGPULayers(t *testing.T) {
-	t.Setenv("kc-riff_DEBUG", "1")
-	t.Setenv("kc-riff_KV_CACHE_TYPE", "") // Ensure default f16
+	t.Setenv("kcriff_DEBUG", "1")
+	t.Setenv("kcriff_KV_CACHE_TYPE", "") // Ensure default f16
 
 	modelName := "dummy"
 	f, err := os.CreateTemp(t.TempDir(), modelName)

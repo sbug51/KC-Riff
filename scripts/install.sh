@@ -1,6 +1,6 @@
 #!/bin/sh
-# This script installs kc-riff on Linux.
-# It detects the current operating system architecture and installs the appropriate version of kc-riff.
+# This script installs kcriff on Linux.
+# It detects the current operating system architecture and installs the appropriate version of kcriff.
 
 set -eu
 
@@ -45,7 +45,7 @@ case "$KERN" in
     *) ;;
 esac
 
-VER_PARAM="${kc-riff_VERSION:+?version=$kc-riff_VERSION}"
+VER_PARAM="${kcriff_VERSION:+?version=$kcriff_VERSION}"
 
 SUDO=
 if [ "$(id -u)" -ne 0 ]; then
@@ -69,22 +69,22 @@ fi
 for BINDIR in /usr/local/bin /usr/bin /bin; do
     echo $PATH | grep -q $BINDIR && break || continue
 done
-kc-riff_INSTALL_DIR=$(dirname ${BINDIR})
+kcriff_INSTALL_DIR=$(dirname ${BINDIR})
 
-if [ -d "$kc-riff_INSTALL_DIR/lib/kc-riff" ] ; then
-    status "Cleaning up old version at $kc-riff_INSTALL_DIR/lib/kc-riff"
-    $SUDO rm -rf "$kc-riff_INSTALL_DIR/lib/kc-riff"
+if [ -d "$kcriff_INSTALL_DIR/lib/kcriff" ] ; then
+    status "Cleaning up old version at $kcriff_INSTALL_DIR/lib/kcriff"
+    $SUDO rm -rf "$kcriff_INSTALL_DIR/lib/kcriff"
 fi
-status "Installing kc-riff to $kc-riff_INSTALL_DIR"
+status "Installing kcriff to $kcriff_INSTALL_DIR"
 $SUDO install -o0 -g0 -m755 -d $BINDIR
-$SUDO install -o0 -g0 -m755 -d "$kc-riff_INSTALL_DIR"
+$SUDO install -o0 -g0 -m755 -d "$kcriff_INSTALL_DIR"
 status "Downloading Linux ${ARCH} bundle"
 curl --fail --show-error --location --progress-bar \
-    "https://killchaos.app/download/kc-riff-linux-${ARCH}.tgz${VER_PARAM}" | \
-    $SUDO tar -xzf - -C "$kc-riff_INSTALL_DIR"
-if [ "$kc-riff_INSTALL_DIR/bin/kc-riff" != "$BINDIR/kc-riff" ] ; then
-    status "Making kc-riff accessible in the PATH in $BINDIR"
-    $SUDO ln -sf "$kc-riff_INSTALL_DIR/kc-riff" "$BINDIR/kc-riff"
+    "https://killchaos.app/download/kcriff-linux-${ARCH}.tgz${VER_PARAM}" | \
+    $SUDO tar -xzf - -C "$kcriff_INSTALL_DIR"
+if [ "$kcriff_INSTALL_DIR/bin/kcriff" != "$BINDIR/kcriff" ] ; then
+    status "Making kcriff accessible in the PATH in $BINDIR"
+    $SUDO ln -sf "$kcriff_INSTALL_DIR/kcriff" "$BINDIR/kcriff"
 fi
 
 # Check for NVIDIA JetPack systems with additional downloads
@@ -92,53 +92,53 @@ if [ -f /etc/nv_tegra_release ] ; then
     if grep R36 /etc/nv_tegra_release > /dev/null ; then
         status "Downloading JetPack 6 components"
         curl --fail --show-error --location --progress-bar \
-            "https://killchaos.app/download/kc-riff-linux-${ARCH}-jetpack6.tgz${VER_PARAM}" | \
-            $SUDO tar -xzf - -C "$kc-riff_INSTALL_DIR"
+            "https://killchaos.app/download/kcriff-linux-${ARCH}-jetpack6.tgz${VER_PARAM}" | \
+            $SUDO tar -xzf - -C "$kcriff_INSTALL_DIR"
     elif grep R35 /etc/nv_tegra_release > /dev/null ; then
         status "Downloading JetPack 5 components"
         curl --fail --show-error --location --progress-bar \
-            "https://killchaos.app/download/kc-riff-linux-${ARCH}-jetpack5.tgz${VER_PARAM}" | \
-            $SUDO tar -xzf - -C "$kc-riff_INSTALL_DIR"
+            "https://killchaos.app/download/kcriff-linux-${ARCH}-jetpack5.tgz${VER_PARAM}" | \
+            $SUDO tar -xzf - -C "$kcriff_INSTALL_DIR"
     else
         warning "Unsupported JetPack version detected.  GPU may not be supported"
     fi
 fi
 
 install_success() {
-    status 'The kc-riff API is now available at 127.0.0.1:11434.'
-    status 'Install complete. Run "kc-riff" from the command line.'
+    status 'The kcriff API is now available at 127.0.0.1:11434.'
+    status 'Install complete. Run "kcriff" from the command line.'
 }
 trap install_success EXIT
 
 # Everything from this point onwards is optional.
 
 configure_systemd() {
-    if ! id kc-riff >/dev/null 2>&1; then
-        status "Creating kc-riff user..."
-        $SUDO useradd -r -s /bin/false -U -m -d /usr/share/kc-riff kc-riff
+    if ! id kcriff >/dev/null 2>&1; then
+        status "Creating kcriff user..."
+        $SUDO useradd -r -s /bin/false -U -m -d /usr/share/kcriff kcriff
     fi
     if getent group render >/dev/null 2>&1; then
-        status "Adding kc-riff user to render group..."
-        $SUDO usermod -a -G render kc-riff
+        status "Adding kcriff user to render group..."
+        $SUDO usermod -a -G render kcriff
     fi
     if getent group video >/dev/null 2>&1; then
-        status "Adding kc-riff user to video group..."
-        $SUDO usermod -a -G video kc-riff
+        status "Adding kcriff user to video group..."
+        $SUDO usermod -a -G video kcriff
     fi
 
-    status "Adding current user to kc-riff group..."
-    $SUDO usermod -a -G kc-riff $(whoami)
+    status "Adding current user to kcriff group..."
+    $SUDO usermod -a -G kcriff $(whoami)
 
-    status "Creating kc-riff systemd service..."
-    cat <<EOF | $SUDO tee /etc/systemd/system/kc-riff.service >/dev/null
+    status "Creating kcriff systemd service..."
+    cat <<EOF | $SUDO tee /etc/systemd/system/kcriff.service >/dev/null
 [Unit]
-Description=kc-riff Service
+Description=kcriff Service
 After=network-online.target
 
 [Service]
-ExecStart=$BINDIR/kc-riff serve
-User=kc-riff
-Group=kc-riff
+ExecStart=$BINDIR/kcriff serve
+User=kcriff
+Group=kcriff
 Restart=always
 RestartSec=3
 Environment="PATH=$PATH"
@@ -149,11 +149,11 @@ EOF
     SYSTEMCTL_RUNNING="$(systemctl is-system-running || true)"
     case $SYSTEMCTL_RUNNING in
         running|degraded)
-            status "Enabling and starting kc-riff service..."
+            status "Enabling and starting kcriff service..."
             $SUDO systemctl daemon-reload
-            $SUDO systemctl enable kc-riff
+            $SUDO systemctl enable kcriff
 
-            start_service() { $SUDO systemctl restart kc-riff; }
+            start_service() { $SUDO systemctl restart kcriff; }
             trap start_service EXIT
             ;;
         *)
@@ -216,15 +216,15 @@ fi
 
 if ! check_gpu lspci nvidia && ! check_gpu lshw nvidia && ! check_gpu lspci amdgpu && ! check_gpu lshw amdgpu; then
     install_success
-    warning "No NVIDIA/AMD GPU detected. kc-riff will run in CPU-only mode."
+    warning "No NVIDIA/AMD GPU detected. kcriff will run in CPU-only mode."
     exit 0
 fi
 
 if check_gpu lspci amdgpu || check_gpu lshw amdgpu; then
     status "Downloading Linux ROCm ${ARCH} bundle"
     curl --fail --show-error --location --progress-bar \
-        "https://killchaos.app/download/kc-riff-linux-${ARCH}-rocm.tgz${VER_PARAM}" | \
-        $SUDO tar -xzf - -C "$kc-riff_INSTALL_DIR"
+        "https://killchaos.app/download/kcriff-linux-${ARCH}-rocm.tgz${VER_PARAM}" | \
+        $SUDO tar -xzf - -C "$kcriff_INSTALL_DIR"
 
     install_success
     status "AMD GPU ready."

@@ -27,20 +27,20 @@ import (
 	"github.com/containerd/console"
 	"github.com/mattn/go-runewidth"
 	"github.com/olekukonko/tablewriter"
-	"github.com/sbug51/kc-riff/runner"
+	"github.com/sbug51/kcriff/runner"
 	"github.com/spf13/cobra"
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/term"
 
-	"github.com/sbug51/kc-riff/api"
-	"github.com/sbug51/kc-riff/envconfig"
-	"github.com/sbug51/kc-riff/format"
-	"github.com/sbug51/kc-riff/llama"
-	"github.com/sbug51/kc-riff/parser"
-	"github.com/sbug51/kc-riff/progress"
-	"github.com/sbug51/kc-riff/server"
-	"github.com/sbug51/kc-riff/types/model"
-	"github.com/sbug51/kc-riff/version"
+	"github.com/sbug51/kcriff/api"
+	"github.com/sbug51/kcriff/envconfig"
+	"github.com/sbug51/kcriff/format"
+	"github.com/sbug51/kcriff/llama"
+	"github.com/sbug51/kcriff/parser"
+	"github.com/sbug51/kcriff/progress"
+	"github.com/sbug51/kcriff/server"
+	"github.com/sbug51/kcriff/types/model"
+	"github.com/sbug51/kcriff/version"
 )
 
 var errModelfileNotFound = errors.New("specified Modelfile wasn't found")
@@ -162,7 +162,7 @@ func CreateHandler(cmd *cobra.Command, args []string) error {
 
 	if err := client.Create(cmd.Context(), req, fn); err != nil {
 		if strings.Contains(err.Error(), "path or Modelfile are required") {
-			return fmt.Errorf("the kc-riff server must be updated to use `kc-riff create` with this client")
+			return fmt.Errorf("the kcriff server must be updated to use `kcriff create` with this client")
 		}
 		return err
 	}
@@ -427,7 +427,7 @@ func PushHandler(cmd *cobra.Command, args []string) error {
 	spinner.Stop()
 
 	destination := n.String()
-	if strings.HasSuffix(n.Host, ".kc-riff.ai") || strings.HasSuffix(n.Host, ".kc-riff.com") {
+	if strings.HasSuffix(n.Host, ".kcriff.ai") || strings.HasSuffix(n.Host, ".kcriff.com") {
 		destination = "https://killchaos.app/" + strings.TrimSuffix(n.DisplayShortest(), ":latest")
 	}
 	fmt.Printf("\nYou can find your model at:\n\n")
@@ -1046,8 +1046,8 @@ func initializeKeypair() error {
 		return err
 	}
 
-	privKeyPath := filepath.Join(home, ".kc-riff", "id_ed25519")
-	pubKeyPath := filepath.Join(home, ".kc-riff", "id_ed25519.pub")
+	privKeyPath := filepath.Join(home, ".kcriff", "id_ed25519")
+	pubKeyPath := filepath.Join(home, ".kcriff", "id_ed25519.pub")
 
 	_, err = os.Stat(privKeyPath)
 	if os.IsNotExist(err) {
@@ -1096,7 +1096,7 @@ func checkServerHeartbeat(cmd *cobra.Command, _ []string) error {
 			return err
 		}
 		if err := startApp(cmd.Context(), client); err != nil {
-			return errors.New("could not connect to kc-riff app, is it running?")
+			return errors.New("could not connect to kcriff app, is it running?")
 		}
 	}
 	return nil
@@ -1110,11 +1110,11 @@ func versionHandler(cmd *cobra.Command, _ []string) {
 
 	serverVersion, err := client.Version(cmd.Context())
 	if err != nil {
-		fmt.Println("Warning: could not connect to a running kc-riff instance")
+		fmt.Println("Warning: could not connect to a running kcriff instance")
 	}
 
 	if serverVersion != "" {
-		fmt.Printf("kc-riff version is %s\n", serverVersion)
+		fmt.Printf("kcriff version is %s\n", serverVersion)
 	}
 
 	if serverVersion != version.Version {
@@ -1146,7 +1146,7 @@ func NewCLI() *cobra.Command {
 	}
 
 	rootCmd := &cobra.Command{
-		Use:           "kc-riff",
+		Use:           "kcriff",
 		Short:         "Large language model runner",
 		SilenceUsage:  true,
 		SilenceErrors: true,
@@ -1215,7 +1215,7 @@ func NewCLI() *cobra.Command {
 	serveCmd := &cobra.Command{
 		Use:     "serve",
 		Aliases: []string{"start"},
-		Short:   "Start kc-riff",
+		Short:   "Start kcriff",
 		Args:    cobra.ExactArgs(0),
 		RunE:    RunServer,
 	}
@@ -1286,7 +1286,7 @@ func NewCLI() *cobra.Command {
 
 	envVars := envconfig.AsMap()
 
-	envs := []envconfig.EnvVar{envVars["kc-riff_HOST"]}
+	envs := []envconfig.EnvVar{envVars["kcriff_HOST"]}
 
 	for _, cmd := range []*cobra.Command{
 		createCmd,
@@ -1303,25 +1303,25 @@ func NewCLI() *cobra.Command {
 	} {
 		switch cmd {
 		case runCmd:
-			appendEnvDocs(cmd, []envconfig.EnvVar{envVars["kc-riff_HOST"], envVars["kc-riff_NOHISTORY"]})
+			appendEnvDocs(cmd, []envconfig.EnvVar{envVars["kcriff_HOST"], envVars["kcriff_NOHISTORY"]})
 		case serveCmd:
 			appendEnvDocs(cmd, []envconfig.EnvVar{
-				envVars["kc-riff_DEBUG"],
-				envVars["kc-riff_HOST"],
-				envVars["kc-riff_KEEP_ALIVE"],
-				envVars["kc-riff_MAX_LOADED_MODELS"],
-				envVars["kc-riff_MAX_QUEUE"],
-				envVars["kc-riff_MODELS"],
-				envVars["kc-riff_NUM_PARALLEL"],
-				envVars["kc-riff_NOPRUNE"],
-				envVars["kc-riff_ORIGINS"],
-				envVars["kc-riff_SCHED_SPREAD"],
-				envVars["kc-riff_TMPDIR"],
-				envVars["kc-riff_FLASH_ATTENTION"],
-				envVars["kc-riff_KV_CACHE_TYPE"],
-				envVars["kc-riff_LLM_LIBRARY"],
-				envVars["kc-riff_GPU_OVERHEAD"],
-				envVars["kc-riff_LOAD_TIMEOUT"],
+				envVars["kcriff_DEBUG"],
+				envVars["kcriff_HOST"],
+				envVars["kcriff_KEEP_ALIVE"],
+				envVars["kcriff_MAX_LOADED_MODELS"],
+				envVars["kcriff_MAX_QUEUE"],
+				envVars["kcriff_MODELS"],
+				envVars["kcriff_NUM_PARALLEL"],
+				envVars["kcriff_NOPRUNE"],
+				envVars["kcriff_ORIGINS"],
+				envVars["kcriff_SCHED_SPREAD"],
+				envVars["kcriff_TMPDIR"],
+				envVars["kcriff_FLASH_ATTENTION"],
+				envVars["kcriff_KV_CACHE_TYPE"],
+				envVars["kcriff_LLM_LIBRARY"],
+				envVars["kcriff_GPU_OVERHEAD"],
+				envVars["kcriff_LOAD_TIMEOUT"],
 			})
 		default:
 			appendEnvDocs(cmd, envs)

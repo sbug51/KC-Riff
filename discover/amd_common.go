@@ -20,7 +20,7 @@ func commonAMDValidateLibDir() (string, error) {
 	// Installer payload location if we're running the installed binary
 	rocmTargetDir := filepath.Join(Libkc-riffPath, "rocm")
 	if rocmLibUsable(rocmTargetDir) {
-		slog.Debug("detected ROCM next to kc-riff executable " + rocmTargetDir)
+		slog.Debug("detected ROCM next to kcriff executable " + rocmTargetDir)
 		return rocmTargetDir, nil
 	}
 

@@ -20,7 +20,7 @@ import (
 
 	"golang.org/x/exp/maps"
 
-	"github.com/sbug51/kc-riff/fs/ggml"
+	"github.com/sbug51/kcriff/fs/ggml"
 )
 
 type tensorData struct {

@@ -61,7 +61,7 @@ function checkEnv() {
     } else {
         $script:PKG_VERSION="0.0.0"
     }
-    write-host "Building kc-riff $script:VERSION with package version $script:PKG_VERSION"
+    write-host "Building kcriff $script:VERSION with package version $script:PKG_VERSION"
 
     # Note: Windows Kits 10 signtool crashes with GCP's plugin
     if ($null -eq $env:SIGN_TOOL) {
@@ -70,18 +70,18 @@ function checkEnv() {
         ${script:SignTool}=${env:SIGN_TOOL}
     }
     if ("${env:KEY_CONTAINER}") {
-        ${script:KC-Riff_CERT}=$(resolve-path "${script:SRC_DIR}\KC-Riff_inc.crt")
+        ${script:kcRiff_CERT}=$(resolve-path "${script:SRC_DIR}\kcRiff_inc.crt")
         Write-host "Code signing enabled"
     } else {
-        write-host "Code signing disabled - please set KEY_CONTAINERS to sign and copy KC-Riff_inc.crt to the top of the source tree"
+        write-host "Code signing disabled - please set KEY_CONTAINERS to sign and copy kcRiff_inc.crt to the top of the source tree"
     }
 }
 
 
 function buildKC-Riff() {
-    if ($null -eq ${env:KC-Riff_SKIP_GENERATE}) {
+    if ($null -eq ${env:kcRiff_SKIP_GENERATE}) {
         Remove-Item -ea 0 -recurse -force -path "${script:SRC_DIR}\dist\windows-${script:ARCH}"
-        New-Item "${script:SRC_DIR}\dist\windows-${script:ARCH}\lib\kc-riff\" -ItemType Directory -ea 0
+        New-Item "${script:SRC_DIR}\dist\windows-${script:ARCH}\lib\kcriff\" -ItemType Directory -ea 0
 
 
         # Default first, then conditionall ROCm and cuda v11
@@ -129,19 +129,19 @@ function buildKC-Riff() {
         #     if ($LASTEXITCODE -ne 0) { exit($LASTEXITCODE)}
         # }
     } else {
-        write-host "Skipping generate step with KC-Riff_SKIP_GENERATE set"
+        write-host "Skipping generate step with kcRiff_SKIP_GENERATE set"
     }
-    write-host "Building kc-riff CLI"
-    & go build -trimpath -ldflags "-s -w -X=github.com/sbug51/kc-riff/version.Version=$script:VERSION -X=github.com/sbug51/kc-riff/server.mode=release" .
+    write-host "Building kcriff CLI"
+    & go build -trimpath -ldflags "-s -w -X=github.com/sbug51/kcriff/version.Version=$script:VERSION -X=github.com/sbug51/kcriff/server.mode=release" .
     if ($LASTEXITCODE -ne 0) { exit($LASTEXITCODE)}
-    cp .\kc-riff.exe "${script:DIST_DIR}\"
+    cp .\kcriff.exe "${script:DIST_DIR}\"
 }
 
 function buildApp() {
-    write-host "Building kc-riff App"
+    write-host "Building kcriff App"
     cd "${script:SRC_DIR}\app"
-    & windres -l 0 -o kc-riff.syso kc-riff.rc
-    & go build -trimpath -ldflags "-s -w -H windowsgui -X=github.com/sbug51/kc-riff/version.Version=$script:VERSION -X=github.com/sbug51/kc-riff/server.mode=release" -o "${script:SRC_DIR}\dist\windows-${script:TARGET_ARCH}-app.exe" .
+    & windres -l 0 -o kcriff.syso kcriff.rc
+    & go build -trimpath -ldflags "-s -w -H windowsgui -X=github.com/sbug51/kcriff/version.Version=$script:VERSION -X=github.com/sbug51/kcriff/server.mode=release" -o "${script:SRC_DIR}\dist\windows-${script:TARGET_ARCH}-app.exe" .
     if ($LASTEXITCODE -ne 0) { exit($LASTEXITCODE)}
 }
 
@@ -152,7 +152,7 @@ function gatherDependencies() {
     }
     write-host "Gathering runtime dependencies from $env:VCToolsRedistDir"
     cd "${script:SRC_DIR}"
-    md "${script:DIST_DIR}\lib\kc-riff" -ea 0 > $null
+    md "${script:DIST_DIR}\lib\kcriff" -ea 0 > $null
 
     # TODO - this varies based on host build system and MSVC version - drive from dumpbin output
     # currently works for Win11 + MSVC 2019 + Cuda V11
@@ -162,31 +162,31 @@ function gatherDependencies() {
         $depArch=$script:TARGET_ARCH
     }
     if ($depArch -eq "x64") {
-        write-host "cp ${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\msvcp140*.dll ${script:DIST_DIR}\lib\kc-riff\"
-        cp "${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\msvcp140*.dll" "${script:DIST_DIR}\lib\kc-riff\"
-        write-host "cp ${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\vcruntime140.dll ${script:DIST_DIR}\lib\kc-riff\"
-        cp "${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\vcruntime140.dll" "${script:DIST_DIR}\lib\kc-riff\"
-        write-host "cp ${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\vcruntime140_1.dll ${script:DIST_DIR}\lib\kc-riff\"
-        cp "${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\vcruntime140_1.dll" "${script:DIST_DIR}\lib\kc-riff\"
+        write-host "cp ${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\msvcp140*.dll ${script:DIST_DIR}\lib\kcriff\"
+        cp "${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\msvcp140*.dll" "${script:DIST_DIR}\lib\kcriff\"
+        write-host "cp ${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\vcruntime140.dll ${script:DIST_DIR}\lib\kcriff\"
+        cp "${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\vcruntime140.dll" "${script:DIST_DIR}\lib\kcriff\"
+        write-host "cp ${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\vcruntime140_1.dll ${script:DIST_DIR}\lib\kcriff\"
+        cp "${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\vcruntime140_1.dll" "${script:DIST_DIR}\lib\kcriff\"
         $llvmCrtDir="$env:VCToolsRedistDir\..\..\..\Tools\Llvm\${depArch}\bin"
         foreach ($part in $("runtime", "stdio", "filesystem", "math", "convert", "heap", "string", "time", "locale", "environment")) {
-            write-host "cp ${llvmCrtDir}\api-ms-win-crt-${part}*.dll ${script:DIST_DIR}\lib\kc-riff\"
-            cp "${llvmCrtDir}\api-ms-win-crt-${part}*.dll" "${script:DIST_DIR}\lib\kc-riff\"
+            write-host "cp ${llvmCrtDir}\api-ms-win-crt-${part}*.dll ${script:DIST_DIR}\lib\kcriff\"
+            cp "${llvmCrtDir}\api-ms-win-crt-${part}*.dll" "${script:DIST_DIR}\lib\kcriff\"
         }
     } else {
         # Carying the dll's doesn't seem to work, so use the redist installer
         copy-item -path "${env:VCToolsRedistDir}\vc_redist.arm64.exe" -destination "${script:DIST_DIR}" -verbose
     }
 
-    cp "${script:SRC_DIR}\app\KC-Riff_welcome.ps1" "${script:SRC_DIR}\dist\"
+    cp "${script:SRC_DIR}\app\kcRiff_welcome.ps1" "${script:SRC_DIR}\dist\"
 }
 
 function sign() {
     if ("${env:KEY_CONTAINER}") {
-        write-host "Signing kc-riff executables, scripts and libraries"
-        & "${script:SignTool}" sign /v /fd sha256 /t http://timestamp.digicert.com /f "${script:KC-Riff_CERT}" `
+        write-host "Signing kcriff executables, scripts and libraries"
+        & "${script:SignTool}" sign /v /fd sha256 /t http://timestamp.digicert.com /f "${script:kcRiff_CERT}" `
             /csp "Google Cloud KMS Provider" /kc ${env:KEY_CONTAINER} `
-            $(get-childitem -path "${script:SRC_DIR}\dist" -r -include @('KC-Riff_welcome.ps1')) `
+            $(get-childitem -path "${script:SRC_DIR}\dist" -r -include @('kcRiff_welcome.ps1')) `
             $(get-childitem -path "${script:SRC_DIR}\dist\windows-*" -r -include @('*.exe', '*.dll'))
         if ($LASTEXITCODE -ne 0) { exit($LASTEXITCODE)}
     } else {
@@ -199,26 +199,26 @@ function buildInstaller() {
         write-host "Inno Setup not present, skipping installer build"
         return
     }
-    write-host "Building kc-riff Installer"
+    write-host "Building kcriff Installer"
     cd "${script:SRC_DIR}\app"
     $env:PKG_VERSION=$script:PKG_VERSION
     if ("${env:KEY_CONTAINER}") {
-        & "${script:INNO_SETUP_DIR}\ISCC.exe" /DARCH=$script:TARGET_ARCH /SMySignTool="${script:SignTool} sign /fd sha256 /t http://timestamp.digicert.com /f ${script:KC-Riff_CERT} /csp `$qGoogle Cloud KMS Provider`$q /kc ${env:KEY_CONTAINER} `$f" .\kc-riff.iss
+        & "${script:INNO_SETUP_DIR}\ISCC.exe" /DARCH=$script:TARGET_ARCH /SMySignTool="${script:SignTool} sign /fd sha256 /t http://timestamp.digicert.com /f ${script:kcRiff_CERT} /csp `$qGoogle Cloud KMS Provider`$q /kc ${env:KEY_CONTAINER} `$f" .\kcriff.iss
     } else {
-        & "${script:INNO_SETUP_DIR}\ISCC.exe" /DARCH=$script:TARGET_ARCH .\kc-riff.iss
+        & "${script:INNO_SETUP_DIR}\ISCC.exe" /DARCH=$script:TARGET_ARCH .\kcriff.iss
     }
     if ($LASTEXITCODE -ne 0) { exit($LASTEXITCODE)}
 }
 
 function distZip() {
     if (Test-Path -Path "${script:SRC_DIR}\dist\windows-amd64") {
-        write-host "Generating stand-alone distribution zip file ${script:SRC_DIR}\dist\kc-riff-windows-amd64.zip"
-        Compress-Archive -Path "${script:SRC_DIR}\dist\windows-amd64\*" -DestinationPath "${script:SRC_DIR}\dist\kc-riff-windows-amd64.zip" -Force
+        write-host "Generating stand-alone distribution zip file ${script:SRC_DIR}\dist\kcriff-windows-amd64.zip"
+        Compress-Archive -Path "${script:SRC_DIR}\dist\windows-amd64\*" -DestinationPath "${script:SRC_DIR}\dist\kcriff-windows-amd64.zip" -Force
     }
 
     if (Test-Path -Path "${script:SRC_DIR}\dist\windows-arm64") {
-        write-host "Generating stand-alone distribution zip file ${script:SRC_DIR}\dist\kc-riff-windows-arm64.zip"
-        Compress-Archive -Path "${script:SRC_DIR}\dist\windows-arm64\*" -DestinationPath "${script:SRC_DIR}\dist\kc-riff-windows-arm64.zip" -Force
+        write-host "Generating stand-alone distribution zip file ${script:SRC_DIR}\dist\kcriff-windows-arm64.zip"
+        Compress-Archive -Path "${script:SRC_DIR}\dist\windows-arm64\*" -DestinationPath "${script:SRC_DIR}\dist\kcriff-windows-arm64.zip" -Force
     }
 }
 

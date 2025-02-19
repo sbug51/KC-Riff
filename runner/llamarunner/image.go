@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sbug51/kc-riff/llama"
+	"github.com/sbug51/kcriff/llama"
 )
 
 const imageCacheSize = 4

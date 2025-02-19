@@ -1,6 +1,6 @@
 # Template
 
-kc-riff provides a powerful templating engine backed by Go's built-in templating engine to construct prompts for your large language model. This feature is a valuable tool to get the most out of your models.
+kcriff provides a powerful templating engine backed by Go's built-in templating engine to construct prompts for your large language model. This feature is a valuable tool to get the most out of your models.
 
 ## Basic Template Structure
 
@@ -26,7 +26,7 @@ In this example, we have:
 
 ## Adding templates to your model
 
-By default, models imported into kc-riff have a default template of `{{ .Prompt }}`, i.e. user inputs are sent verbatim to the LLM. This is appropriate for text or code completion models but lacks essential markers for chat or instruction models.
+By default, models imported into kcriff have a default template of `{{ .Prompt }}`, i.e. user inputs are sent verbatim to the LLM. This is appropriate for text or code completion models but lacks essential markers for chat or instruction models.
 
 Omitting a template in these models puts the responsibility of correctly templating input onto the user. Adding a template allows users to easily get the best results from the model.
 

@@ -9,9 +9,9 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/sbug51/kc-riff/app/store"
-	"github.com/sbug51/kc-riff/app/tray"
-	"github.com/sbug51/kc-riff/envconfig"
+	"github.com/sbug51/kcriff/app/store"
+	"github.com/sbug51/kcriff/app/tray"
+	"github.com/sbug51/kcriff/envconfig"
 )
 
 func Run() {
@@ -69,14 +69,14 @@ func Run() {
 	}
 
 	if IsServerRunning(ctx) {
-		slog.Info("Detected another instance of kc-riff running, exiting")
+		slog.Info("Detected another instance of kcriff running, exiting")
 		os.Exit(1)
 	} else {
 		done, err = SpawnServer(ctx, CLIName)
 		if err != nil {
 			// TODO - should we retry in a backoff loop?
 			// TODO - should we pop up a warning and maybe add a menu item to view application logs?
-			slog.Error(fmt.Sprintf("Failed to spawn kc-riff server %s", err))
+			slog.Error(fmt.Sprintf("Failed to spawn kcriff server %s", err))
 			done = make(chan int, 1)
 			done <- 1
 		}
@@ -86,9 +86,9 @@ func Run() {
 
 	t.Run()
 	cancel()
-	slog.Info("Waiting for kc-riff server to shutdown...")
+	slog.Info("Waiting for kcriff server to shutdown...")
 	if done != nil {
 		<-done
 	}
-	slog.Info("kc-riff app exiting")
+	slog.Info("kcriff app exiting")
 }

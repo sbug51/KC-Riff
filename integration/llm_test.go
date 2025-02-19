@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kcriff/api"
 )
 
 // TODO - this would ideally be in the llm package, but that would require some refactoring of interfaces in the server

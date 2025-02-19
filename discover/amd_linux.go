@@ -15,8 +15,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/sbug51/kc-riff/envconfig"
-	"github.com/sbug51/kc-riff/format"
+	"github.com/sbug51/kcriff/envconfig"
+	"github.com/sbug51/kcriff/format"
 )
 
 // Discovery logic for AMD/ROCm GPUs
@@ -58,7 +58,7 @@ func AMDGetGPUInfo() ([]RocmGPUInfo, error) {
 	driverMajor, driverMinor, err := AMDDriverVersion()
 	if err != nil {
 		// TODO - if we see users crash and burn with the upstreamed kernel this can be adjusted to hard-fail rocm support and fallback to CPU
-		slog.Warn("kc-riff recommends running the https://www.amd.com/en/support/linux-drivers", "error", err)
+		slog.Warn("kcriff recommends running the https://www.amd.com/en/support/linux-drivers", "error", err)
 	}
 
 	// Determine if the user has already pre-selected which GPUs to look at, then ignore the others
@@ -380,7 +380,7 @@ func AMDGetGPUInfo() ([]RocmGPUInfo, error) {
 				})
 
 				// TODO - consider discrete markdown just for ROCM troubleshooting?
-				slog.Warn("See https://github.com/sbug51/kc-riff/blob/main/docs/gpu.md#overrides for HSA_OVERRIDE_GFX_VERSION usage")
+				slog.Warn("See https://github.com/sbug51/kcriff/blob/main/docs/gpu.md#overrides for HSA_OVERRIDE_GFX_VERSION usage")
 				continue
 			} else {
 				slog.Info("amdgpu is supported", "gpu", gpuInfo.ID, "gpu_type", gfx)
@@ -433,14 +433,14 @@ func AMDValidateLibDir() (string, error) {
 		return libDir, nil
 	}
 
-	// Well known kc-riff installer path
-	installedRocmDir := "/usr/share/kc-riff/lib/rocm"
+	// Well known kcriff installer path
+	installedRocmDir := "/usr/share/kcriff/lib/rocm"
 	if rocmLibUsable(installedRocmDir) {
 		return installedRocmDir, nil
 	}
 
 	// If we still haven't found a usable rocm, the user will have to install it on their own
-	slog.Warn("amdgpu detected, but no compatible rocm library found.  Either install rocm v6, or follow manual install instructions at https://github.com/sbug51/kc-riff/blob/main/docs/linux.md#manual-install")
+	slog.Warn("amdgpu detected, but no compatible rocm library found.  Either install rocm v6, or follow manual install instructions at https://github.com/sbug51/kcriff/blob/main/docs/linux.md#manual-install")
 	return "", errors.New("no suitable rocm found, falling back to CPU")
 }
 
@@ -509,7 +509,7 @@ func verifyKFDDriverAccess() error {
 	fd, err := os.OpenFile("/dev/kfd", os.O_RDWR, 0o666)
 	if err != nil {
 		if errors.Is(err, fs.ErrPermission) {
-			return fmt.Errorf("permissions not set up properly.  Either run kc-riff as root, or add you user account to the render group. %w", err)
+			return fmt.Errorf("permissions not set up properly.  Either run kcriff as root, or add you user account to the render group. %w", err)
 		} else if errors.Is(err, fs.ErrNotExist) {
 			// Container runtime failure?
 			return fmt.Errorf("kfd driver not loaded.  If running in a container, remember to include '--device /dev/kfd --device /dev/dri'")

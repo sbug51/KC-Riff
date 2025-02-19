@@ -1,8 +1,8 @@
-package runner
+package kcriffrunner
 
 import (
-	"github.com/sbug51/kc-riff/api"   // KC Riff API
-	"github.com/sbug51/kc-riff/llama" // KC Riff LLM execution
+	"github.com/sbug51/kcriff/api"   // kcriff API
+	"github.com/sbug51/kcriff/llama" // kcriff LLM execution
 )
 
 func Execute(args []string) error {
@@ -11,14 +11,14 @@ func Execute(args []string) error {
 	}
 
 	var useNewEngine bool
-	if args[0] == "--kc-riff-engine" { // Change to KC Riff
+	if args[0] == "--kcriff-engine" { // Change to kcriff
 		args = args[1:]
 		useNewEngine = true
 	}
 
 	if useNewEngine {
-		return api.Execute(args) // KC Riff API execution
+		return api.Execute(args) // kcriff API execution
 	} else {
-		return llama.Execute(args) // KC Riff LLM execution
+		return llama.Execute(args) // kcriff LLM execution
 	}
 }

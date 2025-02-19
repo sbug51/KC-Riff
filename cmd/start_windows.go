@@ -10,12 +10,12 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kcriff/api"
 )
 
 func startApp(ctx context.Context, client *api.Client) error {
-	// log.Printf("XXX Attempting to find and start kc-riff app")
-	AppName := "kc-riff app.exe"
+	// log.Printf("XXX Attempting to find and start kcriff app")
+	AppName := "kcriff app.exe"
 	exe, err := os.Executable()
 	if err != nil {
 		return err
@@ -25,13 +25,13 @@ func startApp(ctx context.Context, client *api.Client) error {
 	if errors.Is(err, os.ErrNotExist) {
 		// Try the standard install location
 		localAppData := os.Getenv("LOCALAPPDATA")
-		appExe = filepath.Join(localAppData, "kc-riff", AppName)
+		appExe = filepath.Join(localAppData, "kcriff", AppName)
 		_, err := os.Stat(appExe)
 		if errors.Is(err, os.ErrNotExist) {
 			// Finally look in the path
 			appExe, err = exec.LookPath(AppName)
 			if err != nil {
-				return errors.New("could not locate kc-riff app")
+				return errors.New("could not locate kcriff app")
 			}
 		}
 	}
@@ -48,7 +48,7 @@ func startApp(ctx context.Context, client *api.Client) error {
 	cmd.Stderr = os.Stderr
 
 	if err := cmd.Start(); err != nil {
-		return fmt.Errorf("unable to start kc-riff app %w", err)
+		return fmt.Errorf("unable to start kcriff app %w", err)
 	}
 
 	if cmd.Process != nil {

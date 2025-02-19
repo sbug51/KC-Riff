@@ -8,7 +8,7 @@ import (
 
 	"golang.org/x/term"
 
-	"github.com/sbug51/kc-riff/format"
+	"github.com/sbug51/kcriff/format"
 )
 
 type Bar struct {

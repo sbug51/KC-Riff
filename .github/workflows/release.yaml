@@ -20,7 +20,7 @@ jobs:
       - name: Set environment
         id: goflags
         run: |
-          echo GOFLAGS="'-ldflags=-w -s \"-X=github.com/sbug51/kc-riff/version.Version=${GITHUB_REF_NAME#v}\" \"-X=github.com/sbug51/kc-riff/server.mode=release\"'" >>$GITHUB_OUTPUT
+          echo GOFLAGS="'-ldflags=-w -s \"-X=github.com/sbug51/kcriff/version.Version=${GITHUB_REF_NAME#v}\" \"-X=github.com/sbug51/kcriff/server.mode=release\"'" >>$GITHUB_OUTPUT
 
   darwin-build:
     runs-on: macos-13
@@ -93,8 +93,8 @@ jobs:
         with:
           name: dist-darwin
           path: |
-            dist/kc-riff-darwin.zip
-            dist/kc-riff-darwin.tgz
+            dist/kcriff-darwin.zip
+            dist/kcriff-darwin.tgz
 
   windows-depends:
     strategy:
@@ -249,7 +249,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: google-github-actions/auth@v2
         with:
-          project_id: kc-riff
+          project_id: kcriff
           credentials_json: ${{ secrets.GOOGLE_SIGNING_CREDENTIALS }}
       - run: |
           $ErrorActionPreference = "Stop"
@@ -260,7 +260,7 @@ jobs:
           Expand-Archive -Path "${{ runner.temp }}\plugin.zip" -DestinationPath "${{ runner.temp }}\plugin\"
           & "${{ runner.temp }}\plugin\*\kmscng.msi" /quiet
 
-          echo "${{ vars.kc-riff_CERT }}" >kc-riff_inc.crt
+          echo "${{ vars.kcriff_CERT }}" >kcriff_inc.crt
       - uses: actions/download-artifact@v4
         with:
           pattern: build-windows-*
@@ -279,8 +279,8 @@ jobs:
         with:
           name: dist-windows
           path: |
-            dist\kc-riffSetup.exe
-            dist\kc-riff-windows-*.zip
+            dist\kcriffSetup.exe
+            dist\kcriff-windows-*.zip
 
   linux-build:
     strategy:
@@ -313,18 +313,18 @@ jobs:
             CGO_CFLAGS=${{ env.CGO_CFLAGS }}
             CGO_CXXFLAGS=${{ env.CGO_CXXFLAGS }}
           outputs: type=local,dest=dist/${{ matrix.os }}-${{ matrix.arch }}
-          cache-from: type=registry,ref=sbug51/kc-riff:latest
+          cache-from: type=registry,ref=sbug51/kcriff:latest
           cache-to: type=inline
       - run: |
-          for COMPONENT in bin/* lib/kc-riff/*; do
+          for COMPONENT in bin/* lib/kcriff/*; do
             case "$COMPONENT" in
-              bin/kc-riff)               echo $COMPONENT >>kc-riff-${{ matrix.os }}-${{ matrix.arch }}.tar.in ;;
-              lib/kc-riff/*.so)          echo $COMPONENT >>kc-riff-${{ matrix.os }}-${{ matrix.arch }}.tar.in ;;
-              lib/kc-riff/cuda_v11)      echo $COMPONENT >>kc-riff-${{ matrix.os }}-${{ matrix.arch }}.tar.in ;;
-              lib/kc-riff/cuda_v12)      echo $COMPONENT >>kc-riff-${{ matrix.os }}-${{ matrix.arch }}.tar.in ;;
-              lib/kc-riff/cuda_jetpack5) echo $COMPONENT >>kc-riff-${{ matrix.os }}-${{ matrix.arch }}-jetpack5.tar.in ;;
-              lib/kc-riff/cuda_jetpack6) echo $COMPONENT >>kc-riff-${{ matrix.os }}-${{ matrix.arch }}-jetpack6.tar.in ;;
-              lib/kc-riff/rocm)          echo $COMPONENT >>kc-riff-${{ matrix.os }}-${{ matrix.arch }}-rocm.tar.in ;;
+              bin/kcriff)               echo $COMPONENT >>kcriff-${{ matrix.os }}-${{ matrix.arch }}.tar.in ;;
+              lib/kcriff/*.so)          echo $COMPONENT >>kcriff-${{ matrix.os }}-${{ matrix.arch }}.tar.in ;;
+              lib/kcriff/cuda_v11)      echo $COMPONENT >>kcriff-${{ matrix.os }}-${{ matrix.arch }}.tar.in ;;
+              lib/kcriff/cuda_v12)      echo $COMPONENT >>kcriff-${{ matrix.os }}-${{ matrix.arch }}.tar.in ;;
+              lib/kcriff/cuda_jetpack5) echo $COMPONENT >>kcriff-${{ matrix.os }}-${{ matrix.arch }}-jetpack5.tar.in ;;
+              lib/kcriff/cuda_jetpack6) echo $COMPONENT >>kcriff-${{ matrix.os }}-${{ matrix.arch }}-jetpack6.tar.in ;;
+              lib/kcriff/rocm)          echo $COMPONENT >>kcriff-${{ matrix.os }}-${{ matrix.arch }}-rocm.tar.in ;;
             esac
           done
         working-directory: dist/${{ matrix.os }}-${{ matrix.arch }}
@@ -379,8 +379,8 @@ jobs:
           context: .
           platforms: ${{ matrix.os }}/${{ matrix.arch }}
           build-args: ${{ matrix.build-args }}
-          outputs: type=image,name=sbug51/kc-riff,push-by-digest=true,name-canonical=true,push=true
-          cache-from: type=registry,ref=sbug51/kc-riff:latest
+          outputs: type=image,name=sbug51/kcriff,push-by-digest=true,name-canonical=true,push=true
+          cache-from: type=registry,ref=sbug51/kcriff:latest
           cache-to: type=inline
       - run: |
           mkdir -p ${{ matrix.os }}-${{ matrix.arch }}
@@ -412,7 +412,7 @@ jobs:
             latest=false
             suffix=${{ matrix.suffix }}
           images: |
-            sbug51/kc-riff
+            sbug51/kcriff
           tags: |
             type=ref,enable=true,priority=600,prefix=pr-,event=pr
             type=semver,pattern={{version}}
@@ -422,8 +422,8 @@ jobs:
           path: ${{ runner.temp }}
           merge-multiple: true
       - run: |
-          docker buildx imagetools create $(echo '${{ steps.metadata.outputs.json }}' | jq -cr '.tags | map("-t", .) | join(" ")') $(cat *-${{ matrix.suffix }}.txt | xargs printf 'sbug51/kc-riff@%s ')
-          docker buildx imagetools inspect sbug51/kc-riff:${{ steps.metadata.outputs.version }}
+          docker buildx imagetools create $(echo '${{ steps.metadata.outputs.json }}' | jq -cr '.tags | map("-t", .) | join(" ")') $(cat *-${{ matrix.suffix }}.txt | xargs printf 'sbug51/kcriff@%s ')
+          docker buildx imagetools inspect sbug51/kcriff:${{ steps.metadata.outputs.version }}
         working-directory: ${{ runner.temp }}
 
   # Aggregate all the assets and ship a release

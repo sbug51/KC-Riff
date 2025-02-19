@@ -24,7 +24,7 @@ const logger = winston.createLogger({
   transports: [
     new winston.transports.Console(),
     new winston.transports.File({
-      filename: path.join(app.getPath('home'), '.kc-riff', 'logs', 'server.log'),
+      filename: path.join(app.getPath('home'), '.kcriff', 'logs', 'server.log'),
       maxsize: 1024 * 1024 * 20,
       maxFiles: 5,
     }),
@@ -116,14 +116,14 @@ function updateTray() {
 
   const menu = Menu.buildFromTemplate([
     ...(updateAvailable ? updateItems : []),
-    { role: 'quit', label: 'Quit kc-riff', accelerator: 'Command+Q' },
+    { role: 'quit', label: 'Quit kcriff', accelerator: 'Command+Q' },
   ])
 
   if (!tray) {
     tray = new Tray(trayIconPath())
   }
 
-  tray.setToolTip(updateAvailable ? 'An update is available' : 'kc-riff')
+  tray.setToolTip(updateAvailable ? 'An update is available' : 'kcriff')
   tray.setContextMenu(menu)
   tray.setImage(trayIconPath())
 
@@ -135,8 +135,8 @@ let proc: ChildProcess = null
 
 function server() {
   const binary = app.isPackaged
-    ? path.join(process.resourcesPath, 'kc-riff')
-    : path.resolve(process.cwd(), '..', 'kc-riff')
+    ? path.join(process.resourcesPath, 'kcriff')
+    : path.resolve(process.cwd(), '..', 'kcriff')
 
   proc = spawn(binary, ['serve'])
 
@@ -223,7 +223,7 @@ function init() {
         const chosen = dialog.showMessageBoxSync({
           type: 'question',
           buttons: ['Move to Applications', 'Do Not Move'],
-          message: 'kc-riff works best when run from the Applications directory.',
+          message: 'kcriff works best when run from the Applications directory.',
           defaultId: 0,
           cancelId: 1,
         })
@@ -237,7 +237,7 @@ function init() {
                     type: 'info',
                     message: 'Cannot move to Applications directory',
                     detail:
-                      'Another version of kc-riff is currently running from your Applications directory. Close it first and try again.',
+                      'Another version of kcriff is currently running from your Applications directory. Close it first and try again.',
                   })
                 }
                 return true

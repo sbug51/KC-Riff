@@ -17,13 +17,13 @@ mkdir -p dist
 docker buildx build \
         --output type=local,dest=./dist/ \
         --platform=${PLATFORM} \
-        ${kc-riff_COMMON_BUILD_ARGS} \
+        ${kcriff_COMMON_BUILD_ARGS} \
         --target archive \
         -f Dockerfile \
         .
 
 # buildx behavior changes for single vs. multiplatform
 if echo $PLATFORM | grep "," > /dev/null ; then 
-        mv -f ./dist/linux_*64/kc-riff* ./dist/
+        mv -f ./dist/linux_*64/kcriff* ./dist/
         rmdir ./dist/linux_*64
 fi

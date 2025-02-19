@@ -1,9 +1,9 @@
-# kc-riff Docker image
+# kcriff Docker image
 
 ### CPU only
 
 ```shell
-docker run -d -v kc-riff:/root/.kc-riff -p 11434:11434 --name kc-riff sbug51/kc-riff
+docker run -d -v kcriff:/root/.kcriff -p 11434:11434 --name kcriff sbug51/kcriff
 ```
 
 ### Nvidia GPU
@@ -51,18 +51,18 @@ sudo systemctl restart docker
 #### Start the container
 
 ```shell
-docker run -d --gpus=all -v kc-riff:/root/.kc-riff -p 11434:11434 --name kc-riff sbug51/kc-riff
+docker run -d --gpus=all -v kcriff:/root/.kcriff -p 11434:11434 --name kcriff sbug51/kcriff
 ```
 
 > [!NOTE]  
-> If you're running on an NVIDIA JetPack system, kc-riff can't automatically discover the correct JetPack version. Pass the environment variable JETSON_JETPACK=5 or JETSON_JETPACK=6 to the container to select version 5 or 6.
+> If you're running on an NVIDIA JetPack system, kcriff can't automatically discover the correct JetPack version. Pass the environment variable JETSON_JETPACK=5 or JETSON_JETPACK=6 to the container to select version 5 or 6.
 
 ### AMD GPU
 
-To run kc-riff using Docker with AMD GPUs, use the `rocm` tag and the following command:
+To run kcriff using Docker with AMD GPUs, use the `rocm` tag and the following command:
 
 ```shell
-docker run -d --device /dev/kfd --device /dev/dri -v kc-riff:/root/.kc-riff -p 11434:11434 --name kc-riff sbug51/kc-riff:rocm
+docker run -d --device /dev/kfd --device /dev/dri -v kcriff:/root/.kcriff -p 11434:11434 --name kcriff sbug51/kcriff:rocm
 ```
 
 ### Run model locally
@@ -70,9 +70,9 @@ docker run -d --device /dev/kfd --device /dev/dri -v kc-riff:/root/.kc-riff -p 1
 Now you can run a model:
 
 ```shell
-docker exec -it kc-riff kc-riff run llama3.2
+docker exec -it kcriff kcriff run llama3.2
 ```
 
 ### Try different models
 
-More models can be found on the [kc-riff library](https://killchaos.app/library).
+More models can be found on the [kcriff library](https://killchaos.app/library).

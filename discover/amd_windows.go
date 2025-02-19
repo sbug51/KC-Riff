@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/sbug51/kc-riff/envconfig"
-	"github.com/sbug51/kc-riff/format"
+	"github.com/sbug51/kcriff/envconfig"
+	"github.com/sbug51/kcriff/format"
 )
 
 const (
@@ -164,7 +164,7 @@ func AMDValidateLibDir() (string, error) {
 	// Installer payload (if we're running from some other location)
 	rocmTargetDir := filepath.Join(Libkc-riffPath, "rocm")
 	if rocmLibUsable(rocmTargetDir) {
-		slog.Debug("detected kc-riff installed ROCm at " + rocmTargetDir)
+		slog.Debug("detected kcriff installed ROCm at " + rocmTargetDir)
 		return rocmTargetDir, nil
 	}
 

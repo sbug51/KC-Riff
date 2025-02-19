@@ -1,4 +1,4 @@
-package kc
+package kcriffrunner
 
 import (
 	"image"

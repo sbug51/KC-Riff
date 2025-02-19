@@ -87,29 +87,29 @@ FROM base AS build
 ARG GOVERSION=1.23.4
 RUN curl -fsSL https://golang.org/dl/go${GOVERSION}.linux-$(case $(uname -m) in x86_64) echo amd64 ;; aarch64) echo arm64 ;; esac).tar.gz | tar xz -C /usr/local
 ENV PATH=/usr/local/go/bin:$PATH
-WORKDIR /go/src/github.com/sbug51/kc-riff
+WORKDIR /go/src/github.com/sbug51/kcriff
 COPY . .
 ARG GOFLAGS="'-ldflags=-w -s'"
 ENV CGO_ENABLED=1
 RUN --mount=type=cache,target=/root/.cache/go-build \
-    go build -trimpath -buildmode=pie -o /bin/kc-riff .
+    go build -trimpath -buildmode=pie -o /bin/kcriff .
 
 FROM --platform=linux/amd64 scratch AS amd64
-COPY --from=cuda-11 dist/lib/kc-riff/cuda_v11 /lib/kc-riff/cuda_v11
-COPY --from=cuda-12 dist/lib/kc-riff/cuda_v12 /lib/kc-riff/cuda_v12
+COPY --from=cuda-11 dist/lib/kcriff/cuda_v11 /lib/kcriff/cuda_v11
+COPY --from=cuda-12 dist/lib/kcriff/cuda_v12 /lib/kcriff/cuda_v12
 
 FROM --platform=linux/arm64 scratch AS arm64
-COPY --from=cuda-11 dist/lib/kc-riff/cuda_v11 /lib/kc-riff/cuda_v11
-COPY --from=cuda-12 dist/lib/kc-riff/cuda_v12 /lib/kc-riff/cuda_v12
-COPY --from=jetpack-5 dist/lib/kc-riff/cuda_v11 lib/kc-riff/cuda_jetpack5
-COPY --from=jetpack-6 dist/lib/kc-riff/cuda_v12 lib/kc-riff/cuda_jetpack6
+COPY --from=cuda-11 dist/lib/kcriff/cuda_v11 /lib/kcriff/cuda_v11
+COPY --from=cuda-12 dist/lib/kcriff/cuda_v12 /lib/kcriff/cuda_v12
+COPY --from=jetpack-5 dist/lib/kcriff/cuda_v11 lib/kcriff/cuda_jetpack5
+COPY --from=jetpack-6 dist/lib/kcriff/cuda_v12 lib/kcriff/cuda_jetpack6
 
 FROM --platform=linux/arm64 scratch AS rocm
-COPY --from=rocm-6 dist/lib/kc-riff/rocm /lib/kc-riff/rocm
+COPY --from=rocm-6 dist/lib/kcriff/rocm /lib/kcriff/rocm
 
 FROM ${FLAVOR} AS archive
-COPY --from=cpu dist/lib/kc-riff /lib/kc-riff
-COPY --from=build /bin/kc-riff /bin/kc-riff
+COPY --from=cpu dist/lib/kcriff /lib/kcriff
+COPY --from=build /bin/kcriff /bin/kcriff
 
 FROM ubuntu:20.04
 RUN apt-get update \
@@ -118,11 +118,11 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 COPY --from=archive /bin /usr/bin
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-COPY --from=archive /lib/kc-riff /usr/lib/kc-riff
+COPY --from=archive /lib/kcriff /usr/lib/kcriff
 ENV LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64
 ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
 ENV NVIDIA_VISIBLE_DEVICES=all
-ENV kc-riff_HOST=0.0.0.0:11434
+ENV kcriff_HOST=0.0.0.0:11434
 EXPOSE 11434
-ENTRYPOINT ["/bin/kc-riff"]
+ENTRYPOINT ["/bin/kcriff"]
 CMD ["serve"]

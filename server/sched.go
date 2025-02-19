@@ -14,12 +14,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sbug51/kc-riff/api"
-	"github.com/sbug51/kc-riff/discover"
-	"github.com/sbug51/kc-riff/envconfig"
-	"github.com/sbug51/kc-riff/format"
-	"github.com/sbug51/kc-riff/fs/ggml"
-	"github.com/sbug51/kc-riff/llm"
+	"github.com/sbug51/kcriff/api"
+	"github.com/sbug51/kcriff/discover"
+	"github.com/sbug51/kcriff/envconfig"
+	"github.com/sbug51/kcriff/format"
+	"github.com/sbug51/kcriff/fs/ggml"
+	"github.com/sbug51/kcriff/llm"
 )
 
 type LlmRequest struct {
@@ -132,7 +132,7 @@ func (s *Scheduler) processPending(ctx context.Context) {
 			}
 			numParallel := int(envconfig.NumParallel())
 			// TODO (jmorganca): mllama doesn't support parallel yet
-			// see https://github.com/sbug51/kc-riff/issues/4165
+			// see https://github.com/sbug51/kcriff/issues/4165
 			if checkMllamaModelFamily(pending.model) && numParallel != 1 {
 				numParallel = 1
 				slog.Warn("mllama doesn't support parallel requests yet")
@@ -178,11 +178,11 @@ func (s *Scheduler) processPending(ctx context.Context) {
 						}
 						if allReliable {
 							// HACK
-							os.Setenv("kc-riff_MAX_LOADED_MODELS", strconv.Itoa(defaultModelsPerGPU*len(gpus)))
-							slog.Debug("updating default concurrency", "kc-riff_MAX_LOADED_MODELS", envconfig.MaxRunners, "gpu_count", len(gpus))
+							os.Setenv("kcriff_MAX_LOADED_MODELS", strconv.Itoa(defaultModelsPerGPU*len(gpus)))
+							slog.Debug("updating default concurrency", "kcriff_MAX_LOADED_MODELS", envconfig.MaxRunners, "gpu_count", len(gpus))
 						} else {
 							// HACK
-							os.Setenv("kc-riff_MAX_LOADED_MODELS", strconv.Itoa(len(gpus)))
+							os.Setenv("kcriff_MAX_LOADED_MODELS", strconv.Itoa(len(gpus)))
 							slog.Info("one or more GPUs detected that are unable to accurately report free memory - disabling default concurrency")
 						}
 					}
@@ -424,7 +424,7 @@ func (s *Scheduler) load(req *LlmRequest, f *ggml.GGML, gpus discover.GpuInfoLis
 		// show a generalized compatibility error until there is a better way to
 		// check for model compatibility
 		if errors.Is(err, ggml.ErrUnsupportedFormat) || strings.Contains(err.Error(), "failed to load model") {
-			err = fmt.Errorf("%v: this model may be incompatible with your version of kc-riff. If you previously pulled this model, try updating it by running `kc-riff pull %s`", err, req.model.ShortName)
+			err = fmt.Errorf("%v: this model may be incompatible with your version of kcriff. If you previously pulled this model, try updating it by running `kcriff pull %s`", err, req.model.ShortName)
 		}
 		slog.Info("NewLlamaServer failed", "model", req.model.ModelPath, "error", err)
 		req.errCh <- err

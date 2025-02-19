@@ -5,7 +5,7 @@
 .swp
 dist
 build
-kc-riff
+kcriff
 .cache
 *.exe
 .idea

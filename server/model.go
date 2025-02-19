@@ -14,10 +14,10 @@ import (
 	"strings"
 	"text/template/parse"
 
-	"github.com/sbug51/kc-riff/api"
-	"github.com/sbug51/kc-riff/fs/ggml"
-	"github.com/sbug51/kc-riff/template"
-	"github.com/sbug51/kc-riff/types/model"
+	"github.com/sbug51/kcriff/api"
+	"github.com/sbug51/kcriff/fs/ggml"
+	"github.com/sbug51/kcriff/template"
+	"github.com/sbug51/kcriff/types/model"
 )
 
 var intermediateBlobs map[string]string = make(map[string]string)
@@ -50,9 +50,9 @@ func parseFromModel(ctx context.Context, name model.Name, fn func(api.ProgressRe
 		}
 
 		switch layer.MediaType {
-		case "application/vnd.kc-riff.image.model",
-			"application/vnd.kc-riff.image.projector",
-			"application/vnd.kc-riff.image.adapter":
+		case "application/vnd.kcriff.image.model",
+			"application/vnd.kcriff.image.projector",
+			"application/vnd.kcriff.image.adapter":
 			blobpath, err := GetBlobsPath(layer.Digest)
 			if err != nil {
 				return nil, err
@@ -84,7 +84,7 @@ func detectChatTemplate(layers []*layerGGML) ([]*layerGGML, error) {
 			if t, err := template.Named(s); err != nil {
 				slog.Debug("template detection", "error", err)
 			} else {
-				layer, err := NewLayer(t.Reader(), "application/vnd.kc-riff.image.template")
+				layer, err := NewLayer(t.Reader(), "application/vnd.kcriff.image.template")
 				if err != nil {
 					return nil, err
 				}
@@ -98,7 +98,7 @@ func detectChatTemplate(layers []*layerGGML) ([]*layerGGML, error) {
 						return nil, err
 					}
 
-					layer, err := NewLayer(&b, "application/vnd.kc-riff.image.params")
+					layer, err := NewLayer(&b, "application/vnd.kcriff.image.params")
 					if err != nil {
 						return nil, err
 					}

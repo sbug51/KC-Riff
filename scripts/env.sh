@@ -1,25 +1,25 @@
 # Common environment setup across build*.sh scripts
 
 export VERSION=${VERSION:-$(git describe --tags --first-parent --abbrev=7 --long --dirty --always | sed -e "s/^v//g")}
-export GOFLAGS="'-ldflags=-w -s \"-X=github.com/sbug51/kc-riff/version.Version=$VERSION\" \"-X=github.com/sbug51/kc-riff/server.mode=release\"'"
+export GOFLAGS="'-ldflags=-w -s \"-X=github.com/sbug51/kcriff/version.Version=$VERSION\" \"-X=github.com/sbug51/kcriff/server.mode=release\"'"
 # TODO - consider `docker buildx ls --format=json` to autodiscover platform capability
 PLATFORM=${PLATFORM:-"linux/arm64,linux/amd64"}
-DOCKER_ORG=${DOCKER_ORG:-"kc-riff"}
-FINAL_IMAGE_REPO=${FINAL_IMAGE_REPO:-"${DOCKER_ORG}/kc-riff"}
-kc-riff_COMMON_BUILD_ARGS="--build-arg=VERSION \
+DOCKER_ORG=${DOCKER_ORG:-"kcriff"}
+FINAL_IMAGE_REPO=${FINAL_IMAGE_REPO:-"${DOCKER_ORG}/kcriff"}
+kcriff_COMMON_BUILD_ARGS="--build-arg=VERSION \
     --build-arg=GOFLAGS \
-    --build-arg=kc-riff_CUSTOM_CPU_DEFS \
-    --build-arg=kc-riff_SKIP_CUDA_GENERATE \
-    --build-arg=kc-riff_SKIP_CUDA_11_GENERATE \
-    --build-arg=kc-riff_SKIP_CUDA_12_GENERATE \
+    --build-arg=kcriff_CUSTOM_CPU_DEFS \
+    --build-arg=kcriff_SKIP_CUDA_GENERATE \
+    --build-arg=kcriff_SKIP_CUDA_11_GENERATE \
+    --build-arg=kcriff_SKIP_CUDA_12_GENERATE \
     --build-arg=CUDA_V11_ARCHITECTURES \
     --build-arg=CUDA_V12_ARCHITECTURES \
-    --build-arg=kc-riff_SKIP_ROCM_GENERATE \
-    --build-arg=kc-riff_FAST_BUILD \
+    --build-arg=kcriff_SKIP_ROCM_GENERATE \
+    --build-arg=kcriff_FAST_BUILD \
     --build-arg=CUSTOM_CPU_FLAGS \
     --build-arg=GPU_RUNNER_CPU_FLAGS \
     --build-arg=AMDGPU_TARGETS"
 
-echo "Building kc-riff"
+echo "Building kcriff"
 echo "VERSION=$VERSION"
 echo "PLATFORM=$PLATFORM"

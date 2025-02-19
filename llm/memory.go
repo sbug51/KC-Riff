@@ -7,11 +7,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/sbug51/kc-riff/api"
-	"github.com/sbug51/kc-riff/discover"
-	"github.com/sbug51/kc-riff/envconfig"
-	"github.com/sbug51/kc-riff/format"
-	"github.com/sbug51/kc-riff/fs/ggml"
+	"github.com/sbug51/kcriff/api"
+	"github.com/sbug51/kcriff/discover"
+	"github.com/sbug51/kcriff/envconfig"
+	"github.com/sbug51/kcriff/format"
+	"github.com/sbug51/kcriff/fs/ggml"
 )
 
 // This algorithm looks for a complete fit to determine if we need to unload other models

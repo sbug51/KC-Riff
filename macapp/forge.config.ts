@@ -18,8 +18,8 @@ const config: ForgeConfig = {
     asar: true,
     icon: './assets/icon.icns',
     extraResource: [
-      path.join(__dirname, '../dist/darwin/kc-riff'),
-      ...fs.readdirSync(path.join(__dirname, '../dist/darwin-amd64/lib/kc-riff')).map(f => path.join(__dirname, '../dist/darwin-amd64/lib/kc-riff', f)),
+      path.join(__dirname, '../dist/darwin/kcriff'),
+      ...fs.readdirSync(path.join(__dirname, '../dist/darwin-amd64/lib/kcriff')).map(f => path.join(__dirname, '../dist/darwin-amd64/lib/kcriff', f)),
       path.join(__dirname, './assets/iconTemplate.png'),
       path.join(__dirname, './assets/iconTemplate@2x.png'),
       path.join(__dirname, './assets/iconUpdateTemplate.png'),

@@ -8,13 +8,13 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kcriff/api"
 )
 
 func TestList(t *testing.T) {
 	gin.SetMode(gin.TestMode)
 
-	t.Setenv("kc-riff_MODELS", t.TempDir())
+	t.Setenv("kcriff_MODELS", t.TempDir())
 
 	expectNames := []string{
 		"mistral:7b-instruct-q4_0",

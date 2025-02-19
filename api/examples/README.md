@@ -1,4 +1,4 @@
-# kc-riff API Examples
+# kcriff API Examples
 
 Run the examples in this directory with:
 

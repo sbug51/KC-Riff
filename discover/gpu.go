@@ -22,8 +22,8 @@ import (
 
 	"C"
 
-	"github.com/sbug51/kc-riff/envconfig"
-	"github.com/sbug51/kc-riff/format"
+	"github.com/sbug51/kcriff/envconfig"
+	"github.com/sbug51/kcriff/format"
 )
 
 type cudaHandles struct {
@@ -567,7 +567,7 @@ func loadNVCUDAMgmt(nvcudaLibPaths []string) (int, *C.nvcuda_handle_t, string, e
 				err = fmt.Errorf("no nvidia devices detected by library %s", libPath)
 				slog.Info(err.Error())
 			case C.CUDA_ERROR_UNKNOWN:
-				err = fmt.Errorf("unknown error initializing cuda driver library %s: %s. see https://github.com/sbug51/kc-riff/blob/main/docs/troubleshooting.md for more information", libPath, C.GoString(resp.err))
+				err = fmt.Errorf("unknown error initializing cuda driver library %s: %s. see https://github.com/sbug51/kcriff/blob/main/docs/troubleshooting.md for more information", libPath, C.GoString(resp.err))
 				slog.Warn(err.Error())
 			default:
 				msg := C.GoString(resp.err)

@@ -14,10 +14,10 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/sbug51/kc-riff/api"
-	"github.com/sbug51/kc-riff/envconfig"
-	"github.com/sbug51/kc-riff/readline"
-	"github.com/sbug51/kc-riff/types/errtypes"
+	"github.com/sbug51/kcriff/api"
+	"github.com/sbug51/kcriff/envconfig"
+	"github.com/sbug51/kcriff/readline"
+	"github.com/sbug51/kcriff/types/errtypes"
 )
 
 type MultilineState int
@@ -76,7 +76,7 @@ func generateInteractive(cmd *cobra.Command, opts runOptions) error {
 		fmt.Fprintln(os.Stderr, "")
 		fmt.Fprintln(os.Stderr, "  Ctrl + l            Clear the screen")
 		fmt.Fprintln(os.Stderr, "  Ctrl + c            Stop the model from responding")
-		fmt.Fprintln(os.Stderr, "  Ctrl + d            Exit kc-riff (/bye)")
+		fmt.Fprintln(os.Stderr, "  Ctrl + d            Exit kcriff (/bye)")
 		fmt.Fprintln(os.Stderr, "")
 	}
 
@@ -207,7 +207,7 @@ func generateInteractive(cmd *cobra.Command, opts runOptions) error {
 
 			client, err := api.ClientFromEnvironment()
 			if err != nil {
-				fmt.Println("error: couldn't connect to kc-riff server")
+				fmt.Println("error: couldn't connect to kcriff server")
 				return err
 			}
 
@@ -327,7 +327,7 @@ func generateInteractive(cmd *cobra.Command, opts runOptions) error {
 			if len(args) > 1 {
 				client, err := api.ClientFromEnvironment()
 				if err != nil {
-					fmt.Println("error: couldn't connect to kc-riff server")
+					fmt.Println("error: couldn't connect to kcriff server")
 					return err
 				}
 				req := &api.ShowRequest{

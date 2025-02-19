@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/sbug51/kc-riff/llama"
+	"github.com/sbug51/kcriff/llama"
 )
 
 type InputCache struct {

@@ -1,8 +1,8 @@
 package commontray
 
 var (
-	Title   = "kc-riff"
-	ToolTip = "kc-riff"
+	Title   = "kcriff"
+	ToolTip = "kcriff"
 
 	UpdateIconName = "tray_upgrade"
 	IconName       = "tray"
@@ -15,7 +15,7 @@ type Callbacks struct {
 	ShowLogs   chan struct{}
 }
 
-type kc-riffTray interface {
+type kcriffTray interface {
 	GetCallbacks() Callbacks
 	Run()
 	UpdateAvailable(ver string) error

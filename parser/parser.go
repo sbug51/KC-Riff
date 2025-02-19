@@ -18,7 +18,7 @@ import (
 	"golang.org/x/text/encoding/unicode"
 	"golang.org/x/text/transform"
 
-	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kcriff/api"
 )
 
 var ErrModelNotFound = errors.New("no Modelfile or safetensors files found")

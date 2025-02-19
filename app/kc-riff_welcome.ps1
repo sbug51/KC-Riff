@@ -1,6 +1,6 @@
 # TODO - consider ANSI colors and maybe ASCII art...
 write-host ""
-write-host "Welcome to KC-Riff!"
+write-host "Welcome to kcriff!"
 write-host ""
 write-host "Run your first model:"
 write-host ""

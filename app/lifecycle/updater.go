@@ -19,8 +19,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/sbug51/kc-riff/auth"
-	"github.com/sbug51/kc-riff/version"
+	"github.com/sbug51/kcriff/auth"
+	"github.com/sbug51/kcriff/version"
 )
 
 var (
@@ -69,7 +69,7 @@ func IsNewReleaseAvailable(ctx context.Context) (bool, UpdateResponse) {
 		return false, updateResp
 	}
 	req.Header.Set("Authorization", signature)
-	req.Header.Set("User-Agent", fmt.Sprintf("kc-riff/%s (%s %s) Go/%s", version.Version, runtime.GOARCH, runtime.GOOS, runtime.Version()))
+	req.Header.Set("User-Agent", fmt.Sprintf("kcriff/%s (%s %s) Go/%s", version.Version, runtime.GOARCH, runtime.GOOS, runtime.Version()))
 
 	slog.Debug("checking for available update", "requestURL", requestURL)
 	resp, err := http.DefaultClient.Do(req)
@@ -158,7 +158,7 @@ func DownloadNewRelease(ctx context.Context, updateResp UpdateResponse) error {
 	_, err = os.Stat(filepath.Dir(stageFilename))
 	if errors.Is(err, os.ErrNotExist) {
 		if err := os.MkdirAll(filepath.Dir(stageFilename), 0o755); err != nil {
-			return fmt.Errorf("create kc-riff dir %s: %v", filepath.Dir(stageFilename), err)
+			return fmt.Errorf("create kcriff dir %s: %v", filepath.Dir(stageFilename), err)
 		}
 	}
 

@@ -7,7 +7,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kcriff/api"
 )
 
 func waitForServer(ctx context.Context, client *api.Client) error {

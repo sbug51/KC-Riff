@@ -29,7 +29,7 @@ func (e StatusError) Error() string {
 		return e.ErrorMessage
 	default:
 		// this should not happen
-		return "something went wrong, please see the kc-riff server logs for details"
+		return "something went wrong, please see the kcriff server logs for details"
 	}
 }
 
@@ -40,7 +40,7 @@ type ImageData []byte
 // have to specify the Model and Prompt fields, all the other fields have
 // reasonable defaults for basic uses.
 type GenerateRequest struct {
-	// Model is the model name; it should be a name familiar to kc-riff from
+	// Model is the model name; it should be a name familiar to kcriff from
 	// the library at https://killchaos.app/library
 	Model string `json:"model"`
 

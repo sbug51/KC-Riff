@@ -1,19 +1,19 @@
-; Inno Setup Installer for kc-riff
+; Inno Setup Installer for kcriff
 ;
 ; To build the installer use the build script invoked from the top of the source tree
 ; 
 ; powershell -ExecutionPolicy Bypass -File .\scripts\build_windows.ps
 
 
-#define MyAppName "kc-riff"
+#define MyAppName "kcriff"
 #if GetEnv("PKG_VERSION") != ""
   #define MyAppVersion GetEnv("PKG_VERSION")
 #else
   #define MyAppVersion "0.0.0"
 #endif
-#define MyAppPublisher "kc-riff"
+#define MyAppPublisher "kcriff"
 #define MyAppURL "https://killchaos.app/"
-#define MyAppExeName "kc-riff app.exe"
+#define MyAppExeName "kcriff app.exe"
 #define MyIcon ".\assets\app.ico"
 
 [Setup]
@@ -34,7 +34,7 @@ DefaultDirName={localappdata}\Programs\{#MyAppName}
 DefaultGroupName={#MyAppName}
 DisableProgramGroupPage=yes
 PrivilegesRequired=lowest
-OutputBaseFilename="kc-riffSetup"
+OutputBaseFilename="kcriffSetup"
 SetupIconFile={#MyIcon}
 UninstallDisplayIcon={uninstallexe}
 Compression=lzma2
@@ -53,7 +53,7 @@ RestartIfNeededByRun=no
 ; https://jrsoftware.org/ishelp/index.php?topic=setup_wizardimagefile
 WizardSmallImageFile=.\assets\setup.bmp
 
-; kc-riff requires Windows 10 22H2 or newer for proper unicode rendering
+; kcriff requires Windows 10 22H2 or newer for proper unicode rendering
 ; TODO: consider setting this to 10.0.19045
 MinVersion=10.0.10240
 
@@ -78,7 +78,7 @@ SignTool=MySignTool
 SignedUninstaller=yes
 #endif
 
-SetupMutex=kc-riffSetupMutex
+SetupMutex=kcriffSetupMutex
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -89,17 +89,17 @@ DialogFontSize=12
 [Files]
 #if DirExists("..\dist\windows-amd64")
 Source: "..\dist\windows-amd64-app.exe"; DestDir: "{app}"; DestName: "{#MyAppExeName}" ;Check: not IsArm64();  Flags: ignoreversion 64bit
-Source: "..\dist\windows-amd64\kc-riff.exe"; DestDir: "{app}"; Check: not IsArm64(); Flags: ignoreversion 64bit
-Source: "..\dist\windows-amd64\lib\kc-riff\*"; DestDir: "{app}\lib\kc-riff\"; Check: not IsArm64(); Flags: ignoreversion 64bit recursesubdirs
+Source: "..\dist\windows-amd64\kcriff.exe"; DestDir: "{app}"; Check: not IsArm64(); Flags: ignoreversion 64bit
+Source: "..\dist\windows-amd64\lib\kcriff\*"; DestDir: "{app}\lib\kcriff\"; Check: not IsArm64(); Flags: ignoreversion 64bit recursesubdirs
 #endif
 
 #if DirExists("..\dist\windows-arm64")
 Source: "..\dist\windows-arm64\vc_redist.arm64.exe"; DestDir: "{tmp}"; Check: IsArm64() and vc_redist_needed(); Flags: deleteafterinstall
 Source: "..\dist\windows-arm64-app.exe"; DestDir: "{app}"; DestName: "{#MyAppExeName}" ;Check: IsArm64();  Flags: ignoreversion 64bit
-Source: "..\dist\windows-arm64\kc-riff.exe"; DestDir: "{app}"; Check: IsArm64(); Flags: ignoreversion 64bit
+Source: "..\dist\windows-arm64\kcriff.exe"; DestDir: "{app}"; Check: IsArm64(); Flags: ignoreversion 64bit
 #endif
 
-Source: "..\dist\kc-riff_welcome.ps1"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\dist\kcriff_welcome.ps1"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\assets\app.ico"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
@@ -115,33 +115,33 @@ Filename: "{cmd}"; Parameters: "/C set PATH={app};%PATH% & ""{app}\{#MyAppExeNam
 
 [UninstallRun]
 ; Filename: "{cmd}"; Parameters: "/C ""taskkill /im ''{#MyAppExeName}'' /f /t"; Flags: runhidden
-; Filename: "{cmd}"; Parameters: "/C ""taskkill /im kc-riff.exe /f /t"; Flags: runhidden
+; Filename: "{cmd}"; Parameters: "/C ""taskkill /im kcriff.exe /f /t"; Flags: runhidden
 Filename: "taskkill"; Parameters: "/im ""{#MyAppExeName}"" /f /t"; Flags: runhidden
-Filename: "taskkill"; Parameters: "/im ""kc-riff.exe"" /f /t"; Flags: runhidden
+Filename: "taskkill"; Parameters: "/im ""kcriff.exe"" /f /t"; Flags: runhidden
 ; HACK!  need to give the server and app enough time to exit
 ; TODO - convert this to a Pascal code script so it waits until they're no longer running, then completes
 Filename: "{cmd}"; Parameters: "/c timeout 5"; Flags: runhidden
 
 [UninstallDelete]
-Type: filesandordirs; Name: "{%TEMP}\kc-riff*"
-Type: filesandordirs; Name: "{%LOCALAPPDATA}\kc-riff"
-Type: filesandordirs; Name: "{%LOCALAPPDATA}\Programs\kc-riff"
-Type: filesandordirs; Name: "{%USERPROFILE}\.kc-riff\models"
-Type: filesandordirs; Name: "{%USERPROFILE}\.kc-riff\history"
-; NOTE: if the user has a custom kc-riff_MODELS it will be preserved
+Type: filesandordirs; Name: "{%TEMP}\kcriff*"
+Type: filesandordirs; Name: "{%LOCALAPPDATA}\kcriff"
+Type: filesandordirs; Name: "{%LOCALAPPDATA}\Programs\kcriff"
+Type: filesandordirs; Name: "{%USERPROFILE}\.kcriff\models"
+Type: filesandordirs; Name: "{%USERPROFILE}\.kcriff\history"
+; NOTE: if the user has a custom kcriff_MODELS it will be preserved
 
 [InstallDelete]
-Type: filesandordirs; Name: "{%TEMP}\kc-riff*"
-Type: filesandordirs; Name: "{%LOCALAPPDATA}\Programs\kc-riff"
+Type: filesandordirs; Name: "{%TEMP}\kcriff*"
+Type: filesandordirs; Name: "{%LOCALAPPDATA}\Programs\kcriff"
 
 [Messages]
-WizardReady=kc-riff
+WizardReady=kcriff
 ReadyLabel1=%nLet's get you up and running with your own large language models.
-SetupAppRunningError=Another kc-riff installer is running.%n%nPlease cancel or finish the other installer, then click OK to continue with this install, or Cancel to exit.
+SetupAppRunningError=Another kcriff installer is running.%n%nPlease cancel or finish the other installer, then click OK to continue with this install, or Cancel to exit.
 
 
 ;FinishedHeadingLabel=Run your first model
-;FinishedLabel=%nRun this command in a PowerShell or cmd terminal.%n%n%n    kc-riff run llama3.2
+;FinishedLabel=%nRun this command in a PowerShell or cmd terminal.%n%n%n    kcriff run llama3.2
 ;ClickFinish=%n
 
 [Registry]

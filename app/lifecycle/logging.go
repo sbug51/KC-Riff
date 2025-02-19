@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/sbug51/kc-riff/envconfig"
+	"github.com/sbug51/kcriff/envconfig"
 )
 
 func InitLogging() {
@@ -47,7 +47,7 @@ func InitLogging() {
 
 	slog.SetDefault(slog.New(handler))
 
-	slog.Info("kc-riff app started")
+	slog.Info("kcriff app started")
 }
 
 func rotateLogs(logFile string) {

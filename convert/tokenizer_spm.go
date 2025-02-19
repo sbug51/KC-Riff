@@ -11,7 +11,7 @@ import (
 
 	"google.golang.org/protobuf/proto"
 
-	"github.com/sbug51/kc-riff/convert/sentencepiece"
+	"github.com/sbug51/kcriff/convert/sentencepiece"
 )
 
 func parseSentencePiece(fsys fs.FS) (*Vocabulary, error) {

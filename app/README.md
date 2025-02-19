@@ -1,4 +1,4 @@
-# kc-riff App
+# kcriff App
 
 ## Linux
 
@@ -15,7 +15,7 @@ If you want to build the installer, youll need to install
 
 
 In the top directory of this repo, run the following powershell script
-to build the kc-riff CLI, kc-riff app, and kc-riff installer.
+to build the kcriff CLI, kcriff app, and kcriff installer.
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\build_windows.ps1

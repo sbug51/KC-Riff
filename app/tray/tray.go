@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"runtime"
 
-	"github.com/sbug51/kc-riff/app/assets"
-	"github.com/sbug51/kc-riff/app/tray/commontray"
+	"github.com/sbug51/kcriff/app/assets"
+	"github.com/sbug51/kcriff/app/tray/commontray"
 )
 
-func NewTray() (commontray.kc-riffTray, error) {
+func NewTray() (commontray.kcriffTray, error) {
 	extension := ".png"
 	if runtime.GOOS == "windows" {
 		extension = ".ico"

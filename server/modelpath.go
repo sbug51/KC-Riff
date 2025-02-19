@@ -10,8 +10,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/sbug51/kc-riff/envconfig"
-	"github.com/sbug51/kc-riff/types/model"
+	"github.com/sbug51/kcriff/envconfig"
+	"github.com/sbug51/kcriff/types/model"
 )
 
 type ModelPath struct {
@@ -23,7 +23,7 @@ type ModelPath struct {
 }
 
 const (
-	DefaultRegistry       = "registry.kc-riff.ai"
+	DefaultRegistry       = "registry.kcriff.ai"
 	DefaultNamespace      = "library"
 	DefaultTag            = "latest"
 	DefaultProtocolScheme = "https"

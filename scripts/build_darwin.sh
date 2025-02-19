@@ -9,7 +9,7 @@ usage() {
 }
 
 export VERSION=${VERSION:-$(git describe --tags --dirty)}
-export GOFLAGS="'-ldflags=-w -s \"-X=github.com/sbug51/kc-riff/version.Version=${VERSION#v}\" \"-X=github.com/sbug51/kc-riff/server.mode=release\"'"
+export GOFLAGS="'-ldflags=-w -s \"-X=github.com/sbug51/kcriff/version.Version=${VERSION#v}\" \"-X=github.com/sbug51/kcriff/server.mode=release\"'"
 export CGO_CPPFLAGS='-mmacosx-version-min=11.3'
 
 ARCHS="arm64 amd64"
@@ -43,25 +43,25 @@ _build_darwin() {
 _sign_darwin() {
     status "Creating universal binary..."
     mkdir -p dist/darwin
-    lipo -create -output dist/darwin/kc-riff dist/darwin-*/kc-riff
-    chmod +x dist/darwin/kc-riff
+    lipo -create -output dist/darwin/kcriff dist/darwin-*/kcriff
+    chmod +x dist/darwin/kcriff
 
     if [ -n "$APPLE_IDENTITY" ]; then
-        for F in dist/darwin/kc-riff dist/darwin-amd64/lib/kc-riff/*; do
-            codesign -f --timestamp -s "$APPLE_IDENTITY" --identifier ai.kc-riff.kc-riff --options=runtime $F
+        for F in dist/darwin/kcriff dist/darwin-amd64/lib/kcriff/*; do
+            codesign -f --timestamp -s "$APPLE_IDENTITY" --identifier ai.kcriff.kcriff --options=runtime $F
         done
 
         # create a temporary zip for notarization
         TEMP=$(mktemp -u).zip
-        ditto -c -k --keepParent dist/darwin/kc-riff "$TEMP"
+        ditto -c -k --keepParent dist/darwin/kcriff "$TEMP"
         xcrun notarytool submit "$TEMP" --wait --timeout 10m --apple-id $APPLE_ID --password $APPLE_PASSWORD --team-id $APPLE_TEAM_ID
         rm -f "$TEMP"
     fi
 
     status "Creating universal tarball..."
-    tar -cf dist/kc-riff-darwin.tar --strip-components 2 dist/darwin/kc-riff
-    tar -rf dist/kc-riff-darwin.tar --strip-components 4 dist/darwin-amd64/lib/
-    gzip -9vc <dist/kc-riff-darwin.tar >dist/kc-riff-darwin.tgz
+    tar -cf dist/kcriff-darwin.tar --strip-components 2 dist/darwin/kcriff
+    tar -rf dist/kcriff-darwin.tar --strip-components 4 dist/darwin-amd64/lib/
+    gzip -9vc <dist/kcriff-darwin.tar >dist/kcriff-darwin.tgz
 }
 
 _build_macapp() {
@@ -73,7 +73,7 @@ _build_macapp() {
         npm run --prefix macapp make
     fi
 
-    mv ./macapp/out/make/zip/darwin/universal/kc-riff-darwin-universal-$VERSION.zip dist/kc-riff-darwin.zip
+    mv ./macapp/out/make/zip/darwin/universal/kcriff-darwin-universal-$VERSION.zip dist/kcriff-darwin.zip
 }
 
 if [ "$#" -eq 0 ]; then

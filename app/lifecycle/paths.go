@@ -11,16 +11,16 @@ import (
 )
 
 var (
-	AppName    = "kc-riff app"
-	CLIName    = "kc-riff"
-	AppDir     = "/opt/kc-riff"
-	AppDataDir = "/opt/kc-riff"
+	AppName    = "kcriff app"
+	CLIName    = "kcriff"
+	AppDir     = "/opt/kcriff"
+	AppDataDir = "/opt/kcriff"
 	// TODO - should there be a distinct log dir?
 	UpdateStageDir   = "/tmp"
-	AppLogFile       = "/tmp/kc-riff_app.log"
-	ServerLogFile    = "/tmp/kc-riff.log"
-	UpgradeLogFile   = "/tmp/kc-riff_update.log"
-	Installer        = "kc-riffSetup.exe"
+	AppLogFile       = "/tmp/kcriff_app.log"
+	ServerLogFile    = "/tmp/kcriff.log"
+	UpgradeLogFile   = "/tmp/kcriff_update.log"
+	Installer        = "kcriffSetup.exe"
 	LogRotationCount = 5
 )
 
@@ -30,7 +30,7 @@ func init() {
 		CLIName += ".exe"
 		// Logs, configs, downloads go to LOCALAPPDATA
 		localAppData := os.Getenv("LOCALAPPDATA")
-		AppDataDir = filepath.Join(localAppData, "kc-riff")
+		AppDataDir = filepath.Join(localAppData, "kcriff")
 		UpdateStageDir = filepath.Join(AppDataDir, "updates")
 		AppLogFile = filepath.Join(AppDataDir, "app.log")
 		ServerLogFile = filepath.Join(AppDataDir, "server.log")
@@ -39,7 +39,7 @@ func init() {
 		exe, err := os.Executable()
 		if err != nil {
 			slog.Warn("error discovering executable directory", "error", err)
-			AppDir = filepath.Join(localAppData, "Programs", "kc-riff")
+			AppDir = filepath.Join(localAppData, "Programs", "kcriff")
 		} else {
 			AppDir = filepath.Dir(exe)
 		}
@@ -72,7 +72,7 @@ func init() {
 		_, err = os.Stat(AppDataDir)
 		if errors.Is(err, os.ErrNotExist) {
 			if err := os.MkdirAll(AppDataDir, 0o755); err != nil {
-				slog.Error(fmt.Sprintf("create kc-riff dir %s: %v", AppDataDir, err))
+				slog.Error(fmt.Sprintf("create kcriff dir %s: %v", AppDataDir, err))
 			}
 		}
 	} else if runtime.GOOS == "darwin" {

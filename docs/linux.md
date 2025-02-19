@@ -2,34 +2,34 @@
 
 ## Install
 
-To install kc-riff, run the following command:
+To install kcriff, run the following command:
 
 ```shell
-# curl -fsSL https://kc-riff.com/install.sh | sh
+# curl -fsSL https://kcriff.com/install.sh | sh
 ```
 
 ## Manual install
 
 > [!NOTE]
-> If you are upgrading from a prior version, you should remove the old libraries with `sudo rm -rf /usr/lib/kc-riff` first.
+> If you are upgrading from a prior version, you should remove the old libraries with `sudo rm -rf /usr/lib/kcriff` first.
 
 Download and extract the package:
 
 ```shell
-# curl -L https://kc-riff.com/download/kc-riff-linux-amd64.tgz -o kc-riff-linux-amd64.tgz
-sudo tar -C /usr -xzf kc-riff-linux-amd64.tgz
+# curl -L https://kcriff.com/download/kcriff-linux-amd64.tgz -o kcriff-linux-amd64.tgz
+sudo tar -C /usr -xzf kcriff-linux-amd64.tgz
 ```
 
-Start kc-riff:
+Start kcriff:
 
 ```shell
-kc-riff serve
+kcriff serve
 ```
 
-In another terminal, verify that kc-riff is running:
+In another terminal, verify that kcriff is running:
 
 ```shell
-kc-riff -v
+kcriff -v
 ```
 
 ### AMD GPU install
@@ -37,8 +37,8 @@ kc-riff -v
 If you have an AMD GPU, also download and extract the additional ROCm package:
 
 ```shell
-# curl -L https://kc-riff.com/download/kc-riff-linux-amd64-rocm.tgz -o kc-riff-linux-amd64-rocm.tgz
-sudo tar -C /usr -xzf kc-riff-linux-amd64-rocm.tgz
+# curl -L https://kcriff.com/download/kcriff-linux-amd64-rocm.tgz -o kcriff-linux-amd64-rocm.tgz
+sudo tar -C /usr -xzf kcriff-linux-amd64-rocm.tgz
 ```
 
 ### ARM64 install
@@ -46,30 +46,30 @@ sudo tar -C /usr -xzf kc-riff-linux-amd64-rocm.tgz
 Download and extract the ARM64-specific package:
 
 ```shell
-# curl -L https://kc-riff.com/download/kc-riff-linux-arm64.tgz -o kc-riff-linux-arm64.tgz
-sudo tar -C /usr -xzf kc-riff-linux-arm64.tgz
+# curl -L https://kcriff.com/download/kcriff-linux-arm64.tgz -o kcriff-linux-arm64.tgz
+sudo tar -C /usr -xzf kcriff-linux-arm64.tgz
 ```
 
-### Adding kc-riff as a startup service (recommended)
+### Adding kcriff as a startup service (recommended)
 
-Create a user and group for kc-riff:
+Create a user and group for kcriff:
 
 ```shell
-sudo useradd -r -s /bin/false -U -m -d /usr/share/kc-riff kc-riff
-sudo usermod -a -G kc-riff $(whoami)
+sudo useradd -r -s /bin/false -U -m -d /usr/share/kcriff kcriff
+sudo usermod -a -G kcriff $(whoami)
 ```
 
-Create a service file in `/etc/systemd/system/kc-riff.service`:
+Create a service file in `/etc/systemd/system/kcriff.service`:
 
 ```ini
 [Unit]
-Description=kc-riff Service
+Description=kcriff Service
 After=network-online.target
 
 [Service]
-ExecStart=/usr/bin/kc-riff serve
-User=kc-riff
-Group=kc-riff
+ExecStart=/usr/bin/kcriff serve
+User=kcriff
+Group=kcriff
 Restart=always
 RestartSec=3
 Environment="PATH=$PATH"
@@ -82,7 +82,7 @@ Then start the service:
 
 ```shell
 sudo systemctl daemon-reload
-sudo systemctl enable kc-riff
+sudo systemctl enable kcriff
 ```
 
 ### Install CUDA drivers (optional)
@@ -99,13 +99,13 @@ nvidia-smi
 
 [Download and Install](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/tutorial/quick-start.html) ROCm v6.
 
-### Start kc-riff
+### Start kcriff
 
-Start kc-riff and verify it is running:
+Start kcriff and verify it is running:
 
 ```shell
-sudo systemctl start kc-riff
-sudo systemctl status kc-riff
+sudo systemctl start kcriff
+sudo systemctl status kcriff
 ```
 
 > [!NOTE]
@@ -117,78 +117,78 @@ sudo systemctl status kc-riff
 
 ## Customizing
 
-To customize the installation of kc-riff, you can edit the systemd service file or the environment variables by running:
+To customize the installation of kcriff, you can edit the systemd service file or the environment variables by running:
 
 ```shell
-sudo systemctl edit kc-riff
+sudo systemctl edit kcriff
 ```
 
-Alternatively, create an override file manually in `/etc/systemd/system/kc-riff.service.d/override.conf`:
+Alternatively, create an override file manually in `/etc/systemd/system/kcriff.service.d/override.conf`:
 
 ```ini
 [Service]
-Environment="KC-Riff_DEBUG=1"
+Environment="kcRiff_DEBUG=1"
 ```
 
 ## Updating
 
-Update kc-riff by running the install script again:
+Update kcriff by running the install script again:
 
 ```shell
-# curl -fsSL https://kc-riff.com/install.sh | sh
+# curl -fsSL https://kcriff.com/install.sh | sh
 ```
 
-Or by re-downloading kc-riff:
+Or by re-downloading kcriff:
 
 ```shell
-# curl -L https://kc-riff.com/download/kc-riff-linux-amd64.tgz -o kc-riff-linux-amd64.tgz
-sudo tar -C /usr -xzf kc-riff-linux-amd64.tgz
+# curl -L https://kcriff.com/download/kcriff-linux-amd64.tgz -o kcriff-linux-amd64.tgz
+sudo tar -C /usr -xzf kcriff-linux-amd64.tgz
 ```
 
 ## Installing specific versions
 
-Use `KC-Riff_VERSION` environment variable with the install script to install a specific version of kc-riff, including pre-releases. You can find the version numbers in the [releases page](https://github.com/sbug51/kc-riff/releases).
+Use `kcRiff_VERSION` environment variable with the install script to install a specific version of kcriff, including pre-releases. You can find the version numbers in the [releases page](https://github.com/sbug51/kcriff/releases).
 
 For example:
 
 ```shell
-# curl -fsSL https://kc-riff.com/install.sh | KC-Riff_VERSION=0.5.7 sh
+# curl -fsSL https://kcriff.com/install.sh | kcRiff_VERSION=0.5.7 sh
 ```
 
 ## Viewing logs
 
-To view logs of kc-riff running as a startup service, run:
+To view logs of kcriff running as a startup service, run:
 
 ```shell
-journalctl -e -u kc-riff
+journalctl -e -u kcriff
 ```
 
 ## Uninstall
 
-Remove the kc-riff service:
+Remove the kcriff service:
 
 ```shell
-sudo systemctl stop kc-riff
-sudo systemctl disable kc-riff
-sudo rm /etc/systemd/system/kc-riff.service
+sudo systemctl stop kcriff
+sudo systemctl disable kcriff
+sudo rm /etc/systemd/system/kcriff.service
 ```
 
-Remove the kc-riff binary from your bin directory (either `/usr/local/bin`, `/usr/bin`, or `/bin`):
+Remove the kcriff binary from your bin directory (either `/usr/local/bin`, `/usr/bin`, or `/bin`):
 
 ```shell
-sudo rm $(which kc-riff)
+sudo rm $(which kcriff)
 ```
 
-Remove the downloaded models and kc-riff service user and group:
+Remove the downloaded models and kcriff service user and group:
 
 ```shell
-sudo rm -r /usr/share/kc-riff
-sudo userdel kc-riff
-sudo groupdel kc-riff
+sudo rm -r /usr/share/kcriff
+sudo userdel kcriff
+sudo groupdel kcriff
 ```
 
 Remove installed libraries:
 
 ```shell
-sudo rm -rf /usr/local/lib/kc-riff
+sudo rm -rf /usr/local/lib/kcriff
 ```

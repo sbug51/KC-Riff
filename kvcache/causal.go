@@ -7,7 +7,7 @@ import (
 	"math"
 	"slices"
 
-	"github.com/sbug51/kc-riff/ml"
+	"github.com/sbug51/kcriff/ml"
 )
 
 type shiftFn func(ctx ml.Context, layer int, key, shift ml.Tensor) (ml.Tensor, error)

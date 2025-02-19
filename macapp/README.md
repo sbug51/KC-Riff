@@ -1,10 +1,10 @@
 # Desktop
 
-This app builds upon kc-riff to provide a desktop experience for running models.
+This app builds upon kcriff to provide a desktop experience for running models.
 
 ## Developing
 
-First, build the `kc-riff` binary:
+First, build the `kcriff` binary:
 
 ```shell
 cd ..

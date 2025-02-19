@@ -20,19 +20,19 @@ import (
 	"testing"
 	"unicode"
 
-	"github.com/sbug51/kc-riff/api"
-	"github.com/sbug51/kc-riff/fs/ggml"
-	"github.com/sbug51/kc-riff/openai"
-	"github.com/sbug51/kc-riff/types/model"
-	"github.com/sbug51/kc-riff/version"
+	"github.com/sbug51/kcriff/api"
+	"github.com/sbug51/kcriff/fs/ggml"
+	"github.com/sbug51/kcriff/openai"
+	"github.com/sbug51/kcriff/types/model"
+	"github.com/sbug51/kcriff/version"
 )
 
 func createTestFile(t *testing.T, name string) (string, string) {
 	t.Helper()
 
-	modelDir := os.Getenv("kc-riff_MODELS")
+	modelDir := os.Getenv("kcriff_MODELS")
 	if modelDir == "" {
-		t.Fatalf("kc-riff_MODELS not specified")
+		t.Fatalf("kcriff_MODELS not specified")
 	}
 
 	f, err := os.CreateTemp(t.TempDir(), name)
@@ -103,7 +103,7 @@ func Test_Routes(t *testing.T) {
 	createTestModel := func(t *testing.T, name string) {
 		t.Helper()
 
-		_, digest := createTestFile(t, "kc-riff-model")
+		_, digest := createTestFile(t, "kcriff-model")
 
 		fn := func(resp api.ProgressResponse) {
 			t.Logf("Status: %s", resp.Status)
@@ -331,7 +331,7 @@ func Test_Routes(t *testing.T) {
 			Method: http.MethodPost,
 			Path:   "/api/create",
 			Setup: func(t *testing.T, req *http.Request) {
-				_, digest := createTestFile(t, "kc-riff-model")
+				_, digest := createTestFile(t, "kcriff-model")
 				stream := false
 				createReq := api.CreateRequest{
 					Name:   "t-bone",
@@ -477,7 +477,7 @@ func Test_Routes(t *testing.T) {
 		},
 	}
 
-	t.Setenv("kc-riff_MODELS", t.TempDir())
+	t.Setenv("kcriff_MODELS", t.TempDir())
 
 	s := &Server{}
 	router := s.GenerateRoutes()
@@ -523,7 +523,7 @@ func casingShuffle(s string) string {
 }
 
 func TestManifestCaseSensitivity(t *testing.T) {
-	t.Setenv("kc-riff_MODELS", t.TempDir())
+	t.Setenv("kcriff_MODELS", t.TempDir())
 
 	r := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
@@ -553,7 +553,7 @@ func TestManifestCaseSensitivity(t *testing.T) {
 	checkManifestList := func() {
 		t.Helper()
 
-		mandir := filepath.Join(os.Getenv("kc-riff_MODELS"), "manifests/")
+		mandir := filepath.Join(os.Getenv("kcriff_MODELS"), "manifests/")
 		var entries []string
 		t.Logf("dir entries:")
 		fsys := os.DirFS(mandir)
@@ -650,7 +650,7 @@ func TestManifestCaseSensitivity(t *testing.T) {
 }
 
 func TestShow(t *testing.T) {
-	t.Setenv("kc-riff_MODELS", t.TempDir())
+	t.Setenv("kcriff_MODELS", t.TempDir())
 
 	var s Server
 

@@ -22,8 +22,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sbug51/kc-riff/api"
-	"github.com/sbug51/kc-riff/app/lifecycle"
+	"github.com/sbug51/kcriff/api"
+	"github.com/sbug51/kcriff/app/lifecycle"
 	"github.com/stretchr/testify/require"
 )
 
@@ -48,11 +48,11 @@ func FindPort() string {
 
 func GetTestEndpoint() (*api.Client, string) {
 	defaultPort := "11434"
-	kc-riffHost := os.Getenv("kc-riff_HOST")
+	kcriffHost := os.Getenv("kcriff_HOST")
 
-	scheme, hostport, ok := strings.Cut(kc-riffHost, "://")
+	scheme, hostport, ok := strings.Cut(kcriffHost, "://")
 	if !ok {
-		scheme, hostport = "http", kc-riffHost
+		scheme, hostport = "http", kcriffHost
 	}
 
 	// trim trailing slashes
@@ -68,7 +68,7 @@ func GetTestEndpoint() (*api.Client, string) {
 		}
 	}
 
-	if os.Getenv("kc-riff_TEST_EXISTING") == "" && port == defaultPort {
+	if os.Getenv("kcriff_TEST_EXISTING") == "" && port == defaultPort {
 		port = FindPort()
 	}
 
@@ -85,9 +85,9 @@ func GetTestEndpoint() (*api.Client, string) {
 var serverMutex sync.Mutex
 var serverReady bool
 
-func startServer(t *testing.T, ctx context.Context, kc-riffHost string) error {
+func startServer(t *testing.T, ctx context.Context, kcriffHost string) error {
 	// Make sure the server has been built
-	CLIName, err := filepath.Abs("../kc-riff")
+	CLIName, err := filepath.Abs("../kcriff")
 	if err != nil {
 		return err
 	}
@@ -105,13 +105,13 @@ func startServer(t *testing.T, ctx context.Context, kc-riffHost string) error {
 		return nil
 	}
 
-	if tmp := os.Getenv("kc-riff_HOST"); tmp != kc-riffHost {
-		slog.Info("setting env", "kc-riff_HOST", kc-riffHost)
-		t.Setenv("kc-riff_HOST", kc-riffHost)
+	if tmp := os.Getenv("kcriff_HOST"); tmp != kcriffHost {
+		slog.Info("setting env", "kcriff_HOST", kcriffHost)
+		t.Setenv("kcriff_HOST", kcriffHost)
 	}
 
-	slog.Info("starting server", "url", kc-riffHost)
-	done, err := lifecycle.SpawnServer(ctx, "../kc-riff")
+	slog.Info("starting server", "url", kcriffHost)
+	done, err := lifecycle.SpawnServer(ctx, "../kcriff")
 	if err != nil {
 		return fmt.Errorf("failed to start server: %w", err)
 	}
@@ -192,9 +192,9 @@ var serverProcMutex sync.Mutex
 // Starts the server if needed
 func InitServerConnection(ctx context.Context, t *testing.T) (*api.Client, string, func()) {
 	client, testEndpoint := GetTestEndpoint()
-	if os.Getenv("kc-riff_TEST_EXISTING") == "" {
+	if os.Getenv("kcriff_TEST_EXISTING") == "" {
 		serverProcMutex.Lock()
-		fp, err := os.CreateTemp("", "kc-riff-server-*.log")
+		fp, err := os.CreateTemp("", "kcriff-server-*.log")
 		if err != nil {
 			t.Fatalf("failed to generate log file: %s", err)
 		}
@@ -204,7 +204,7 @@ func InitServerConnection(ctx context.Context, t *testing.T) (*api.Client, strin
 	}
 
 	return client, testEndpoint, func() {
-		if os.Getenv("kc-riff_TEST_EXISTING") == "" {
+		if os.Getenv("kcriff_TEST_EXISTING") == "" {
 			defer serverProcMutex.Unlock()
 			if t.Failed() {
 				fp, err := os.Open(lifecycle.ServerLogFile)

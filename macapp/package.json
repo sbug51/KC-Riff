@@ -1,8 +1,8 @@
 {
-  "name": "kc-riff",
-  "productName": "kc-riff",
+  "name": "kcriff",
+  "productName": "kcriff",
   "version": "0.0.0",
-  "description": "kc-riff",
+  "description": "kcriff",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",

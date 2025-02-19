@@ -24,7 +24,7 @@ func keyPath() (string, error) {
 		return "", err
 	}
 
-	return filepath.Join(home, ".kc-riff", defaultPrivateKey), nil
+	return filepath.Join(home, ".kcriff", defaultPrivateKey), nil
 }
 
 func GetPublicKey() (string, error) {

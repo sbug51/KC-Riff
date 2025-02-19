@@ -18,8 +18,8 @@ import (
 	"golang.org/x/text/encoding"
 	"golang.org/x/text/encoding/unicode"
 
-	"github.com/sbug51/kc-riff/api"
-	"github.com/sbug51/kc-riff/fs/ggml"
+	"github.com/sbug51/kcriff/api"
+	"github.com/sbug51/kcriff/fs/ggml"
 )
 
 func TestParseFileFile(t *testing.T) {

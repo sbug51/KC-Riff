@@ -18,7 +18,7 @@ fi
 docker buildx build \
     ${LOAD_OR_PUSH} \
     --platform=${PLATFORM} \
-    ${kc-riff_COMMON_BUILD_ARGS} \
+    ${kcriff_COMMON_BUILD_ARGS} \
     -f Dockerfile \
     -t ${FINAL_IMAGE_REPO}:$VERSION \
     .
@@ -27,7 +27,7 @@ if echo $PLATFORM | grep "amd64" > /dev/null; then
     docker buildx build \
         ${LOAD_OR_PUSH} \
         --platform=linux/amd64 \
-        ${kc-riff_COMMON_BUILD_ARGS} \
+        ${kcriff_COMMON_BUILD_ARGS} \
         --target runtime-rocm \
         -f Dockerfile \
         -t ${FINAL_IMAGE_REPO}:$VERSION-rocm \

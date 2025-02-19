@@ -7,15 +7,15 @@ import (
 )
 
 const (
-	Unknownkc-riffKeyErrMsg = "unknown kc-riff key"
+	UnknownkcriffKeyErrMsg = "unknown kcriff key"
 	InvalidModelNameErrMsg = "invalid model name"
 )
 
 // TODO: This should have a structured response from the API
-type Unknownkc-riffKey struct {
+type UnknownkcriffKey struct {
 	Key string
 }
 
-func (e *Unknownkc-riffKey) Error() string {
-	return fmt.Sprintf("unauthorized: %s %q", Unknownkc-riffKeyErrMsg, strings.TrimSpace(e.Key))
+func (e *UnknownkcriffKey) Error() string {
+	return fmt.Sprintf("unauthorized: %s %q", UnknownkcriffKeyErrMsg, strings.TrimSpace(e.Key))
 }

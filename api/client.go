@@ -1,7 +1,7 @@
 // Package api implements the client-side API for code wishing to interact
-// with the kc-riff service. The methods of the [Client] type correspond to
-// the kc-riff REST API as described in [the API documentation].
-// The kc-riff command-line client itself uses this package to interact with
+// with the kcriff service. The methods of the [Client] type correspond to
+// the kcriff REST API as described in [the API documentation].
+// The kcriff command-line client itself uses this package to interact with
 // the backend service.
 //
 // # Examples
@@ -9,8 +9,8 @@
 // Several examples of using this package are available [in the GitHub
 // repository].
 //
-// [the API documentation]: https://github.com/sbug51/kc-riff/blob/main/docs/api.md
-// [in the GitHub repository]: https://github.com/sbug51/kc-riff/tree/main/examples
+// [the API documentation]: https://github.com/sbug51/kcriff/blob/main/docs/api.md
+// [in the GitHub repository]: https://github.com/sbug51/kcriff/tree/main/examples
 package api
 
 import (
@@ -25,12 +25,12 @@ import (
 	"net/url"
 	"runtime"
 
-	"github.com/sbug51/kc-riff/envconfig"
-	"github.com/sbug51/kc-riff/format"
-	"github.com/sbug51/kc-riff/version"
+	"github.com/sbug51/kcriff/envconfig"
+	"github.com/sbug51/kcriff/format"
+	"github.com/sbug51/kcriff/version"
 )
 
-// Client encapsulates client state for interacting with the kc-riff
+// Client encapsulates client state for interacting with the kcriff
 // service. Use [ClientFromEnvironment] to create new Clients.
 type Client struct {
 	base *url.URL
@@ -54,13 +54,13 @@ func checkError(resp *http.Response, body []byte) error {
 }
 
 // ClientFromEnvironment creates a new [Client] using configuration from the
-// environment variable kc-riff_HOST, which points to the network host and
-// port on which the kc-riff service is listening. The format of this variable
+// environment variable kcriff_HOST, which points to the network host and
+// port on which the kcriff service is listening. The format of this variable
 // is:
 //
 //	<scheme>://<host>:<port>
 //
-// If the variable is not specified, a default kc-riff host and port will be
+// If the variable is not specified, a default kcriff host and port will be
 // used.
 func ClientFromEnvironment() (*Client, error) {
 	return &Client{
@@ -104,7 +104,7 @@ func (c *Client) do(ctx context.Context, method, path string, reqData, respData 
 
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("Accept", "application/json")
-	request.Header.Set("User-Agent", fmt.Sprintf("kc-riff/%s (%s %s) Go/%s", version.Version, runtime.GOARCH, runtime.GOOS, runtime.Version()))
+	request.Header.Set("User-Agent", fmt.Sprintf("kcriff/%s (%s %s) Go/%s", version.Version, runtime.GOARCH, runtime.GOOS, runtime.Version()))
 
 	respObj, err := c.http.Do(request)
 	if err != nil {
@@ -150,7 +150,7 @@ func (c *Client) stream(ctx context.Context, method, path string, data any, fn f
 
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("Accept", "application/x-ndjson")
-	request.Header.Set("User-Agent", fmt.Sprintf("kc-riff/%s (%s %s) Go/%s", version.Version, runtime.GOARCH, runtime.GOOS, runtime.Version()))
+	request.Header.Set("User-Agent", fmt.Sprintf("kcriff/%s (%s %s) Go/%s", version.Version, runtime.GOARCH, runtime.GOOS, runtime.Version()))
 
 	response, err := c.http.Do(request)
 	if err != nil {
@@ -236,7 +236,7 @@ func (c *Client) Chat(ctx context.Context, req *ChatRequest, fn ChatResponseFunc
 // returns an error, [Client.Pull] will stop the process and return this error.
 type PullProgressFunc func(ProgressResponse) error
 
-// Pull downloads a model from the kc-riff library. fn is called each time
+// Pull downloads a model from the kcriff library. fn is called each time
 // progress is made on the request and can be used to display a progress bar,
 // etc.
 func (c *Client) Pull(ctx context.Context, req *PullRequest, fn PullProgressFunc) error {
@@ -255,7 +255,7 @@ func (c *Client) Pull(ctx context.Context, req *PullRequest, fn PullProgressFunc
 // It's similar to other progress function types like [PullProgressFunc].
 type PushProgressFunc func(ProgressResponse) error
 
-// Push uploads a model to the model library; requires registering for kc-riff.ai
+// Push uploads a model to the model library; requires registering for kcriff.ai
 // and adding a public key first. fn is called each time progress is made on
 // the request and can be used to display a progress bar, etc.
 func (c *Client) Push(ctx context.Context, req *PushRequest, fn PushProgressFunc) error {
@@ -277,7 +277,7 @@ type CreateProgressFunc func(ProgressResponse) error
 // Create creates a model from a [Modelfile]. fn is a progress function that
 // behaves similarly to other methods (see [Client.Pull]).
 //
-// [Modelfile]: https://github.com/sbug51/kc-riff/blob/main/docs/modelfile.md
+// [Modelfile]: https://github.com/sbug51/kcriff/blob/main/docs/modelfile.md
 func (c *Client) Create(ctx context.Context, req *CreateRequest, fn CreateProgressFunc) error {
 	return c.stream(ctx, http.MethodPost, "/api/create", req, func(bts []byte) error {
 		var resp ProgressResponse
@@ -366,7 +366,7 @@ func (c *Client) CreateBlob(ctx context.Context, digest string, r io.Reader) err
 	return c.do(ctx, http.MethodPost, fmt.Sprintf("/api/blobs/%s", digest), r, nil)
 }
 
-// Version returns the kc-riff server version as a string.
+// Version returns the kcriff server version as a string.
 func (c *Client) Version(ctx context.Context) (string, error) {
 	var version struct {
 		Version string `json:"version"`

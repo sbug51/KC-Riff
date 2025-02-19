@@ -15,10 +15,10 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-            VALUE "FileDescription", "kc-riff"
-            VALUE "InternalName", "kc-riff"
-            VALUE "OriginalFilename", "kc-riff app.exe"
-            VALUE "ProductName", "kc-riff"
+            VALUE "FileDescription", "kcriff"
+            VALUE "InternalName", "kcriff"
+            VALUE "OriginalFilename", "kcriff app.exe"
+            VALUE "ProductName", "kcriff"
         END
     END
 
