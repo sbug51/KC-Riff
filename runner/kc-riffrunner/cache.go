@@ -1,4 +1,4 @@
-package kc-riffrunner
+package kcrunner
 
 import (
 	"errors"

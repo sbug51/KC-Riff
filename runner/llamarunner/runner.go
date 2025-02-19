@@ -22,7 +22,7 @@ import (
 
 	"golang.org/x/sync/semaphore"
 
-	"github.com/sbug51/KC-Riff/runner/common"
+	"github.com/sbug51/kc-riff/runner/common"
 	"github.com/sbug51/kc-riff/api"
 	"github.com/sbug51/kc-riff/llama"
 )

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/sbug51/KC-Riff/runner"
+	"github.com/sbug51/kc-riff/runner"
 )
 
 func main() {

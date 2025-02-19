@@ -1,4 +1,4 @@
-module github.com/sbug51/KC-Riff
+module github.com/sbug51/kc-riff
 
 go 1.23.4
 

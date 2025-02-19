@@ -1,8 +1,8 @@
 package runner
 
 import (
-	"github.com/sbug51/KC-Riff/api"   // KC Riff API
-	"github.com/sbug51/KC-Riff/llama" // KC Riff LLM execution
+	"github.com/sbug51/kc-riff/api"   // KC Riff API
+	"github.com/sbug51/kc-riff/llama" // KC Riff LLM execution
 )
 
 func Execute(args []string) error {

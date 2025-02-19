@@ -1,3 +1,13 @@
+package discover
+
+import (
+	"errors"
+	"log/slog"
+	"os"
+	"path/filepath"
+	"runtime"
+)
+
 func commonAMDValidateLibDir() (string, error) {
 	if runtime.GOOS == "windows" {
 		// Since ROCm is not supported on Windows, return an error or empty value.
