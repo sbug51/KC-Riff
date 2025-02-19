@@ -61,7 +61,7 @@ function checkEnv() {
     } else {
         $script:PKG_VERSION="0.0.0"
     }
-    write-host "Building Ollama $script:VERSION with package version $script:PKG_VERSION"
+    write-host "Building kc-riff $script:VERSION with package version $script:PKG_VERSION"
 
     # Note: Windows Kits 10 signtool crashes with GCP's plugin
     if ($null -eq $env:SIGN_TOOL) {
@@ -81,7 +81,7 @@ function checkEnv() {
 function buildOllama() {
     if ($null -eq ${env:OLLAMA_SKIP_GENERATE}) {
         Remove-Item -ea 0 -recurse -force -path "${script:SRC_DIR}\dist\windows-${script:ARCH}"
-        New-Item "${script:SRC_DIR}\dist\windows-${script:ARCH}\lib\ollama\" -ItemType Directory -ea 0
+        New-Item "${script:SRC_DIR}\dist\windows-${script:ARCH}\lib\kc-riff\" -ItemType Directory -ea 0
 
 
         # Default first, then conditionall ROCm and cuda v11
@@ -131,17 +131,17 @@ function buildOllama() {
     } else {
         write-host "Skipping generate step with OLLAMA_SKIP_GENERATE set"
     }
-    write-host "Building ollama CLI"
-    & go build -trimpath -ldflags "-s -w -X=github.com/ollama/ollama/version.Version=$script:VERSION -X=github.com/ollama/ollama/server.mode=release" .
+    write-host "Building kc-riff CLI"
+    & go build -trimpath -ldflags "-s -w -X=github.com/sbug51/kc-riff/version.Version=$script:VERSION -X=github.com/sbug51/kc-riff/server.mode=release" .
     if ($LASTEXITCODE -ne 0) { exit($LASTEXITCODE)}
-    cp .\ollama.exe "${script:DIST_DIR}\"
+    cp .\kc-riff.exe "${script:DIST_DIR}\"
 }
 
 function buildApp() {
-    write-host "Building Ollama App"
+    write-host "Building kc-riff App"
     cd "${script:SRC_DIR}\app"
-    & windres -l 0 -o ollama.syso ollama.rc
-    & go build -trimpath -ldflags "-s -w -H windowsgui -X=github.com/ollama/ollama/version.Version=$script:VERSION -X=github.com/ollama/ollama/server.mode=release" -o "${script:SRC_DIR}\dist\windows-${script:TARGET_ARCH}-app.exe" .
+    & windres -l 0 -o kc-riff.syso kc-riff.rc
+    & go build -trimpath -ldflags "-s -w -H windowsgui -X=github.com/sbug51/kc-riff/version.Version=$script:VERSION -X=github.com/sbug51/kc-riff/server.mode=release" -o "${script:SRC_DIR}\dist\windows-${script:TARGET_ARCH}-app.exe" .
     if ($LASTEXITCODE -ne 0) { exit($LASTEXITCODE)}
 }
 
@@ -152,7 +152,7 @@ function gatherDependencies() {
     }
     write-host "Gathering runtime dependencies from $env:VCToolsRedistDir"
     cd "${script:SRC_DIR}"
-    md "${script:DIST_DIR}\lib\ollama" -ea 0 > $null
+    md "${script:DIST_DIR}\lib\kc-riff" -ea 0 > $null
 
     # TODO - this varies based on host build system and MSVC version - drive from dumpbin output
     # currently works for Win11 + MSVC 2019 + Cuda V11
@@ -162,16 +162,16 @@ function gatherDependencies() {
         $depArch=$script:TARGET_ARCH
     }
     if ($depArch -eq "x64") {
-        write-host "cp ${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\msvcp140*.dll ${script:DIST_DIR}\lib\ollama\"
-        cp "${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\msvcp140*.dll" "${script:DIST_DIR}\lib\ollama\"
-        write-host "cp ${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\vcruntime140.dll ${script:DIST_DIR}\lib\ollama\"
-        cp "${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\vcruntime140.dll" "${script:DIST_DIR}\lib\ollama\"
-        write-host "cp ${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\vcruntime140_1.dll ${script:DIST_DIR}\lib\ollama\"
-        cp "${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\vcruntime140_1.dll" "${script:DIST_DIR}\lib\ollama\"
+        write-host "cp ${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\msvcp140*.dll ${script:DIST_DIR}\lib\kc-riff\"
+        cp "${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\msvcp140*.dll" "${script:DIST_DIR}\lib\kc-riff\"
+        write-host "cp ${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\vcruntime140.dll ${script:DIST_DIR}\lib\kc-riff\"
+        cp "${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\vcruntime140.dll" "${script:DIST_DIR}\lib\kc-riff\"
+        write-host "cp ${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\vcruntime140_1.dll ${script:DIST_DIR}\lib\kc-riff\"
+        cp "${env:VCToolsRedistDir}\${depArch}\Microsoft.VC*.CRT\vcruntime140_1.dll" "${script:DIST_DIR}\lib\kc-riff\"
         $llvmCrtDir="$env:VCToolsRedistDir\..\..\..\Tools\Llvm\${depArch}\bin"
         foreach ($part in $("runtime", "stdio", "filesystem", "math", "convert", "heap", "string", "time", "locale", "environment")) {
-            write-host "cp ${llvmCrtDir}\api-ms-win-crt-${part}*.dll ${script:DIST_DIR}\lib\ollama\"
-            cp "${llvmCrtDir}\api-ms-win-crt-${part}*.dll" "${script:DIST_DIR}\lib\ollama\"
+            write-host "cp ${llvmCrtDir}\api-ms-win-crt-${part}*.dll ${script:DIST_DIR}\lib\kc-riff\"
+            cp "${llvmCrtDir}\api-ms-win-crt-${part}*.dll" "${script:DIST_DIR}\lib\kc-riff\"
         }
     } else {
         # Carying the dll's doesn't seem to work, so use the redist installer
@@ -183,7 +183,7 @@ function gatherDependencies() {
 
 function sign() {
     if ("${env:KEY_CONTAINER}") {
-        write-host "Signing Ollama executables, scripts and libraries"
+        write-host "Signing kc-riff executables, scripts and libraries"
         & "${script:SignTool}" sign /v /fd sha256 /t http://timestamp.digicert.com /f "${script:OLLAMA_CERT}" `
             /csp "Google Cloud KMS Provider" /kc ${env:KEY_CONTAINER} `
             $(get-childitem -path "${script:SRC_DIR}\dist" -r -include @('ollama_welcome.ps1')) `
@@ -199,26 +199,26 @@ function buildInstaller() {
         write-host "Inno Setup not present, skipping installer build"
         return
     }
-    write-host "Building Ollama Installer"
+    write-host "Building kc-riff Installer"
     cd "${script:SRC_DIR}\app"
     $env:PKG_VERSION=$script:PKG_VERSION
     if ("${env:KEY_CONTAINER}") {
-        & "${script:INNO_SETUP_DIR}\ISCC.exe" /DARCH=$script:TARGET_ARCH /SMySignTool="${script:SignTool} sign /fd sha256 /t http://timestamp.digicert.com /f ${script:OLLAMA_CERT} /csp `$qGoogle Cloud KMS Provider`$q /kc ${env:KEY_CONTAINER} `$f" .\ollama.iss
+        & "${script:INNO_SETUP_DIR}\ISCC.exe" /DARCH=$script:TARGET_ARCH /SMySignTool="${script:SignTool} sign /fd sha256 /t http://timestamp.digicert.com /f ${script:OLLAMA_CERT} /csp `$qGoogle Cloud KMS Provider`$q /kc ${env:KEY_CONTAINER} `$f" .\kc-riff.iss
     } else {
-        & "${script:INNO_SETUP_DIR}\ISCC.exe" /DARCH=$script:TARGET_ARCH .\ollama.iss
+        & "${script:INNO_SETUP_DIR}\ISCC.exe" /DARCH=$script:TARGET_ARCH .\kc-riff.iss
     }
     if ($LASTEXITCODE -ne 0) { exit($LASTEXITCODE)}
 }
 
 function distZip() {
     if (Test-Path -Path "${script:SRC_DIR}\dist\windows-amd64") {
-        write-host "Generating stand-alone distribution zip file ${script:SRC_DIR}\dist\ollama-windows-amd64.zip"
-        Compress-Archive -Path "${script:SRC_DIR}\dist\windows-amd64\*" -DestinationPath "${script:SRC_DIR}\dist\ollama-windows-amd64.zip" -Force
+        write-host "Generating stand-alone distribution zip file ${script:SRC_DIR}\dist\kc-riff-windows-amd64.zip"
+        Compress-Archive -Path "${script:SRC_DIR}\dist\windows-amd64\*" -DestinationPath "${script:SRC_DIR}\dist\kc-riff-windows-amd64.zip" -Force
     }
 
     if (Test-Path -Path "${script:SRC_DIR}\dist\windows-arm64") {
-        write-host "Generating stand-alone distribution zip file ${script:SRC_DIR}\dist\ollama-windows-arm64.zip"
-        Compress-Archive -Path "${script:SRC_DIR}\dist\windows-arm64\*" -DestinationPath "${script:SRC_DIR}\dist\ollama-windows-arm64.zip" -Force
+        write-host "Generating stand-alone distribution zip file ${script:SRC_DIR}\dist\kc-riff-windows-arm64.zip"
+        Compress-Archive -Path "${script:SRC_DIR}\dist\windows-arm64\*" -DestinationPath "${script:SRC_DIR}\dist\kc-riff-windows-arm64.zip" -Force
     }
 }
 

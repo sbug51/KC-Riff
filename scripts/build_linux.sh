@@ -24,6 +24,6 @@ docker buildx build \
 
 # buildx behavior changes for single vs. multiplatform
 if echo $PLATFORM | grep "," > /dev/null ; then 
-        mv -f ./dist/linux_*64/ollama* ./dist/
+        mv -f ./dist/linux_*64/kc-riff* ./dist/
         rmdir ./dist/linux_*64
 fi

@@ -21,13 +21,13 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ollama/ollama/api"
-	"github.com/ollama/ollama/envconfig"
-	"github.com/ollama/ollama/fs/ggml"
-	"github.com/ollama/ollama/parser"
-	"github.com/ollama/ollama/template"
-	"github.com/ollama/ollama/types/model"
-	"github.com/ollama/ollama/version"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/envconfig"
+	"github.com/sbug51/kc-riff/fs/ggml"
+	"github.com/sbug51/kc-riff/parser"
+	"github.com/sbug51/kc-riff/template"
+	"github.com/sbug51/kc-riff/types/model"
+	"github.com/sbug51/kc-riff/version"
 )
 
 var (
@@ -265,19 +265,19 @@ func GetModel(name string) (*Model, error) {
 		}
 
 		switch layer.MediaType {
-		case "application/vnd.ollama.image.model":
+		case "application/vnd.kc-riff.image.model":
 			model.ModelPath = filename
 			model.ParentModel = layer.From
-		case "application/vnd.ollama.image.embed":
+		case "application/vnd.kc-riff.image.embed":
 			// Deprecated in versions  > 0.1.2
 			// TODO: remove this warning in a future version
 			slog.Info("WARNING: model contains embeddings, but embeddings in modelfiles have been deprecated and will be ignored.")
-		case "application/vnd.ollama.image.adapter":
+		case "application/vnd.kc-riff.image.adapter":
 			model.AdapterPaths = append(model.AdapterPaths, filename)
-		case "application/vnd.ollama.image.projector":
+		case "application/vnd.kc-riff.image.projector":
 			model.ProjectorPaths = append(model.ProjectorPaths, filename)
-		case "application/vnd.ollama.image.prompt",
-			"application/vnd.ollama.image.template":
+		case "application/vnd.kc-riff.image.prompt",
+			"application/vnd.kc-riff.image.template":
 			bts, err := os.ReadFile(filename)
 			if err != nil {
 				return nil, err
@@ -287,14 +287,14 @@ func GetModel(name string) (*Model, error) {
 			if err != nil {
 				return nil, err
 			}
-		case "application/vnd.ollama.image.system":
+		case "application/vnd.kc-riff.image.system":
 			bts, err := os.ReadFile(filename)
 			if err != nil {
 				return nil, err
 			}
 
 			model.System = string(bts)
-		case "application/vnd.ollama.image.params":
+		case "application/vnd.kc-riff.image.params":
 			params, err := os.Open(filename)
 			if err != nil {
 				return nil, err
@@ -305,7 +305,7 @@ func GetModel(name string) (*Model, error) {
 			if err = json.NewDecoder(params).Decode(&model.Options); err != nil {
 				return nil, err
 			}
-		case "application/vnd.ollama.image.messages":
+		case "application/vnd.kc-riff.image.messages":
 			msgs, err := os.Open(filename)
 			if err != nil {
 				return nil, err
@@ -315,7 +315,7 @@ func GetModel(name string) (*Model, error) {
 			if err = json.NewDecoder(msgs).Decode(&model.Messages); err != nil {
 				return nil, err
 			}
-		case "application/vnd.ollama.image.license":
+		case "application/vnd.kc-riff.image.license":
 			bts, err := os.ReadFile(filename)
 			if err != nil {
 				return nil, err
@@ -744,7 +744,7 @@ func makeRequest(ctx context.Context, method string, requestURL *url.URL, header
 		}
 	}
 
-	req.Header.Set("User-Agent", fmt.Sprintf("ollama/%s (%s %s) Go/%s", version.Version, runtime.GOARCH, runtime.GOOS, runtime.Version()))
+	req.Header.Set("User-Agent", fmt.Sprintf("kc-riff/%s (%s %s) Go/%s", version.Version, runtime.GOARCH, runtime.GOOS, runtime.Version()))
 
 	if s := req.Header.Get("Content-Length"); s != "" {
 		contentLength, err := strconv.ParseInt(s, 10, 64)

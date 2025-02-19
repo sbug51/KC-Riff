@@ -1,5 +1,5 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: Jesse Gross <jesse@ollama.com>
+From: Jesse Gross <jesse@kc-riff.com>
 Date: Fri, 13 Dec 2024 16:11:59 -0800
 Subject: [PATCH] llama: Ensure KV cache is fully defragmented.
 

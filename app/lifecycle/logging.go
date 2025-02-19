@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ollama/ollama/envconfig"
+	"github.com/sbug51/kc-riff/envconfig"
 )
 
 func InitLogging() {
@@ -47,7 +47,7 @@ func InitLogging() {
 
 	slog.SetDefault(slog.New(handler))
 
-	slog.Info("ollama app started")
+	slog.Info("kc-riff app started")
 }
 
 func rotateLogs(logFile string) {

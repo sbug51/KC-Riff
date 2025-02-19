@@ -15,8 +15,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ollama/ollama/api"
-	"github.com/ollama/ollama/auth"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/auth"
 )
 
 type registryChallenge struct {

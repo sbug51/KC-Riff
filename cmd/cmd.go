@@ -32,15 +32,15 @@ import (
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/term"
 
-	"github.com/ollama/ollama/api"
-	"github.com/ollama/ollama/envconfig"
-	"github.com/ollama/ollama/format"
-	"github.com/ollama/ollama/llama"
-	"github.com/ollama/ollama/parser"
-	"github.com/ollama/ollama/progress"
-	"github.com/ollama/ollama/server"
-	"github.com/ollama/ollama/types/model"
-	"github.com/ollama/ollama/version"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/envconfig"
+	"github.com/sbug51/kc-riff/format"
+	"github.com/sbug51/kc-riff/llama"
+	"github.com/sbug51/kc-riff/parser"
+	"github.com/sbug51/kc-riff/progress"
+	"github.com/sbug51/kc-riff/server"
+	"github.com/sbug51/kc-riff/types/model"
+	"github.com/sbug51/kc-riff/version"
 )
 
 var errModelfileNotFound = errors.New("specified Modelfile wasn't found")
@@ -162,7 +162,7 @@ func CreateHandler(cmd *cobra.Command, args []string) error {
 
 	if err := client.Create(cmd.Context(), req, fn); err != nil {
 		if strings.Contains(err.Error(), "path or Modelfile are required") {
-			return fmt.Errorf("the ollama server must be updated to use `ollama create` with this client")
+			return fmt.Errorf("the kc-riff server must be updated to use `kc-riff create` with this client")
 		}
 		return err
 	}
@@ -427,8 +427,8 @@ func PushHandler(cmd *cobra.Command, args []string) error {
 	spinner.Stop()
 
 	destination := n.String()
-	if strings.HasSuffix(n.Host, ".ollama.ai") || strings.HasSuffix(n.Host, ".ollama.com") {
-		destination = "https://ollama.com/" + strings.TrimSuffix(n.DisplayShortest(), ":latest")
+	if strings.HasSuffix(n.Host, ".kc-riff.ai") || strings.HasSuffix(n.Host, ".kc-riff.com") {
+		destination = "https://killchaos.app/" + strings.TrimSuffix(n.DisplayShortest(), ":latest")
 	}
 	fmt.Printf("\nYou can find your model at:\n\n")
 	fmt.Printf("\t%s\n", destination)
@@ -1046,8 +1046,8 @@ func initializeKeypair() error {
 		return err
 	}
 
-	privKeyPath := filepath.Join(home, ".ollama", "id_ed25519")
-	pubKeyPath := filepath.Join(home, ".ollama", "id_ed25519.pub")
+	privKeyPath := filepath.Join(home, ".kc-riff", "id_ed25519")
+	pubKeyPath := filepath.Join(home, ".kc-riff", "id_ed25519.pub")
 
 	_, err = os.Stat(privKeyPath)
 	if os.IsNotExist(err) {
@@ -1096,7 +1096,7 @@ func checkServerHeartbeat(cmd *cobra.Command, _ []string) error {
 			return err
 		}
 		if err := startApp(cmd.Context(), client); err != nil {
-			return errors.New("could not connect to ollama app, is it running?")
+			return errors.New("could not connect to kc-riff app, is it running?")
 		}
 	}
 	return nil
@@ -1110,11 +1110,11 @@ func versionHandler(cmd *cobra.Command, _ []string) {
 
 	serverVersion, err := client.Version(cmd.Context())
 	if err != nil {
-		fmt.Println("Warning: could not connect to a running Ollama instance")
+		fmt.Println("Warning: could not connect to a running kc-riff instance")
 	}
 
 	if serverVersion != "" {
-		fmt.Printf("ollama version is %s\n", serverVersion)
+		fmt.Printf("kc-riff version is %s\n", serverVersion)
 	}
 
 	if serverVersion != version.Version {
@@ -1146,7 +1146,7 @@ func NewCLI() *cobra.Command {
 	}
 
 	rootCmd := &cobra.Command{
-		Use:           "ollama",
+		Use:           "kc-riff",
 		Short:         "Large language model runner",
 		SilenceUsage:  true,
 		SilenceErrors: true,
@@ -1215,7 +1215,7 @@ func NewCLI() *cobra.Command {
 	serveCmd := &cobra.Command{
 		Use:     "serve",
 		Aliases: []string{"start"},
-		Short:   "Start ollama",
+		Short:   "Start kc-riff",
 		Args:    cobra.ExactArgs(0),
 		RunE:    RunServer,
 	}

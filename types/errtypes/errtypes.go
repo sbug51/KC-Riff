@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	UnknownOllamaKeyErrMsg = "unknown ollama key"
+	UnknownOllamaKeyErrMsg = "unknown kc-riff key"
 	InvalidModelNameErrMsg = "invalid model name"
 )
 

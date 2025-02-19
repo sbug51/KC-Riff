@@ -6,9 +6,9 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/ollama/ollama/ml"
-	"github.com/ollama/ollama/ml/backend/ggml"
-	"github.com/ollama/ollama/ml/nn"
+	"github.com/sbug51/kc-riff/ml"
+	"github.com/sbug51/kc-riff/ml/backend/ggml"
+	"github.com/sbug51/kc-riff/ml/nn"
 )
 
 func TestParseTags(t *testing.T) {

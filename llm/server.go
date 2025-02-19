@@ -24,12 +24,12 @@ import (
 
 	"golang.org/x/sync/semaphore"
 
-	"github.com/ollama/ollama/api"
-	"github.com/ollama/ollama/discover"
-	"github.com/ollama/ollama/envconfig"
-	"github.com/ollama/ollama/format"
-	"github.com/ollama/ollama/fs/ggml"
-	"github.com/ollama/ollama/llama"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/discover"
+	"github.com/sbug51/kc-riff/envconfig"
+	"github.com/sbug51/kc-riff/format"
+	"github.com/sbug51/kc-riff/fs/ggml"
+	"github.com/sbug51/kc-riff/llama"
 )
 
 type LlamaServer interface {
@@ -276,7 +276,7 @@ func NewLlamaServer(gpus discover.GpuInfoList, model string, f *ggml.GGML, adapt
 		}
 		finalParams := []string{"runner"}
 		if envconfig.NewEngine() {
-			finalParams = append(finalParams, "--ollama-engine")
+			finalParams = append(finalParams, "--kc-riff-engine")
 		}
 		finalParams = append(finalParams, params...)
 		finalParams = append(finalParams, "--port", strconv.Itoa(port))
@@ -420,7 +420,7 @@ func NewLlamaServer(gpus discover.GpuInfoList, model string, f *ggml.GGML, adapt
 			if err != nil && s.status != nil && s.status.LastErrMsg != "" {
 				slog.Error("llama runner terminated", "error", err)
 				if strings.Contains(s.status.LastErrMsg, "unknown model") {
-					s.status.LastErrMsg = "this model is not supported by your version of Ollama. You may need to upgrade"
+					s.status.LastErrMsg = "this model is not supported by your version of kc-riff. You may need to upgrade"
 				}
 				s.done <- errors.New(s.status.LastErrMsg)
 			} else {

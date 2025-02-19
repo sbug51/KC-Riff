@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.21)
 
-project(Ollama C CXX)
+project(kc-riff C CXX)
 
 include(CheckLanguage)
 
@@ -34,8 +34,8 @@ if (CMAKE_OSX_ARCHITECTURES MATCHES "x86_64")
     set(CMAKE_INSTALL_RPATH "@loader_path")
 endif()
 
-set(OLLAMA_BUILD_DIR ${CMAKE_BINARY_DIR}/lib/ollama)
-set(OLLAMA_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/lib/ollama)
+set(OLLAMA_BUILD_DIR ${CMAKE_BINARY_DIR}/lib/kc-riff)
+set(OLLAMA_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/lib/kc-riff)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY         ${OLLAMA_BUILD_DIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG   ${OLLAMA_BUILD_DIR})

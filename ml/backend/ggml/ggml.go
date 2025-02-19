@@ -32,12 +32,12 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/ollama/ollama/format"
-	fs "github.com/ollama/ollama/fs/ggml"
-	"github.com/ollama/ollama/ml"
+	"github.com/sbug51/kc-riff/format"
+	fs "github.com/sbug51/kc-riff/fs/ggml"
+	"github.com/sbug51/kc-riff/ml"
 	"golang.org/x/sync/errgroup"
 
-	ggml "github.com/ollama/ollama/ml/backend/ggml/ggml/src"
+	ggml "github.com/sbug51/kc-riff/ml/backend/ggml/ggml/src"
 )
 
 type device struct {

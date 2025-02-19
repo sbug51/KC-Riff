@@ -1,7 +1,7 @@
 package kvcache
 
 import (
-	"github.com/ollama/ollama/ml"
+	"github.com/sbug51/kc-riff/ml"
 )
 
 // Encoder cache stores K and V tensors that are position independent

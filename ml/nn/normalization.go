@@ -1,7 +1,7 @@
 package nn
 
 import (
-	"github.com/ollama/ollama/ml"
+	"github.com/sbug51/kc-riff/ml"
 )
 
 type LayerNorm struct {

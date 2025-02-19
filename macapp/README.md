@@ -1,10 +1,10 @@
 # Desktop
 
-This app builds upon Ollama to provide a desktop experience for running models.
+This app builds upon kc-riff to provide a desktop experience for running models.
 
 ## Developing
 
-First, build the `ollama` binary:
+First, build the `kc-riff` binary:
 
 ```shell
 cd ..

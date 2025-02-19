@@ -5,7 +5,7 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/ollama/ollama/ml"
+	"github.com/sbug51/kc-riff/ml"
 )
 
 type testCase struct {

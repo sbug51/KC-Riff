@@ -11,12 +11,12 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/ollama/ollama/api"
-	"github.com/ollama/ollama/app/lifecycle"
-	"github.com/ollama/ollama/discover"
-	"github.com/ollama/ollama/format"
-	"github.com/ollama/ollama/fs/ggml"
-	"github.com/ollama/ollama/llm"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/app/lifecycle"
+	"github.com/sbug51/kc-riff/discover"
+	"github.com/sbug51/kc-riff/format"
+	"github.com/sbug51/kc-riff/fs/ggml"
+	"github.com/sbug51/kc-riff/llm"
 )
 
 func TestMain(m *testing.M) {
@@ -172,8 +172,8 @@ func TestRequestsSameModelSameRequest(t *testing.T) {
 	s := InitScheduler(ctx)
 	s.getGpuFn = getGpuFn
 	s.getCpuFn = getCpuFn
-	a := newScenarioRequest(t, ctx, "ollama-model-1", 10, &api.Duration{Duration: 5 * time.Millisecond})
-	b := newScenarioRequest(t, ctx, "ollama-model-1", 11, &api.Duration{Duration: 0})
+	a := newScenarioRequest(t, ctx, "kc-riff-model-1", 10, &api.Duration{Duration: 5 * time.Millisecond})
+	b := newScenarioRequest(t, ctx, "kc-riff-model-1", 11, &api.Duration{Duration: 0})
 	b.req.model = a.req.model
 	b.f = a.f
 
@@ -215,8 +215,8 @@ func TestRequestsSimpleReloadSameModel(t *testing.T) {
 	s := InitScheduler(ctx)
 	s.getGpuFn = getGpuFn
 	s.getCpuFn = getCpuFn
-	a := newScenarioRequest(t, ctx, "ollama-model-1", 10, &api.Duration{Duration: 5 * time.Millisecond})
-	b := newScenarioRequest(t, ctx, "ollama-model-1", 20, &api.Duration{Duration: 5 * time.Millisecond})
+	a := newScenarioRequest(t, ctx, "kc-riff-model-1", 10, &api.Duration{Duration: 5 * time.Millisecond})
+	b := newScenarioRequest(t, ctx, "kc-riff-model-1", 20, &api.Duration{Duration: 5 * time.Millisecond})
 	tmpModel := *a.req.model
 	b.req.model = &tmpModel
 	b.f = a.f
@@ -265,11 +265,11 @@ func TestRequestsMultipleLoadedModels(t *testing.T) {
 	s.getCpuFn = getCpuFn
 
 	// Multiple loaded models
-	a := newScenarioRequest(t, ctx, "ollama-model-3a", 1*format.GigaByte, nil)
-	b := newScenarioRequest(t, ctx, "ollama-model-3b", 24*format.GigaByte, nil)
-	c := newScenarioRequest(t, ctx, "ollama-model-4a", 30, nil)
-	c.req.opts.NumGPU = 0                                       // CPU load, will be allowed
-	d := newScenarioRequest(t, ctx, "ollama-model-3c", 30, nil) // Needs prior unloaded
+	a := newScenarioRequest(t, ctx, "kc-riff-model-3a", 1*format.GigaByte, nil)
+	b := newScenarioRequest(t, ctx, "kc-riff-model-3b", 24*format.GigaByte, nil)
+	c := newScenarioRequest(t, ctx, "kc-riff-model-4a", 30, nil)
+	c.req.opts.NumGPU = 0                                        // CPU load, will be allowed
+	d := newScenarioRequest(t, ctx, "kc-riff-model-3c", 30, nil) // Needs prior unloaded
 
 	t.Setenv("OLLAMA_MAX_LOADED_MODELS", "1")
 	s.newServerFn = a.newServer
@@ -358,9 +358,9 @@ func TestGetRunner(t *testing.T) {
 	ctx, done := context.WithTimeout(context.Background(), 200*time.Millisecond)
 	defer done()
 
-	a := newScenarioRequest(t, ctx, "ollama-model-1a", 10, &api.Duration{Duration: 2 * time.Millisecond})
-	b := newScenarioRequest(t, ctx, "ollama-model-1b", 10, &api.Duration{Duration: 2 * time.Millisecond})
-	c := newScenarioRequest(t, ctx, "ollama-model-1c", 10, &api.Duration{Duration: 2 * time.Millisecond})
+	a := newScenarioRequest(t, ctx, "kc-riff-model-1a", 10, &api.Duration{Duration: 2 * time.Millisecond})
+	b := newScenarioRequest(t, ctx, "kc-riff-model-1b", 10, &api.Duration{Duration: 2 * time.Millisecond})
+	c := newScenarioRequest(t, ctx, "kc-riff-model-1c", 10, &api.Duration{Duration: 2 * time.Millisecond})
 	t.Setenv("OLLAMA_MAX_QUEUE", "1")
 	s := InitScheduler(ctx)
 	s.getGpuFn = getGpuFn
@@ -459,7 +459,7 @@ func TestPrematureExpired(t *testing.T) {
 	defer done()
 
 	// Same model, same request
-	scenario1a := newScenarioRequest(t, ctx, "ollama-model-1a", 10, nil)
+	scenario1a := newScenarioRequest(t, ctx, "kc-riff-model-1a", 10, nil)
 	s := InitScheduler(ctx)
 	s.getGpuFn = func() discover.GpuInfoList {
 		g := discover.GpuInfo{Library: "metal"}
@@ -699,7 +699,7 @@ func TestAlreadyCanceled(t *testing.T) {
 	defer done()
 	dctx, done2 := context.WithCancel(ctx)
 	done2()
-	scenario1a := newScenarioRequest(t, dctx, "ollama-model-1", 10, &api.Duration{Duration: 0})
+	scenario1a := newScenarioRequest(t, dctx, "kc-riff-model-1", 10, &api.Duration{Duration: 0})
 	s := InitScheduler(ctx)
 	slog.Info("scenario1a")
 	s.pendingReqCh <- scenario1a.req
@@ -729,7 +729,7 @@ func TestHomogeneousGPUs(t *testing.T) {
 		return gpus
 	}
 	s.getCpuFn = getCpuFn
-	a := newScenarioRequest(t, ctx, "ollama-model-1", 10, &api.Duration{Duration: 5 * time.Millisecond})
+	a := newScenarioRequest(t, ctx, "kc-riff-model-1", 10, &api.Duration{Duration: 5 * time.Millisecond})
 	s.newServerFn = func(gpus discover.GpuInfoList, model string, f *ggml.GGML, adapters []string, projectors []string, opts api.Options, numParallel int) (llm.LlamaServer, error) {
 		require.Len(t, gpus, 1)
 		return a.newServer(gpus, model, f, adapters, projectors, opts, numParallel)

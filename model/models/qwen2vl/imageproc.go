@@ -8,7 +8,7 @@ import (
 	"io"
 	"math"
 
-	"github.com/ollama/ollama/model/imageproc"
+	"github.com/sbug51/kc-riff/model/imageproc"
 )
 
 const (

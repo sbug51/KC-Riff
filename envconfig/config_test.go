@@ -34,7 +34,7 @@ func TestHost(t *testing.T) {
 		"http port":           {"http://1.2.3.4:4321", "http://1.2.3.4:4321"},
 		"https":               {"https://1.2.3.4", "https://1.2.3.4:443"},
 		"https port":          {"https://1.2.3.4:4321", "https://1.2.3.4:4321"},
-		"proxy path":          {"https://example.com/ollama", "https://example.com:443/ollama"},
+		"proxy path":          {"https://example.com/kc-riff", "https://example.com:443/kc-riff"},
 	}
 
 	for name, tt := range cases {

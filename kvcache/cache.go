@@ -3,7 +3,7 @@ package kvcache
 import (
 	"errors"
 
-	"github.com/ollama/ollama/ml"
+	"github.com/sbug51/kc-riff/ml"
 )
 
 var (

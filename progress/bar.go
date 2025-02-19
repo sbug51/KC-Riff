@@ -8,7 +8,7 @@ import (
 
 	"golang.org/x/term"
 
-	"github.com/ollama/ollama/format"
+	"github.com/sbug51/kc-riff/format"
 )
 
 type Bar struct {

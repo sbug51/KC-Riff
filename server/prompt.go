@@ -9,11 +9,11 @@ import (
 	"log/slog"
 	"strings"
 
-	"github.com/ollama/ollama/api"
-	"github.com/ollama/ollama/envconfig"
-	"github.com/ollama/ollama/llm"
-	"github.com/ollama/ollama/model/models/mllama"
-	"github.com/ollama/ollama/template"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/envconfig"
+	"github.com/sbug51/kc-riff/llm"
+	"github.com/sbug51/kc-riff/model/models/mllama"
+	"github.com/sbug51/kc-riff/template"
 )
 
 type tokenizeFunc func(context.Context, string) ([]int, error)

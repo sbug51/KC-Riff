@@ -19,8 +19,8 @@ import (
 
 	"golang.org/x/sync/errgroup"
 
-	"github.com/ollama/ollama/api"
-	"github.com/ollama/ollama/format"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/format"
 )
 
 var blobUploadManager sync.Map

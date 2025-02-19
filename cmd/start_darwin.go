@@ -7,7 +7,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/ollama/ollama/api"
+	"github.com/sbug51/kc-riff/api"
 )
 
 func startApp(ctx context.Context, client *api.Client) error {
@@ -19,11 +19,11 @@ func startApp(ctx context.Context, client *api.Client) error {
 	if err != nil {
 		return err
 	}
-	if !strings.Contains(link, "Ollama.app") {
-		return errors.New("could not find ollama app")
+	if !strings.Contains(link, "kc-riff.app") {
+		return errors.New("could not find kc-riff app")
 	}
-	path := strings.Split(link, "Ollama.app")
-	if err := exec.Command("/usr/bin/open", "-a", path[0]+"Ollama.app").Run(); err != nil {
+	path := strings.Split(link, "kc-riff.app")
+	if err := exec.Command("/usr/bin/open", "-a", path[0]+"kc-riff.app").Run(); err != nil {
 		return err
 	}
 	return waitForServer(ctx, client)

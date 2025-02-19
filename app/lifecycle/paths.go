@@ -11,14 +11,14 @@ import (
 )
 
 var (
-	AppName    = "ollama app"
-	CLIName    = "ollama"
-	AppDir     = "/opt/Ollama"
-	AppDataDir = "/opt/Ollama"
+	AppName    = "kc-riff app"
+	CLIName    = "kc-riff"
+	AppDir     = "/opt/kc-riff"
+	AppDataDir = "/opt/kc-riff"
 	// TODO - should there be a distinct log dir?
 	UpdateStageDir   = "/tmp"
 	AppLogFile       = "/tmp/ollama_app.log"
-	ServerLogFile    = "/tmp/ollama.log"
+	ServerLogFile    = "/tmp/kc-riff.log"
 	UpgradeLogFile   = "/tmp/ollama_update.log"
 	Installer        = "OllamaSetup.exe"
 	LogRotationCount = 5
@@ -30,7 +30,7 @@ func init() {
 		CLIName += ".exe"
 		// Logs, configs, downloads go to LOCALAPPDATA
 		localAppData := os.Getenv("LOCALAPPDATA")
-		AppDataDir = filepath.Join(localAppData, "Ollama")
+		AppDataDir = filepath.Join(localAppData, "kc-riff")
 		UpdateStageDir = filepath.Join(AppDataDir, "updates")
 		AppLogFile = filepath.Join(AppDataDir, "app.log")
 		ServerLogFile = filepath.Join(AppDataDir, "server.log")
@@ -39,7 +39,7 @@ func init() {
 		exe, err := os.Executable()
 		if err != nil {
 			slog.Warn("error discovering executable directory", "error", err)
-			AppDir = filepath.Join(localAppData, "Programs", "Ollama")
+			AppDir = filepath.Join(localAppData, "Programs", "kc-riff")
 		} else {
 			AppDir = filepath.Dir(exe)
 		}
@@ -72,7 +72,7 @@ func init() {
 		_, err = os.Stat(AppDataDir)
 		if errors.Is(err, os.ErrNotExist) {
 			if err := os.MkdirAll(AppDataDir, 0o755); err != nil {
-				slog.Error(fmt.Sprintf("create ollama dir %s: %v", AppDataDir, err))
+				slog.Error(fmt.Sprintf("create kc-riff dir %s: %v", AppDataDir, err))
 			}
 		}
 	} else if runtime.GOOS == "darwin" {

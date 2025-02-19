@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ollama/ollama/llama"
+	"github.com/sbug51/kc-riff/llama"
 )
 
 const imageCacheSize = 4

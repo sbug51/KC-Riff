@@ -73,7 +73,7 @@ func writeStore(storeFilename string) {
 	_, err := os.Stat(ollamaDir)
 	if errors.Is(err, os.ErrNotExist) {
 		if err := os.MkdirAll(ollamaDir, 0o755); err != nil {
-			slog.Error(fmt.Sprintf("create ollama dir %s: %v", ollamaDir, err))
+			slog.Error(fmt.Sprintf("create kc-riff dir %s: %v", ollamaDir, err))
 			return
 		}
 	}

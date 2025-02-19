@@ -22,9 +22,9 @@ import (
 
 	"golang.org/x/sync/semaphore"
 
-	"github.com/ollama/ollama/api"
-	"github.com/ollama/ollama/llama"
 	"github.com/sbug51/KC-Riff/runner/common"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/llama"
 )
 
 // input is an element of the prompt to process, either

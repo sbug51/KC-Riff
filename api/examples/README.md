@@ -1,4 +1,4 @@
-# Ollama API Examples
+# kc-riff API Examples
 
 Run the examples in this directory with:
 

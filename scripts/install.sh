@@ -1,6 +1,6 @@
 #!/bin/sh
-# This script installs Ollama on Linux.
-# It detects the current operating system architecture and installs the appropriate version of Ollama.
+# This script installs kc-riff on Linux.
+# It detects the current operating system architecture and installs the appropriate version of kc-riff.
 
 set -eu
 
@@ -71,20 +71,20 @@ for BINDIR in /usr/local/bin /usr/bin /bin; do
 done
 OLLAMA_INSTALL_DIR=$(dirname ${BINDIR})
 
-if [ -d "$OLLAMA_INSTALL_DIR/lib/ollama" ] ; then
-    status "Cleaning up old version at $OLLAMA_INSTALL_DIR/lib/ollama"
-    $SUDO rm -rf "$OLLAMA_INSTALL_DIR/lib/ollama"
+if [ -d "$OLLAMA_INSTALL_DIR/lib/kc-riff" ] ; then
+    status "Cleaning up old version at $OLLAMA_INSTALL_DIR/lib/kc-riff"
+    $SUDO rm -rf "$OLLAMA_INSTALL_DIR/lib/kc-riff"
 fi
-status "Installing ollama to $OLLAMA_INSTALL_DIR"
+status "Installing kc-riff to $OLLAMA_INSTALL_DIR"
 $SUDO install -o0 -g0 -m755 -d $BINDIR
 $SUDO install -o0 -g0 -m755 -d "$OLLAMA_INSTALL_DIR"
 status "Downloading Linux ${ARCH} bundle"
 curl --fail --show-error --location --progress-bar \
-    "https://ollama.com/download/ollama-linux-${ARCH}.tgz${VER_PARAM}" | \
+    "https://killchaos.app/download/kc-riff-linux-${ARCH}.tgz${VER_PARAM}" | \
     $SUDO tar -xzf - -C "$OLLAMA_INSTALL_DIR"
-if [ "$OLLAMA_INSTALL_DIR/bin/ollama" != "$BINDIR/ollama" ] ; then
-    status "Making ollama accessible in the PATH in $BINDIR"
-    $SUDO ln -sf "$OLLAMA_INSTALL_DIR/ollama" "$BINDIR/ollama"
+if [ "$OLLAMA_INSTALL_DIR/bin/kc-riff" != "$BINDIR/kc-riff" ] ; then
+    status "Making kc-riff accessible in the PATH in $BINDIR"
+    $SUDO ln -sf "$OLLAMA_INSTALL_DIR/kc-riff" "$BINDIR/kc-riff"
 fi
 
 # Check for NVIDIA JetPack systems with additional downloads
@@ -92,12 +92,12 @@ if [ -f /etc/nv_tegra_release ] ; then
     if grep R36 /etc/nv_tegra_release > /dev/null ; then
         status "Downloading JetPack 6 components"
         curl --fail --show-error --location --progress-bar \
-            "https://ollama.com/download/ollama-linux-${ARCH}-jetpack6.tgz${VER_PARAM}" | \
+            "https://killchaos.app/download/kc-riff-linux-${ARCH}-jetpack6.tgz${VER_PARAM}" | \
             $SUDO tar -xzf - -C "$OLLAMA_INSTALL_DIR"
     elif grep R35 /etc/nv_tegra_release > /dev/null ; then
         status "Downloading JetPack 5 components"
         curl --fail --show-error --location --progress-bar \
-            "https://ollama.com/download/ollama-linux-${ARCH}-jetpack5.tgz${VER_PARAM}" | \
+            "https://killchaos.app/download/kc-riff-linux-${ARCH}-jetpack5.tgz${VER_PARAM}" | \
             $SUDO tar -xzf - -C "$OLLAMA_INSTALL_DIR"
     else
         warning "Unsupported JetPack version detected.  GPU may not be supported"
@@ -105,40 +105,40 @@ if [ -f /etc/nv_tegra_release ] ; then
 fi
 
 install_success() {
-    status 'The Ollama API is now available at 127.0.0.1:11434.'
-    status 'Install complete. Run "ollama" from the command line.'
+    status 'The kc-riff API is now available at 127.0.0.1:11434.'
+    status 'Install complete. Run "kc-riff" from the command line.'
 }
 trap install_success EXIT
 
 # Everything from this point onwards is optional.
 
 configure_systemd() {
-    if ! id ollama >/dev/null 2>&1; then
-        status "Creating ollama user..."
-        $SUDO useradd -r -s /bin/false -U -m -d /usr/share/ollama ollama
+    if ! id kc-riff >/dev/null 2>&1; then
+        status "Creating kc-riff user..."
+        $SUDO useradd -r -s /bin/false -U -m -d /usr/share/kc-riff kc-riff
     fi
     if getent group render >/dev/null 2>&1; then
-        status "Adding ollama user to render group..."
-        $SUDO usermod -a -G render ollama
+        status "Adding kc-riff user to render group..."
+        $SUDO usermod -a -G render kc-riff
     fi
     if getent group video >/dev/null 2>&1; then
-        status "Adding ollama user to video group..."
-        $SUDO usermod -a -G video ollama
+        status "Adding kc-riff user to video group..."
+        $SUDO usermod -a -G video kc-riff
     fi
 
-    status "Adding current user to ollama group..."
-    $SUDO usermod -a -G ollama $(whoami)
+    status "Adding current user to kc-riff group..."
+    $SUDO usermod -a -G kc-riff $(whoami)
 
-    status "Creating ollama systemd service..."
-    cat <<EOF | $SUDO tee /etc/systemd/system/ollama.service >/dev/null
+    status "Creating kc-riff systemd service..."
+    cat <<EOF | $SUDO tee /etc/systemd/system/kc-riff.service >/dev/null
 [Unit]
-Description=Ollama Service
+Description=kc-riff Service
 After=network-online.target
 
 [Service]
-ExecStart=$BINDIR/ollama serve
-User=ollama
-Group=ollama
+ExecStart=$BINDIR/kc-riff serve
+User=kc-riff
+Group=kc-riff
 Restart=always
 RestartSec=3
 Environment="PATH=$PATH"
@@ -149,11 +149,11 @@ EOF
     SYSTEMCTL_RUNNING="$(systemctl is-system-running || true)"
     case $SYSTEMCTL_RUNNING in
         running|degraded)
-            status "Enabling and starting ollama service..."
+            status "Enabling and starting kc-riff service..."
             $SUDO systemctl daemon-reload
-            $SUDO systemctl enable ollama
+            $SUDO systemctl enable kc-riff
 
-            start_service() { $SUDO systemctl restart ollama; }
+            start_service() { $SUDO systemctl restart kc-riff; }
             trap start_service EXIT
             ;;
         *)
@@ -216,14 +216,14 @@ fi
 
 if ! check_gpu lspci nvidia && ! check_gpu lshw nvidia && ! check_gpu lspci amdgpu && ! check_gpu lshw amdgpu; then
     install_success
-    warning "No NVIDIA/AMD GPU detected. Ollama will run in CPU-only mode."
+    warning "No NVIDIA/AMD GPU detected. kc-riff will run in CPU-only mode."
     exit 0
 fi
 
 if check_gpu lspci amdgpu || check_gpu lshw amdgpu; then
     status "Downloading Linux ROCm ${ARCH} bundle"
     curl --fail --show-error --location --progress-bar \
-        "https://ollama.com/download/ollama-linux-${ARCH}-rocm.tgz${VER_PARAM}" | \
+        "https://killchaos.app/download/kc-riff-linux-${ARCH}-rocm.tgz${VER_PARAM}" | \
         $SUDO tar -xzf - -C "$OLLAMA_INSTALL_DIR"
 
     install_success

@@ -1,9 +1,9 @@
 # OpenAI compatibility
 
 > [!NOTE]
-> OpenAI compatibility is experimental and is subject to major adjustments including breaking changes. For fully-featured access to the Ollama API, see the Ollama [Python library](https://github.com/ollama/ollama-python), [JavaScript library](https://github.com/ollama/ollama-js) and [REST API](https://github.com/ollama/ollama/blob/main/docs/api.md).
+> OpenAI compatibility is experimental and is subject to major adjustments including breaking changes. For fully-featured access to the kc-riff API, see the kc-riff [Python library](https://github.com/sbug51/kc-riff-python), [JavaScript library](https://github.com/sbug51/kc-riff-js) and [REST API](https://github.com/sbug51/kc-riff/blob/main/docs/api.md).
 
-Ollama provides experimental compatibility with parts of the [OpenAI API](https://platform.openai.com/docs/api-reference) to help connect existing applications to Ollama.
+kc-riff provides experimental compatibility with parts of the [OpenAI API](https://platform.openai.com/docs/api-reference) to help connect existing applications to kc-riff.
 
 ## Usage
 
@@ -16,7 +16,7 @@ client = OpenAI(
     base_url='http://localhost:11434/v1/',
 
     # required but ignored
-    api_key='ollama',
+    api_key='kc-riff',
 )
 
 chat_completion = client.chat.completions.create(
@@ -67,7 +67,7 @@ embeddings = client.embeddings.create(
 from pydantic import BaseModel
 from openai import OpenAI
 
-client = OpenAI(base_url="http://localhost:11434/v1", api_key="ollama")
+client = OpenAI(base_url="http://localhost:11434/v1", api_key="kc-riff")
 
 # Define the schema for the response
 class FriendInfo(BaseModel):
@@ -83,7 +83,7 @@ try:
         temperature=0,
         model="llama3.1:8b",
         messages=[
-            {"role": "user", "content": "I have two friends. The first is Ollama 22 years old busy saving the world, and the second is Alonso 23 years old and wants to hang out. Return a list of friends in JSON format"}
+            {"role": "user", "content": "I have two friends. The first is kc-riff 22 years old busy saving the world, and the second is Alonso 23 years old and wants to hang out. Return a list of friends in JSON format"}
         ],
         response_format=FriendList,
     )
@@ -106,7 +106,7 @@ const openai = new OpenAI({
   baseURL: 'http://localhost:11434/v1/',
 
   // required but ignored
-  apiKey: 'ollama',
+  apiKey: 'kc-riff',
 })
 
 const chatCompletion = await openai.chat.completions.create({
@@ -287,14 +287,14 @@ curl http://localhost:11434/v1/embeddings \
 #### Notes
 
 - `created` corresponds to when the model was last modified
-- `owned_by` corresponds to the ollama username, defaulting to `"library"`
+- `owned_by` corresponds to the kc-riff username, defaulting to `"library"`
 
 ### `/v1/models/{model}`
 
 #### Notes
 
 - `created` corresponds to when the model was last modified
-- `owned_by` corresponds to the ollama username, defaulting to `"library"`
+- `owned_by` corresponds to the kc-riff username, defaulting to `"library"`
 
 ### `/v1/embeddings`
 
@@ -312,18 +312,18 @@ curl http://localhost:11434/v1/embeddings \
 
 ## Models
 
-Before using a model, pull it locally `ollama pull`:
+Before using a model, pull it locally `kc-riff pull`:
 
 ```shell
-ollama pull llama3.2
+kc-riff pull llama3.2
 ```
 
 ### Default model names
 
-For tooling that relies on default OpenAI model names such as `gpt-3.5-turbo`, use `ollama cp` to copy an existing model name to a temporary name:
+For tooling that relies on default OpenAI model names such as `gpt-3.5-turbo`, use `kc-riff cp` to copy an existing model name to a temporary name:
 
 ```shell
-ollama cp llama3.2 gpt-3.5-turbo
+kc-riff cp llama3.2 gpt-3.5-turbo
 ```
 
 Afterwards, this new model name can be specified the `model` field:
@@ -351,7 +351,7 @@ FROM <some model>
 PARAMETER num_ctx <context size>
 ```
 
-Use the `ollama create mymodel` command to create a new model with the updated context size. Call the API with the updated model name:
+Use the `kc-riff create mymodel` command to create a new model with the updated context size. Call the API with the updated model name:
 
 ```shell
 curl http://localhost:11434/v1/chat/completions \

@@ -1,10 +1,10 @@
 package mllama
 
 import (
-	"github.com/ollama/ollama/kvcache"
-	"github.com/ollama/ollama/ml"
-	"github.com/ollama/ollama/ml/nn"
-	"github.com/ollama/ollama/model"
+	"github.com/sbug51/kc-riff/kvcache"
+	"github.com/sbug51/kc-riff/ml"
+	"github.com/sbug51/kc-riff/ml/nn"
+	"github.com/sbug51/kc-riff/model"
 )
 
 type Model struct {

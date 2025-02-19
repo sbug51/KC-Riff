@@ -11,7 +11,7 @@ import (
 
 	"google.golang.org/protobuf/proto"
 
-	"github.com/ollama/ollama/convert/sentencepiece"
+	"github.com/sbug51/kc-riff/convert/sentencepiece"
 )
 
 func parseSentencePiece(fsys fs.FS) (*Vocabulary, error) {

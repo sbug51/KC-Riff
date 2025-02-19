@@ -22,8 +22,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ollama/ollama/api"
-	"github.com/ollama/ollama/app/lifecycle"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/app/lifecycle"
 	"github.com/stretchr/testify/require"
 )
 
@@ -87,7 +87,7 @@ var serverReady bool
 
 func startServer(t *testing.T, ctx context.Context, ollamaHost string) error {
 	// Make sure the server has been built
-	CLIName, err := filepath.Abs("../ollama")
+	CLIName, err := filepath.Abs("../kc-riff")
 	if err != nil {
 		return err
 	}
@@ -111,7 +111,7 @@ func startServer(t *testing.T, ctx context.Context, ollamaHost string) error {
 	}
 
 	slog.Info("starting server", "url", ollamaHost)
-	done, err := lifecycle.SpawnServer(ctx, "../ollama")
+	done, err := lifecycle.SpawnServer(ctx, "../kc-riff")
 	if err != nil {
 		return fmt.Errorf("failed to start server: %w", err)
 	}
@@ -194,7 +194,7 @@ func InitServerConnection(ctx context.Context, t *testing.T) (*api.Client, strin
 	client, testEndpoint := GetTestEndpoint()
 	if os.Getenv("OLLAMA_TEST_EXISTING") == "" {
 		serverProcMutex.Lock()
-		fp, err := os.CreateTemp("", "ollama-server-*.log")
+		fp, err := os.CreateTemp("", "kc-riff-server-*.log")
 		if err != nil {
 			t.Fatalf("failed to generate log file: %s", err)
 		}

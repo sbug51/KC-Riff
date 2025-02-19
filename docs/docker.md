@@ -1,9 +1,9 @@
-# Ollama Docker image
+# kc-riff Docker image
 
 ### CPU only
 
 ```shell
-docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+docker run -d -v kc-riff:/root/.kc-riff -p 11434:11434 --name kc-riff sbug51/kc-riff
 ```
 
 ### Nvidia GPU
@@ -51,18 +51,18 @@ sudo systemctl restart docker
 #### Start the container
 
 ```shell
-docker run -d --gpus=all -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+docker run -d --gpus=all -v kc-riff:/root/.kc-riff -p 11434:11434 --name kc-riff sbug51/kc-riff
 ```
 
 > [!NOTE]  
-> If you're running on an NVIDIA JetPack system, Ollama can't automatically discover the correct JetPack version. Pass the environment variable JETSON_JETPACK=5 or JETSON_JETPACK=6 to the container to select version 5 or 6.
+> If you're running on an NVIDIA JetPack system, kc-riff can't automatically discover the correct JetPack version. Pass the environment variable JETSON_JETPACK=5 or JETSON_JETPACK=6 to the container to select version 5 or 6.
 
 ### AMD GPU
 
-To run Ollama using Docker with AMD GPUs, use the `rocm` tag and the following command:
+To run kc-riff using Docker with AMD GPUs, use the `rocm` tag and the following command:
 
 ```shell
-docker run -d --device /dev/kfd --device /dev/dri -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama:rocm
+docker run -d --device /dev/kfd --device /dev/dri -v kc-riff:/root/.kc-riff -p 11434:11434 --name kc-riff sbug51/kc-riff:rocm
 ```
 
 ### Run model locally
@@ -70,9 +70,9 @@ docker run -d --device /dev/kfd --device /dev/dri -v ollama:/root/.ollama -p 114
 Now you can run a model:
 
 ```shell
-docker exec -it ollama ollama run llama3.2
+docker exec -it kc-riff kc-riff run llama3.2
 ```
 
 ### Try different models
 
-More models can be found on the [Ollama library](https://ollama.com/library).
+More models can be found on the [kc-riff library](https://killchaos.app/library).

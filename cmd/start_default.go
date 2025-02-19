@@ -6,9 +6,9 @@ import (
 	"context"
 	"errors"
 
-	"github.com/ollama/ollama/api"
+	"github.com/sbug51/kc-riff/api"
 )
 
 func startApp(ctx context.Context, client *api.Client) error {
-	return errors.New("could not connect to ollama server, run 'ollama serve' to start it")
+	return errors.New("could not connect to kc-riff server, run 'kc-riff serve' to start it")
 }

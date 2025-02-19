@@ -11,7 +11,7 @@ import (
 
 func TestGetBlobsPath(t *testing.T) {
 	// GetBlobsPath expects an actual directory to exist
-	dir, err := os.MkdirTemp("", "ollama-test")
+	dir, err := os.MkdirTemp("", "kc-riff-test")
 	require.NoError(t, err)
 	defer os.RemoveAll(dir)
 

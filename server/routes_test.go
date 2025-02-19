@@ -20,11 +20,11 @@ import (
 	"testing"
 	"unicode"
 
-	"github.com/ollama/ollama/api"
-	"github.com/ollama/ollama/fs/ggml"
-	"github.com/ollama/ollama/openai"
-	"github.com/ollama/ollama/types/model"
-	"github.com/ollama/ollama/version"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/fs/ggml"
+	"github.com/sbug51/kc-riff/openai"
+	"github.com/sbug51/kc-riff/types/model"
+	"github.com/sbug51/kc-riff/version"
 )
 
 func createTestFile(t *testing.T, name string) (string, string) {
@@ -103,7 +103,7 @@ func Test_Routes(t *testing.T) {
 	createTestModel := func(t *testing.T, name string) {
 		t.Helper()
 
-		_, digest := createTestFile(t, "ollama-model")
+		_, digest := createTestFile(t, "kc-riff-model")
 
 		fn := func(resp api.ProgressResponse) {
 			t.Logf("Status: %s", resp.Status)
@@ -331,7 +331,7 @@ func Test_Routes(t *testing.T) {
 			Method: http.MethodPost,
 			Path:   "/api/create",
 			Setup: func(t *testing.T, req *http.Request) {
-				_, digest := createTestFile(t, "ollama-model")
+				_, digest := createTestFile(t, "kc-riff-model")
 				stream := false
 				createReq := api.CreateRequest{
 					Name:   "t-bone",

@@ -14,7 +14,7 @@ import (
 	"github.com/google/go-cmp/cmp"
 	"github.com/spf13/cobra"
 
-	"github.com/ollama/ollama/api"
+	"github.com/sbug51/kc-riff/api"
 )
 
 func TestShowInfo(t *testing.T) {
@@ -179,7 +179,7 @@ Weigh anchor!
 
 	t.Run("license", func(t *testing.T) {
 		var b bytes.Buffer
-		license := "MIT License\nCopyright (c) Ollama\n"
+		license := "MIT License\nCopyright (c) kc-riff\n"
 		if err := showInfo(&api.ShowResponse{
 			Details: api.ModelDetails{
 				Family:            "test",
@@ -198,7 +198,7 @@ Weigh anchor!
 
   License
     MIT License             
-    Copyright (c) Ollama    
+    Copyright (c) kc-riff    
 
 `
 		if diff := cmp.Diff(expect, b.String()); diff != "" {
@@ -409,7 +409,7 @@ func TestPushHandler(t *testing.T) {
 					}
 				},
 			},
-			expectedOutput: "\nYou can find your model at:\n\n\thttps://ollama.com/test-model\n",
+			expectedOutput: "\nYou can find your model at:\n\n\thttps://kc-riff.com/test-model\n",
 		},
 		{
 			name:      "unauthorized push",

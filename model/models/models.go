@@ -1,6 +1,6 @@
 package models
 
 import (
-	_ "github.com/ollama/ollama/model/models/llama"
-	_ "github.com/ollama/ollama/model/models/mllama"
+	_ "github.com/sbug51/kc-riff/model/models/llama"
+	_ "github.com/sbug51/kc-riff/model/models/mllama"
 )
