@@ -111,7 +111,7 @@ FROM llama3.2
 ```
 
 A list of available base models:
-<https://github.com/sbug51/kcriff#model-library>
+<https://github.com/sbug51/kc-riff#model-library>
 Additional models can be found at:
 <https://killchaos.app/library>
 

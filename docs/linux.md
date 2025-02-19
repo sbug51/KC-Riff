@@ -147,7 +147,7 @@ sudo tar -C /usr -xzf kcriff-linux-amd64.tgz
 
 ## Installing specific versions
 
-Use `kcRiff_VERSION` environment variable with the install script to install a specific version of kcriff, including pre-releases. You can find the version numbers in the [releases page](https://github.com/sbug51/kcriff/releases).
+Use `kcRiff_VERSION` environment variable with the install script to install a specific version of kcriff, including pre-releases. You can find the version numbers in the [releases page](https://github.com/sbug51/kc-riff/releases).
 
 For example:
 

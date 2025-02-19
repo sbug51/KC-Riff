@@ -132,7 +132,7 @@ function buildKC-Riff() {
         write-host "Skipping generate step with kcRiff_SKIP_GENERATE set"
     }
     write-host "Building kcriff CLI"
-    & go build -trimpath -ldflags "-s -w -X=github.com/sbug51/kcriff/version.Version=$script:VERSION -X=github.com/sbug51/kcriff/server.mode=release" .
+    & go build -trimpath -ldflags "-s -w -X=github.com/sbug51/kc-riff/version.Version=$script:VERSION -X=github.com/sbug51/kc-riff/server.mode=release" .
     if ($LASTEXITCODE -ne 0) { exit($LASTEXITCODE)}
     cp .\kcriff.exe "${script:DIST_DIR}\"
 }
@@ -141,7 +141,7 @@ function buildApp() {
     write-host "Building kcriff App"
     cd "${script:SRC_DIR}\app"
     & windres -l 0 -o kcriff.syso kcriff.rc
-    & go build -trimpath -ldflags "-s -w -H windowsgui -X=github.com/sbug51/kcriff/version.Version=$script:VERSION -X=github.com/sbug51/kcriff/server.mode=release" -o "${script:SRC_DIR}\dist\windows-${script:TARGET_ARCH}-app.exe" .
+    & go build -trimpath -ldflags "-s -w -H windowsgui -X=github.com/sbug51/kc-riff/version.Version=$script:VERSION -X=github.com/sbug51/kc-riff/server.mode=release" -o "${script:SRC_DIR}\dist\windows-${script:TARGET_ARCH}-app.exe" .
     if ($LASTEXITCODE -ne 0) { exit($LASTEXITCODE)}
 }
 

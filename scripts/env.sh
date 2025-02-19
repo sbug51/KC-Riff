@@ -1,7 +1,7 @@
 # Common environment setup across build*.sh scripts
 
 export VERSION=${VERSION:-$(git describe --tags --first-parent --abbrev=7 --long --dirty --always | sed -e "s/^v//g")}
-export GOFLAGS="'-ldflags=-w -s \"-X=github.com/sbug51/kcriff/version.Version=$VERSION\" \"-X=github.com/sbug51/kcriff/server.mode=release\"'"
+export GOFLAGS="'-ldflags=-w -s \"-X=github.com/sbug51/kc-riff/version.Version=$VERSION\" \"-X=github.com/sbug51/kc-riff/server.mode=release\"'"
 # TODO - consider `docker buildx ls --format=json` to autodiscover platform capability
 PLATFORM=${PLATFORM:-"linux/arm64,linux/amd64"}
 DOCKER_ORG=${DOCKER_ORG:-"kcriff"}

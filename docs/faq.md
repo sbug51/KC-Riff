@@ -130,7 +130,7 @@ Alternatively, the Docker daemon can be configured to use a proxy. Instructions 
 Ensure the certificate is installed as a system certificate when using HTTPS. This may require a new Docker image when using a self-signed certificate.
 
 ```dockerfile
-FROM sbug51/kcriff
+FROM sbug51/kc-riff
 COPY my-ca.pem /usr/local/share/ca-certificates/my-ca.crt
 RUN update-ca-certificates
 ```
@@ -205,11 +205,11 @@ Refer to the section [above](#how-do-i-configure-kcriff-server) for how to set e
 
 ## How can I use kcriff in Visual Studio Code?
 
-There is already a large collection of plugins available for VSCode as well as other editors that leverage kcriff. See the list of [extensions & plugins](https://github.com/sbug51/kcriff#extensions--plugins) at the bottom of the main repository readme.
+There is already a large collection of plugins available for VSCode as well as other editors that leverage kcriff. See the list of [extensions & plugins](https://github.com/sbug51/kc-riff#extensions--plugins) at the bottom of the main repository readme.
 
 ## How do I use kcriff with GPU acceleration in Docker?
 
-The kcriff Docker container can be configured with GPU acceleration in Linux or Windows (with WSL2). This requires the [nvidia-container-toolkit](https://github.com/NVIDIA/nvidia-container-toolkit). See [sbug51/kcriff](https://hub.docker.com/r/sbug51/kcriff) for more details.
+The kcriff Docker container can be configured with GPU acceleration in Linux or Windows (with WSL2). This requires the [nvidia-container-toolkit](https://github.com/NVIDIA/nvidia-container-toolkit). See [sbug51/kc-riff](https://hub.docker.com/r/sbug51/kc-riff) for more details.
 
 GPU acceleration is not available for Docker Desktop in macOS due to the lack of GPU passthrough and emulation.
 

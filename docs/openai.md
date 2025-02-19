@@ -1,7 +1,7 @@
 # OpenAI compatibility
 
 > [!NOTE]
-> OpenAI compatibility is experimental and is subject to major adjustments including breaking changes. For fully-featured access to the kcriff API, see the kcriff [Python library](https://github.com/sbug51/kcriff-python), [JavaScript library](https://github.com/sbug51/kcriff-js) and [REST API](https://github.com/sbug51/kcriff/blob/main/docs/api.md).
+> OpenAI compatibility is experimental and is subject to major adjustments including breaking changes. For fully-featured access to the kcriff API, see the kcriff [Python library](https://github.com/sbug51/kc-riff-python), [JavaScript library](https://github.com/sbug51/kc-riff-js) and [REST API](https://github.com/sbug51/kc-riff/blob/main/docs/api.md).
 
 kcriff provides experimental compatibility with parts of the [OpenAI API](https://platform.openai.com/docs/api-reference) to help connect existing applications to kcriff.
 

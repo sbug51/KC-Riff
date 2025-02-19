@@ -10,9 +10,9 @@ See the [development documentation](./docs/development.md) for instructions on h
 
 ### Ideal issues
 
-* [Bugs](https://github.com/sbug51/kcriff/issues?q=is%3Aissue+is%3Aopen+label%3Abug): issues where kcriff stops working or where it results in an unexpected error.
-* [Performance](https://github.com/sbug51/kcriff/issues?q=is%3Aissue+is%3Aopen+label%3Aperformance): issues to make kcriff faster at model inference, downloading or uploading.
-* [Security](https://github.com/sbug51/kcriff/blob/main/SECURITY.md): issues that could lead to a security vulnerability. As mentioned in [SECURITY.md](https://github.com/sbug51/kcriff/blob/main/SECURITY.md), please do not disclose security vulnerabilities publicly.
+* [Bugs](https://github.com/sbug51/kc-riff/issues?q=is%3Aissue+is%3Aopen+label%3Abug): issues where kcriff stops working or where it results in an unexpected error.
+* [Performance](https://github.com/sbug51/kc-riff/issues?q=is%3Aissue+is%3Aopen+label%3Aperformance): issues to make kcriff faster at model inference, downloading or uploading.
+* [Security](https://github.com/sbug51/kc-riff/blob/main/SECURITY.md): issues that could lead to a security vulnerability. As mentioned in [SECURITY.md](https://github.com/sbug51/kc-riff/blob/main/SECURITY.md), please do not disclose security vulnerabilities publicly.
 
 ### Issues that are harder to review
 

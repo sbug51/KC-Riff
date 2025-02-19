@@ -3,11 +3,11 @@
 This directory contains different examples of using kcriff.
 
 ## Python examples
-kcriff Python examples at [kcriff-python/examples](https://github.com/sbug51/kcriff-python/tree/main/examples)
+kcriff Python examples at [kcriff-python/examples](https://github.com/sbug51/kc-riff-python/tree/main/examples)
 
 
 ## JavaScript examples
-kcriff JavaScript examples at [kcriff-js/examples](https://github.com/sbug51/kcriff-js/tree/main/examples)
+kcriff JavaScript examples at [kcriff-js/examples](https://github.com/sbug51/kc-riff-js/tree/main/examples)
 
 
 ## OpenAI compatibility examples

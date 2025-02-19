@@ -3,7 +3,7 @@
 ### CPU only
 
 ```shell
-docker run -d -v kcriff:/root/.kcriff -p 11434:11434 --name kcriff sbug51/kcriff
+docker run -d -v kcriff:/root/.kcriff -p 11434:11434 --name kcriff sbug51/kc-riff
 ```
 
 ### Nvidia GPU
@@ -51,7 +51,7 @@ sudo systemctl restart docker
 #### Start the container
 
 ```shell
-docker run -d --gpus=all -v kcriff:/root/.kcriff -p 11434:11434 --name kcriff sbug51/kcriff
+docker run -d --gpus=all -v kcriff:/root/.kcriff -p 11434:11434 --name kcriff sbug51/kc-riff
 ```
 
 > [!NOTE]  
@@ -62,7 +62,7 @@ docker run -d --gpus=all -v kcriff:/root/.kcriff -p 11434:11434 --name kcriff sb
 To run kcriff using Docker with AMD GPUs, use the `rocm` tag and the following command:
 
 ```shell
-docker run -d --device /dev/kfd --device /dev/dri -v kcriff:/root/.kcriff -p 11434:11434 --name kcriff sbug51/kcriff:rocm
+docker run -d --device /dev/kfd --device /dev/dri -v kcriff:/root/.kcriff -p 11434:11434 --name kcriff sbug51/kc-riff:rocm
 ```
 
 ### Run model locally

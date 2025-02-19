@@ -87,7 +87,7 @@ FROM base AS build
 ARG GOVERSION=1.23.4
 RUN curl -fsSL https://golang.org/dl/go${GOVERSION}.linux-$(case $(uname -m) in x86_64) echo amd64 ;; aarch64) echo arm64 ;; esac).tar.gz | tar xz -C /usr/local
 ENV PATH=/usr/local/go/bin:$PATH
-WORKDIR /go/src/github.com/sbug51/kcriff
+WORKDIR /go/src/github.com/sbug51/kc-riff
 COPY . .
 ARG GOFLAGS="'-ldflags=-w -s'"
 ENV CGO_ENABLED=1

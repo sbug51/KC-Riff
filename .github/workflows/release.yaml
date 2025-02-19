@@ -20,7 +20,7 @@ jobs:
       - name: Set environment
         id: goflags
         run: |
-          echo GOFLAGS="'-ldflags=-w -s \"-X=github.com/sbug51/kcriff/version.Version=${GITHUB_REF_NAME#v}\" \"-X=github.com/sbug51/kcriff/server.mode=release\"'" >>$GITHUB_OUTPUT
+          echo GOFLAGS="'-ldflags=-w -s \"-X=github.com/sbug51/kc-riff/version.Version=${GITHUB_REF_NAME#v}\" \"-X=github.com/sbug51/kc-riff/server.mode=release\"'" >>$GITHUB_OUTPUT
 
   darwin-build:
     runs-on: macos-13
@@ -313,7 +313,7 @@ jobs:
             CGO_CFLAGS=${{ env.CGO_CFLAGS }}
             CGO_CXXFLAGS=${{ env.CGO_CXXFLAGS }}
           outputs: type=local,dest=dist/${{ matrix.os }}-${{ matrix.arch }}
-          cache-from: type=registry,ref=sbug51/kcriff:latest
+          cache-from: type=registry,ref=sbug51/kc-riff:latest
           cache-to: type=inline
       - run: |
           for COMPONENT in bin/* lib/kcriff/*; do
@@ -379,8 +379,8 @@ jobs:
           context: .
           platforms: ${{ matrix.os }}/${{ matrix.arch }}
           build-args: ${{ matrix.build-args }}
-          outputs: type=image,name=sbug51/kcriff,push-by-digest=true,name-canonical=true,push=true
-          cache-from: type=registry,ref=sbug51/kcriff:latest
+          outputs: type=image,name=sbug51/kc-riff,push-by-digest=true,name-canonical=true,push=true
+          cache-from: type=registry,ref=sbug51/kc-riff:latest
           cache-to: type=inline
       - run: |
           mkdir -p ${{ matrix.os }}-${{ matrix.arch }}
@@ -412,7 +412,7 @@ jobs:
             latest=false
             suffix=${{ matrix.suffix }}
           images: |
-            sbug51/kcriff
+            sbug51/kc-riff
           tags: |
             type=ref,enable=true,priority=600,prefix=pr-,event=pr
             type=semver,pattern={{version}}
@@ -422,8 +422,8 @@ jobs:
           path: ${{ runner.temp }}
           merge-multiple: true
       - run: |
-          docker buildx imagetools create $(echo '${{ steps.metadata.outputs.json }}' | jq -cr '.tags | map("-t", .) | join(" ")') $(cat *-${{ matrix.suffix }}.txt | xargs printf 'sbug51/kcriff@%s ')
-          docker buildx imagetools inspect sbug51/kcriff:${{ steps.metadata.outputs.version }}
+          docker buildx imagetools create $(echo '${{ steps.metadata.outputs.json }}' | jq -cr '.tags | map("-t", .) | join(" ")') $(cat *-${{ matrix.suffix }}.txt | xargs printf 'sbug51/kc-riff@%s ')
+          docker buildx imagetools inspect sbug51/kc-riff:${{ steps.metadata.outputs.version }}
         working-directory: ${{ runner.temp }}
 
   # Aggregate all the assets and ship a release

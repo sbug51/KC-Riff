@@ -1,8 +1,8 @@
-go : cmd\cmd.go:40:2: no required module provides package github.com/sbug51/kcriff/runner; to add it:
+go : cmd\cmd.go:40:2: no required module provides package github.com/sbug51/kc-riff/runner; to add it:
 At line:1 char:1
 + go build -o kcriff.exe 2>&1 | tee build_errors.log
 + ~~~~~~~~~~~~~~~~~~~~~~~~~~~
     + CategoryInfo          : NotSpecified: (cmd\cmd.go:40:2...ner; to add it::String) [], RemoteException
     + FullyQualifiedErrorId : NativeCommandError
  
-	go get github.com/sbug51/kcriff/runner
+	go get github.com/sbug51/kc-riff/runner

@@ -99,7 +99,7 @@ AMD is working on enhancing ROCm v6 to broaden support for families of GPUs in a
 future release which should increase support for more GPUs.
 
 Reach out on [Discord](https://discord.gg/kcriff) or file an
-[issue](https://github.com/sbug51/kcriff/issues) for additional help.
+[issue](https://github.com/sbug51/kc-riff/issues) for additional help.
 
 ### GPU Selection
 
