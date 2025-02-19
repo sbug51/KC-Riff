@@ -1,4 +1,4 @@
-package kcrunner
+package kc
 
 import (
 	"context"

@@ -1,4 +1,4 @@
-package kc-riffrunner
+package kc
 
 import (
 	"image"
