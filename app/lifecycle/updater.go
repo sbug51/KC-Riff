@@ -19,8 +19,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/sbug51/kcriff/auth"
-	"github.com/sbug51/kcriff/version"
+	"github.com/sbug51/kc-riff/auth"
+	"github.com/sbug51/kc-riff/version"
 )
 
 var (

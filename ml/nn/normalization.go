@@ -1,7 +1,7 @@
 package nn
 
 import (
-	"github.com/sbug51/kcriff/ml"
+	"github.com/sbug51/kc-riff/ml"
 )
 
 type LayerNorm struct {

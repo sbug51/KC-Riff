@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sbug51/kcriff/api"
+	"github.com/sbug51/kc-riff/api"
 )
 
 func TestLongInputContext(t *testing.T) {

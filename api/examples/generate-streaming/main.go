@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/sbug51/kcriff/api"
+	"github.com/sbug51/kc-riff/api"
 )
 
 func main() {

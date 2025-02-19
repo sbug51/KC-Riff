@@ -13,7 +13,7 @@ import (
 	"strconv"
 	"sync"
 
-	_ "github.com/sbug51/kcriff/model/models"
+	_ "github.com/sbug51/kc-riff/model/models"
 )
 
 func Execute(args []string) error {

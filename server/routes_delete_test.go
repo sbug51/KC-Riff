@@ -9,8 +9,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/sbug51/kcriff/api"
-	"github.com/sbug51/kcriff/types/model"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/types/model"
 )
 
 func TestDelete(t *testing.T) {

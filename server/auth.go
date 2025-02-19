@@ -15,8 +15,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/sbug51/kcriff/api"
-	"github.com/sbug51/kcriff/auth"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/auth"
 )
 
 type registryChallenge struct {

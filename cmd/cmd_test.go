@@ -14,7 +14,7 @@ import (
 	"github.com/google/go-cmp/cmp"
 	"github.com/spf13/cobra"
 
-	"github.com/sbug51/kcriff/api"
+	"github.com/sbug51/kc-riff/api"
 )
 
 func TestShowInfo(t *testing.T) {

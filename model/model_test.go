@@ -6,9 +6,9 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/sbug51/kcriff/ml"
-	"github.com/sbug51/kcriff/ml/backend/ggml"
-	"github.com/sbug51/kcriff/ml/nn"
+	"github.com/sbug51/kc-riff/ml"
+	"github.com/sbug51/kc-riff/ml/backend/ggml"
+	"github.com/sbug51/kc-riff/ml/nn"
 )
 
 func TestParseTags(t *testing.T) {

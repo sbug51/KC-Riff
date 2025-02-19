@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"runtime"
 
-	"github.com/sbug51/kcriff/app/assets"
-	"github.com/sbug51/kcriff/app/tray/commontray"
+	"github.com/sbug51/kc-riff/app/assets"
+	"github.com/sbug51/kc-riff/app/tray/commontray"
 )
 
 func NewTray() (commontray.kcriffTray, error) {

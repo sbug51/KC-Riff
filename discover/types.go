@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log/slog"
 
-	"github.com/sbug51/kcriff/format"
+	"github.com/sbug51/kc-riff/format"
 )
 
 type memInfo struct {

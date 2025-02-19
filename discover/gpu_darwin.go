@@ -14,7 +14,7 @@ import (
 	"runtime"
 	"syscall"
 
-	"github.com/sbug51/kcriff/format"
+	"github.com/sbug51/kc-riff/format"
 )
 
 const (

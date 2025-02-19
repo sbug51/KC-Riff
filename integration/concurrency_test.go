@@ -13,8 +13,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/sbug51/kcriff/api"
-	"github.com/sbug51/kcriff/format"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/format"
 )
 
 func TestMultiModelConcurrency(t *testing.T) {

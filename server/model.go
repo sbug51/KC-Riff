@@ -14,10 +14,10 @@ import (
 	"strings"
 	"text/template/parse"
 
-	"github.com/sbug51/kcriff/api"
-	"github.com/sbug51/kcriff/fs/ggml"
-	"github.com/sbug51/kcriff/template"
-	"github.com/sbug51/kcriff/types/model"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/fs/ggml"
+	"github.com/sbug51/kc-riff/template"
+	"github.com/sbug51/kc-riff/types/model"
 )
 
 var intermediateBlobs map[string]string = make(map[string]string)

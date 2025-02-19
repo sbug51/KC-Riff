@@ -15,7 +15,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/sbug51/kcriff/api"
+	"github.com/sbug51/kc-riff/api"
 )
 
 func TestMaxQueue(t *testing.T) {

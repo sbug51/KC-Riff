@@ -14,10 +14,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/go-cmp/cmp"
 
-	"github.com/sbug51/kcriff/api"
-	"github.com/sbug51/kcriff/discover"
-	"github.com/sbug51/kcriff/fs/ggml"
-	"github.com/sbug51/kcriff/llm"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/discover"
+	"github.com/sbug51/kc-riff/fs/ggml"
+	"github.com/sbug51/kc-riff/llm"
 )
 
 type mockRunner struct {

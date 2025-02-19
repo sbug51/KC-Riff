@@ -20,11 +20,11 @@ import (
 	"testing"
 	"unicode"
 
-	"github.com/sbug51/kcriff/api"
-	"github.com/sbug51/kcriff/fs/ggml"
-	"github.com/sbug51/kcriff/openai"
-	"github.com/sbug51/kcriff/types/model"
-	"github.com/sbug51/kcriff/version"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/fs/ggml"
+	"github.com/sbug51/kc-riff/openai"
+	"github.com/sbug51/kc-riff/types/model"
+	"github.com/sbug51/kc-riff/version"
 )
 
 func createTestFile(t *testing.T, name string) (string, string) {

@@ -7,7 +7,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/sbug51/kcriff/api"
+	"github.com/sbug51/kc-riff/api"
 )
 
 func startApp(ctx context.Context, client *api.Client) error {

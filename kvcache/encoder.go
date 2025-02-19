@@ -1,7 +1,7 @@
 package kvcache
 
 import (
-	"github.com/sbug51/kcriff/ml"
+	"github.com/sbug51/kc-riff/ml"
 )
 
 // Encoder cache stores K and V tensors that are position independent

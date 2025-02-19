@@ -16,7 +16,7 @@ import (
 	"github.com/agnivade/levenshtein"
 	"golang.org/x/exp/maps"
 
-	"github.com/sbug51/kcriff/api"
+	"github.com/sbug51/kc-riff/api"
 )
 
 //go:embed index.json

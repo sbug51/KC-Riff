@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/sbug51/kcriff/envconfig"
+	"github.com/sbug51/kc-riff/envconfig"
 )
 
 func InitLogging() {

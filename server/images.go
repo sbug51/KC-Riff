@@ -21,13 +21,13 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/sbug51/kcriff/api"
-	"github.com/sbug51/kcriff/envconfig"
-	"github.com/sbug51/kcriff/fs/ggml"
-	"github.com/sbug51/kcriff/parser"
-	"github.com/sbug51/kcriff/template"
-	"github.com/sbug51/kcriff/types/model"
-	"github.com/sbug51/kcriff/version"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/envconfig"
+	"github.com/sbug51/kc-riff/fs/ggml"
+	"github.com/sbug51/kc-riff/parser"
+	"github.com/sbug51/kc-riff/template"
+	"github.com/sbug51/kc-riff/types/model"
+	"github.com/sbug51/kc-riff/version"
 )
 
 var (

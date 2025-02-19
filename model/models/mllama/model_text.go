@@ -4,9 +4,9 @@ import (
 	"math"
 	"slices"
 
-	"github.com/sbug51/kcriff/kvcache"
-	"github.com/sbug51/kcriff/ml"
-	"github.com/sbug51/kcriff/ml/nn"
+	"github.com/sbug51/kc-riff/kvcache"
+	"github.com/sbug51/kc-riff/ml"
+	"github.com/sbug51/kc-riff/ml/nn"
 )
 
 type TextSelfAttention struct {

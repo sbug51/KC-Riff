@@ -10,7 +10,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/sbug51/kcriff/format"
+	"github.com/sbug51/kc-riff/format"
 )
 
 var CudartGlobs = []string{

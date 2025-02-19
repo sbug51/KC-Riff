@@ -17,9 +17,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/sbug51/kcriff/api"
-	"github.com/sbug51/kcriff/envconfig"
-	"github.com/sbug51/kcriff/fs/ggml"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/envconfig"
+	"github.com/sbug51/kc-riff/fs/ggml"
 )
 
 var stream bool = false

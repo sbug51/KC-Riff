@@ -9,8 +9,8 @@
 // Several examples of using this package are available [in the GitHub
 // repository].
 //
-// [the API documentation]: https://github.com/sbug51/kcriff/blob/main/docs/api.md
-// [in the GitHub repository]: https://github.com/sbug51/kcriff/tree/main/examples
+// [the API documentation]: https://github.com/sbug51/kc-riff/blob/main/docs/api.md
+// [in the GitHub repository]: https://github.com/sbug51/kc-riff/tree/main/examples
 package api
 
 import (
@@ -25,9 +25,9 @@ import (
 	"net/url"
 	"runtime"
 
-	"github.com/sbug51/kcriff/envconfig"
-	"github.com/sbug51/kcriff/format"
-	"github.com/sbug51/kcriff/version"
+	"github.com/sbug51/kc-riff/envconfig"
+	"github.com/sbug51/kc-riff/format"
+	"github.com/sbug51/kc-riff/version"
 )
 
 // Client encapsulates client state for interacting with the kcriff
@@ -277,7 +277,7 @@ type CreateProgressFunc func(ProgressResponse) error
 // Create creates a model from a [Modelfile]. fn is a progress function that
 // behaves similarly to other methods (see [Client.Pull]).
 //
-// [Modelfile]: https://github.com/sbug51/kcriff/blob/main/docs/modelfile.md
+// [Modelfile]: https://github.com/sbug51/kc-riff/blob/main/docs/modelfile.md
 func (c *Client) Create(ctx context.Context, req *CreateRequest, fn CreateProgressFunc) error {
 	return c.stream(ctx, http.MethodPost, "/api/create", req, func(bts []byte) error {
 		var resp ProgressResponse

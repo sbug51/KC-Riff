@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/sbug51/kcriff/envconfig"
-	"github.com/sbug51/kcriff/format"
+	"github.com/sbug51/kc-riff/envconfig"
+	"github.com/sbug51/kc-riff/format"
 )
 
 const (

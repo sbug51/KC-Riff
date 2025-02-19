@@ -8,9 +8,9 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/sbug51/kcriff/kvcache"
-	"github.com/sbug51/kcriff/ml"
-	"github.com/sbug51/kcriff/model"
+	"github.com/sbug51/kc-riff/kvcache"
+	"github.com/sbug51/kc-riff/ml"
+	"github.com/sbug51/kc-riff/model"
 )
 
 type InputCache struct {

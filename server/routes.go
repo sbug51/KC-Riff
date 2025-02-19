@@ -27,17 +27,17 @@ import (
 	"github.com/gin-gonic/gin"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/sbug51/kcriff/api"
-	"github.com/sbug51/kcriff/discover"
-	"github.com/sbug51/kcriff/envconfig"
-	"github.com/sbug51/kcriff/fs/ggml"
-	"github.com/sbug51/kcriff/llm"
-	"github.com/sbug51/kcriff/model/models/mllama"
-	"github.com/sbug51/kcriff/openai"
-	"github.com/sbug51/kcriff/template"
-	"github.com/sbug51/kcriff/types/errtypes"
-	"github.com/sbug51/kcriff/types/model"
-	"github.com/sbug51/kcriff/version"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/discover"
+	"github.com/sbug51/kc-riff/envconfig"
+	"github.com/sbug51/kc-riff/fs/ggml"
+	"github.com/sbug51/kc-riff/llm"
+	"github.com/sbug51/kc-riff/model/models/mllama"
+	"github.com/sbug51/kc-riff/openai"
+	"github.com/sbug51/kc-riff/template"
+	"github.com/sbug51/kc-riff/types/errtypes"
+	"github.com/sbug51/kc-riff/types/model"
+	"github.com/sbug51/kc-riff/version"
 )
 
 var mode string = gin.DebugMode

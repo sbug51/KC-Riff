@@ -5,6 +5,6 @@ package ggml
 import "C"
 
 import (
-	_ "github.com/sbug51/kcriff/ml/backend/ggml/ggml/src/ggml-blas"
-	_ "github.com/sbug51/kcriff/ml/backend/ggml/ggml/src/ggml-metal"
+	_ "github.com/sbug51/kc-riff/ml/backend/ggml/ggml/src/ggml-blas"
+	_ "github.com/sbug51/kc-riff/ml/backend/ggml/ggml/src/ggml-metal"
 )

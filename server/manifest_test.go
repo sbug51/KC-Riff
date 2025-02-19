@@ -7,7 +7,7 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/sbug51/kcriff/types/model"
+	"github.com/sbug51/kc-riff/types/model"
 )
 
 func createManifest(t *testing.T, path, name string) {

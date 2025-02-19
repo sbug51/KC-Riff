@@ -5,7 +5,7 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/sbug51/kcriff/ml"
+	"github.com/sbug51/kc-riff/ml"
 )
 
 type testCase struct {

@@ -24,12 +24,12 @@ import (
 
 	"golang.org/x/sync/semaphore"
 
-	"github.com/sbug51/kcriff/api"
-	"github.com/sbug51/kcriff/discover"
-	"github.com/sbug51/kcriff/envconfig"
-	"github.com/sbug51/kcriff/format"
-	"github.com/sbug51/kcriff/fs/ggml"
-	"github.com/sbug51/kcriff/llama"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/discover"
+	"github.com/sbug51/kc-riff/envconfig"
+	"github.com/sbug51/kc-riff/format"
+	"github.com/sbug51/kc-riff/fs/ggml"
+	"github.com/sbug51/kc-riff/llama"
 )
 
 type LlamaServer interface {

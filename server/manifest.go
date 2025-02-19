@@ -11,7 +11,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/sbug51/kcriff/types/model"
+	"github.com/sbug51/kc-riff/types/model"
 )
 
 type Manifest struct {

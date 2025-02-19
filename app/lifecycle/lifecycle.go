@@ -9,9 +9,9 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/sbug51/kcriff/app/store"
-	"github.com/sbug51/kcriff/app/tray"
-	"github.com/sbug51/kcriff/envconfig"
+	"github.com/sbug51/kc-riff/app/store"
+	"github.com/sbug51/kc-riff/app/tray"
+	"github.com/sbug51/kc-riff/envconfig"
 )
 
 func Run() {

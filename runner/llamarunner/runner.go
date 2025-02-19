@@ -22,9 +22,9 @@ import (
 
 	"golang.org/x/sync/semaphore"
 
-	"github.com/sbug51/kcriff/api"
-	"github.com/sbug51/kcriff/llama"
-	"github.com/sbug51/kcriff/runner/common"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/llama"
+	"github.com/sbug51/kc-riff/runner/common"
 )
 
 // input is an element of the prompt to process, either

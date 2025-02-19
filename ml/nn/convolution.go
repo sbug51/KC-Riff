@@ -1,6 +1,6 @@
 package nn
 
-import "github.com/sbug51/kcriff/ml"
+import "github.com/sbug51/kc-riff/ml"
 
 type Conv2D struct {
 	Weight ml.Tensor `gguf:"weight"`

@@ -17,15 +17,15 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/sbug51/kcriff/api"
-	"github.com/sbug51/kcriff/convert"
-	"github.com/sbug51/kcriff/envconfig"
-	"github.com/sbug51/kcriff/format"
-	"github.com/sbug51/kcriff/fs/ggml"
-	"github.com/sbug51/kcriff/llama"
-	"github.com/sbug51/kcriff/template"
-	"github.com/sbug51/kcriff/types/errtypes"
-	"github.com/sbug51/kcriff/types/model"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/convert"
+	"github.com/sbug51/kc-riff/envconfig"
+	"github.com/sbug51/kc-riff/format"
+	"github.com/sbug51/kc-riff/fs/ggml"
+	"github.com/sbug51/kc-riff/llama"
+	"github.com/sbug51/kc-riff/template"
+	"github.com/sbug51/kc-riff/types/errtypes"
+	"github.com/sbug51/kc-riff/types/model"
 )
 
 var (

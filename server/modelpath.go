@@ -10,8 +10,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/sbug51/kcriff/envconfig"
-	"github.com/sbug51/kcriff/types/model"
+	"github.com/sbug51/kc-riff/envconfig"
+	"github.com/sbug51/kc-riff/types/model"
 )
 
 type ModelPath struct {

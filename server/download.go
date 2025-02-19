@@ -22,8 +22,8 @@ import (
 
 	"golang.org/x/sync/errgroup"
 
-	"github.com/sbug51/kcriff/api"
-	"github.com/sbug51/kcriff/format"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/format"
 )
 
 const maxRetries = 6

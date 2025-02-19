@@ -1,8 +1,8 @@
 package kcriffrunner
 
 import (
-	"github.com/sbug51/kcriff/api"   // kcriff API
-	"github.com/sbug51/kcriff/llama" // kcriff LLM execution
+	"github.com/sbug51/kc-riff/api"   // kcriff API
+	"github.com/sbug51/kc-riff/llama" // kcriff LLM execution
 )
 
 func Execute(args []string) error {

@@ -4,8 +4,8 @@ import (
 	"math"
 	"slices"
 
-	"github.com/sbug51/kcriff/ml"
-	"github.com/sbug51/kcriff/ml/nn"
+	"github.com/sbug51/kc-riff/ml"
+	"github.com/sbug51/kc-riff/ml/nn"
 )
 
 var batchSize int = 1

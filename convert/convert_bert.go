@@ -8,7 +8,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/sbug51/kcriff/fs/ggml"
+	"github.com/sbug51/kc-riff/fs/ggml"
 )
 
 type bertModel struct {

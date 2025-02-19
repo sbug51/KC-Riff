@@ -6,7 +6,7 @@ import (
 	"github.com/pdevine/tensor"
 	"github.com/pdevine/tensor/native"
 
-	"github.com/sbug51/kcriff/fs/ggml"
+	"github.com/sbug51/kc-riff/fs/ggml"
 )
 
 type gemmaModel struct {

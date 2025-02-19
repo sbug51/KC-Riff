@@ -14,12 +14,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/sbug51/kcriff/api"
-	"github.com/sbug51/kcriff/discover"
-	"github.com/sbug51/kcriff/envconfig"
-	"github.com/sbug51/kcriff/format"
-	"github.com/sbug51/kcriff/fs/ggml"
-	"github.com/sbug51/kcriff/llm"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/discover"
+	"github.com/sbug51/kc-riff/envconfig"
+	"github.com/sbug51/kc-riff/format"
+	"github.com/sbug51/kc-riff/fs/ggml"
+	"github.com/sbug51/kc-riff/llm"
 )
 
 type LlmRequest struct {
@@ -132,7 +132,7 @@ func (s *Scheduler) processPending(ctx context.Context) {
 			}
 			numParallel := int(envconfig.NumParallel())
 			// TODO (jmorganca): mllama doesn't support parallel yet
-			// see https://github.com/sbug51/kcriff/issues/4165
+			// see https://github.com/sbug51/kc-riff/issues/4165
 			if checkMllamaModelFamily(pending.model) && numParallel != 1 {
 				numParallel = 1
 				slog.Warn("mllama doesn't support parallel requests yet")

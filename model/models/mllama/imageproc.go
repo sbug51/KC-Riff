@@ -11,7 +11,7 @@ import (
 
 	"golang.org/x/image/draw"
 
-	"github.com/sbug51/kcriff/model/imageproc"
+	"github.com/sbug51/kc-riff/model/imageproc"
 )
 
 func getSupportedAspectRatios(maxTiles int) []image.Point {

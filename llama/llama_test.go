@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-// https://github.com/sbug51/kcriff/issues/7978
+// https://github.com/sbug51/kc-riff/issues/7978
 const issue7978JSONSchema = `{
   "type": "object",
   "properties": {

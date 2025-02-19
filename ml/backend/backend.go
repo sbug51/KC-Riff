@@ -1,5 +1,5 @@
 package backend
 
 import (
-	_ "github.com/sbug51/kcriff/ml/backend/ggml"
+	_ "github.com/sbug51/kc-riff/ml/backend/ggml"
 )

@@ -16,9 +16,9 @@ import (
 	_ "golang.org/x/image/tiff"
 	_ "golang.org/x/image/webp"
 
-	"github.com/sbug51/kcriff/kvcache"
-	"github.com/sbug51/kcriff/ml"
-	_ "github.com/sbug51/kcriff/ml/backend"
+	"github.com/sbug51/kc-riff/kvcache"
+	"github.com/sbug51/kc-riff/ml"
+	_ "github.com/sbug51/kc-riff/ml/backend"
 )
 
 // Options contains the inputs for a model forward pass

@@ -14,10 +14,10 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/sbug51/kcriff/api"
-	"github.com/sbug51/kcriff/envconfig"
-	"github.com/sbug51/kcriff/readline"
-	"github.com/sbug51/kcriff/types/errtypes"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/envconfig"
+	"github.com/sbug51/kc-riff/readline"
+	"github.com/sbug51/kc-riff/types/errtypes"
 )
 
 type MultilineState int

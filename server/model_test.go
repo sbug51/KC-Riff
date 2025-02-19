@@ -10,8 +10,8 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 
-	"github.com/sbug51/kcriff/api"
-	"github.com/sbug51/kcriff/template"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/template"
 )
 
 func readFile(t *testing.T, base, name string) *bytes.Buffer {

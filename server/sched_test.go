@@ -11,12 +11,12 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/sbug51/kcriff/api"
-	"github.com/sbug51/kcriff/app/lifecycle"
-	"github.com/sbug51/kcriff/discover"
-	"github.com/sbug51/kcriff/format"
-	"github.com/sbug51/kcriff/fs/ggml"
-	"github.com/sbug51/kcriff/llm"
+	"github.com/sbug51/kc-riff/api"
+	"github.com/sbug51/kc-riff/app/lifecycle"
+	"github.com/sbug51/kc-riff/discover"
+	"github.com/sbug51/kc-riff/format"
+	"github.com/sbug51/kc-riff/fs/ggml"
+	"github.com/sbug51/kc-riff/llm"
 )
 
 func TestMain(m *testing.M) {
