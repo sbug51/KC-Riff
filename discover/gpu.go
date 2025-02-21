@@ -41,7 +41,7 @@ type oneapiHandles struct {
 const (
 	cudaMinimumMemory = 457 * format.MebiByte
 	rocmMinimumMemory = 457 * format.MebiByte
-	// TODO: OneAPI minimum memory if needed.
+	// TODO: OneAPI minimum memory if needed (disabled for Windows).
 )
 
 var (
@@ -75,7 +75,7 @@ var RocmComputeMajorMin = "9"
 const IGPUMemLimit = 1 * format.GibiByte // Typically, anything less than 1G is considered an iGPU.
 
 // ------------------------
-// GPU Discovery: CUDA/oneAPI/ROCm functions
+// GPU Discovery: CUDA/NVML/ROCm functions (oneAPI disabled)
 // ------------------------
 
 // initCudaHandles initializes CUDA handles.
@@ -148,23 +148,11 @@ func initCudaHandles() *cudaHandles {
 	return cHandles
 }
 
-// initOneAPIHandles initializes oneAPI handles.
+// initOneAPIHandles initializes oneAPI handles (disabled for Windows/NVIDIA).
 func initOneAPIHandles() *oneapiHandles {
-	oHandles := &oneapiHandles{}
-	if oneapiLibPath != "" {
-		oHandles.deviceCount, oHandles.oneapi, _, _ = loadOneapiMgmt([]string{oneapiLibPath})
-		return oHandles
-	}
-
-	oneapiLibPaths := FindGPULibs(OneapiMgmtName, OneapiGlobs)
-	if len(oneapiLibPaths) > 0 {
-		var err error
-		oHandles.deviceCount, oHandles.oneapi, oneapiLibPath, err = loadOneapiMgmt(oneapiLibPaths)
-		if err != nil {
-			bootstrapErrors = append(bootstrapErrors, err)
-		}
-	}
-	return oHandles
+	// Disabled for Windows/NVIDIA setup since no Intel GPUs are present.
+	slog.Warn("oneAPI GPU discovery disabled on Windows (no Intel GPUs detected)")
+	return nil
 }
 
 // GetCPUInfo returns basic CPU info as GpuInfoList.
@@ -198,11 +186,7 @@ func GetGPUInfo() GpuInfoList {
 				C.nvml_release(*cHandles.nvml)
 			}
 		}
-		if oHandles != nil {
-			if oHandles.oneapi != nil {
-				C.oneapi_release(*oHandles.oneapi)
-			}
-		}
+		// oneAPI cleanup disabled since it's not used.
 	}()
 
 	if !bootstrapped {
@@ -239,7 +223,7 @@ func GetGPUInfo() GpuInfoList {
 			},
 		}
 
-		// Load ALL libraries
+		// Load ALL libraries (CUDA/NVML only, oneAPI disabled).
 		cHandles = initCudaHandles()
 
 		// NVIDIA GPUs
@@ -321,37 +305,37 @@ func GetGPUInfo() GpuInfoList {
 			}
 		}
 
-		// Intel GPUs via oneAPI.
-		if envconfig.IntelGPU() {
-			oHandles = initOneAPIHandles()
-			if oHandles != nil && oHandles.oneapi != nil {
-				for d := range oHandles.oneapi.num_drivers {
-					if oHandles.oneapi == nil {
-						slog.Warn("nil oneapi handle with driver count", "count", int(oHandles.oneapi.num_drivers))
-						continue
-					}
-					devCount := C.oneapi_get_device_count(*oHandles.oneapi, C.int(d))
-					for i := 0; i < int(devCount); i++ {
-						gpuInfo := OneapiGPUInfo{
-							GpuInfo: GpuInfo{
-								Library: "oneapi",
-							},
-							driverIndex: int(d),
-							gpuIndex:    i,
-						}
-						C.oneapi_check_vram(*oHandles.oneapi, C.int(d), i, &memInfo)
-						var totalFreeMem float64 = float64(memInfo.free) * 0.95
-						memInfo.free = C.uint64_t(totalFreeMem)
-						gpuInfo.TotalMemory = uint64(memInfo.total)
-						gpuInfo.FreeMemory = uint64(memInfo.free)
-						gpuInfo.ID = C.GoString(&memInfo.gpu_id[0])
-						gpuInfo.Name = C.GoString(&memInfo.gpu_name[0])
-						gpuInfo.DependencyPath = []string{Libkc - riffPath}
-						oneapiGPUs = append(oneapiGPUs, gpuInfo)
-					}
-				}
-			}
-		}
+		// Intel GPUs via oneAPI (disabled for Windows/NVIDIA setup).
+		// if envconfig.IntelGPU() {
+		//     oHandles = initOneAPIHandles()
+		//     if oHandles != nil && oHandles.oneapi != nil {
+		//         for d := range oHandles.oneapi.num_drivers {
+		//             if oHandles.oneapi == nil {
+		//                 slog.Warn("nil oneapi handle with driver count", "count", int(oHandles.oneapi.num_drivers))
+		//                 continue
+		//             }
+		//             devCount := C.oneapi_get_device_count(*oHandles.oneapi, C.int(d))
+		//             for i := 0; i < int(devCount); i++ {
+		//                 gpuInfo := OneapiGPUInfo{
+		//                     GpuInfo: GpuInfo{
+		//                         Library: "oneapi",
+		//                     },
+		//                     driverIndex: int(d),
+		//                     gpuIndex:    i,
+		//                 }
+		//                 C.oneapi_check_vram(*oHandles.oneapi, C.int(d), i, &memInfo)
+		//                 var totalFreeMem float64 = float64(memInfo.free) * 0.95
+		//                 memInfo.free = C.uint64_t(totalFreeMem)
+		//                 gpuInfo.TotalMemory = uint64(memInfo.total)
+		//                 gpuInfo.FreeMemory = uint64(memInfo.free)
+		//                 gpuInfo.ID = C.GoString(&memInfo.gpu_id[0])
+		//                 gpuInfo.Name = C.GoString(&memInfo.gpu_name[0])
+		//                 gpuInfo.DependencyPath = []string{Libkc - riffPath}
+		//                 oneapiGPUs = append(oneapiGPUs, gpuInfo)
+		//             }
+		//         }
+		//     }
+		// }
 
 		// ROCm GPUs: For Windows, we bypass ROCm as it's not supported.
 		if runtime.GOOS == "windows" {
@@ -439,19 +423,20 @@ func GetGPUInfo() GpuInfoList {
 			cudaGPUs[i].FreeMemory = uint64(memInfo.free)
 		}
 
-		if oHandles == nil && len(oneapiGPUs) > 0 {
-			oHandles = initOneAPIHandles()
-		}
-		for i, gpu := range oneapiGPUs {
-			if oHandles.oneapi == nil {
-				slog.Warn("nil oneapi handle with device count", "count", oHandles.deviceCount)
-				continue
-			}
-			C.oneapi_check_vram(*oHandles.oneapi, C.int(gpu.driverIndex), C.int(gpu.gpuIndex), &memInfo)
-			var totalFreeMem float64 = float64(memInfo.free) * 0.95
-			memInfo.free = C.uint64_t(totalFreeMem)
-			oneapiGPUs[i].FreeMemory = uint64(memInfo.free)
-		}
+		// oneAPI refresh disabled since it's not used.
+		// if oHandles == nil && len(oneapiGPUs) > 0 {
+		//     oHandles = initOneAPIHandles()
+		// }
+		// for i, gpu := range oneapiGPUs {
+		//     if oHandles.oneapi == nil {
+		//         slog.Warn("nil oneapi handle with device count", "count", oHandles.deviceCount)
+		//         continue
+		//     }
+		//     C.oneapi_check_vram(*oHandles.oneapi, C.int(gpu.driverIndex), C.int(gpu.gpuIndex), &memInfo)
+		//     var totalFreeMem float64 = float64(memInfo.free) * 0.95
+		//     memInfo.free = C.uint64_t(totalFreeMem)
+		//     oneapiGPUs[i].FreeMemory = uint64(memInfo.free)
+		// }
 
 		err = RocmGPUInfoList(rocmGPUs).RefreshFreeMemory()
 		if err != nil {
@@ -466,9 +451,10 @@ func GetGPUInfo() GpuInfoList {
 	for _, gpu := range rocmGPUs {
 		resp = append(resp, gpu.GpuInfo)
 	}
-	for _, gpu := range oneapiGPUs {
-		resp = append(resp, gpu.GpuInfo)
-	}
+	// oneAPI GPUs removed since not used.
+	// for _, gpu := range oneapiGPUs {
+	//     resp = append(resp, gpu.GpuInfo)
+	// }
 	if len(resp) == 0 {
 		resp = append(resp, cpus[0].GpuInfo)
 	}
@@ -608,29 +594,11 @@ func loadNVMLMgmt(nvmlLibPaths []string) (*C.nvml_handle_t, string, error) {
 	return nil, "", err
 }
 
-// loadOneapiMgmt bootstraps the Intel oneAPI management library.
+// loadOneapiMgmt bootstraps the Intel oneAPI management library (disabled).
 func loadOneapiMgmt(oneapiLibPaths []string) (int, *C.oneapi_handle_t, string, error) {
-	var resp C.oneapi_init_resp_t
-	num_devices := 0
-	resp.oh.verbose = getVerboseState()
-	var err error
-	for _, libPath := range oneapiLibPaths {
-		lib := C.CString(libPath)
-		defer C.free(unsafe.Pointer(lib))
-		C.oneapi_init(lib, &resp)
-		if resp.err != nil {
-			err = fmt.Errorf("Unable to load oneAPI management library %s: %s", libPath, C.GoString(resp.err))
-			slog.Debug(err.Error())
-			C.free(unsafe.Pointer(resp.err))
-		} else {
-			err = nil
-			for i := range resp.oh.num_drivers {
-				num_devices += int(C.oneapi_get_device_count(resp.oh, C.int(i)))
-			}
-			return num_devices, &resp.oh, libPath, err
-		}
-	}
-	return 0, nil, "", err
+	// Disabled for Windows/NVIDIA setup since no Intel GPUs are present.
+	slog.Warn("oneAPI GPU discovery disabled on Windows (no Intel GPUs detected)")
+	return 0, nil, "", nil
 }
 
 func getVerboseState() C.uint16_t {
@@ -650,8 +618,9 @@ func (l GpuInfoList) GetVisibleDevicesEnv() (string, string) {
 		return cudaGetVisibleDevicesEnv(l)
 	case "rocm":
 		return rocmGetVisibleDevicesEnv(l)
-	case "oneapi":
-		return oneapiGetVisibleDevicesEnv(l)
+	// Removed oneapi case since it's disabled.
+	// case "oneapi":
+	//     return oneapiGetVisibleDevicesEnv(l)
 	default:
 		slog.Debug("no filter required for library " + l[0].Library)
 		return "", ""
