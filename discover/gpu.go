@@ -22,6 +22,7 @@ import (
 
 	"C"
 
+	"github.com/mindprince/gonvml" // Add gonvml import
 	"github.com/sbug51/kc-riff/envconfig"
 	"github.com/sbug51/kc-riff/format"
 )
@@ -52,7 +53,7 @@ var (
 	nvcudaLibPath string
 	cudartLibPath string
 	oneapiLibPath string
-	nvmlLibPath   string
+	nvmlLibPath   string // Optional, since we’ll use gonvml
 	rocmGPUs      []RocmGPUInfo
 	oneapiGPUs    []OneapiGPUInfo
 
@@ -75,16 +76,12 @@ var RocmComputeMajorMin = "9"
 const IGPUMemLimit = 1 * format.GibiByte // Typically, anything less than 1G is considered an iGPU.
 
 // ------------------------
-// GPU Discovery: CUDA/NVML/ROCm functions (oneAPI disabled)
+// GPU Discovery: CUDA/gonvml/ROCm functions (oneAPI disabled)
 // ------------------------
 
-// initCudaHandles initializes CUDA handles.
+// initCudaHandles initializes CUDA handles, using gonvml for NVML.
 func initCudaHandles() *cudaHandles {
 	cHandles := &cudaHandles{}
-	if nvmlLibPath != "" {
-		cHandles.nvml, _, _ = loadNVMLMgmt([]string{nvmlLibPath})
-		return cHandles
-	}
 	if nvcudaLibPath != "" {
 		cHandles.deviceCount, cHandles.nvcuda, _, _ = loadNVCUDAMgmt([]string{nvcudaLibPath})
 		return cHandles
@@ -100,18 +97,17 @@ func initCudaHandles() *cudaHandles {
 	cudartMgmtPatterns = append(cudartMgmtPatterns, filepath.Join(Libkc-riffPath, "cuda_v*", CudartMgmtName))
 	cudartMgmtPatterns = append(cudartMgmtPatterns, CudartGlobs...)
 
-	if len(NvmlGlobs) > 0 {
-		nvmlLibPaths := FindGPULibs(NvmlMgmtName, NvmlGlobs)
-		if len(nvmlLibPaths) > 0 {
-			nvml, libPath, err := loadNVMLMgmt(nvmlLibPaths)
-			if nvml != nil {
-				slog.Debug("nvidia-ml loaded", "library", libPath)
-				cHandles.nvml = nvml
-				nvmlLibPath = libPath
-			}
-			if err != nil {
-				bootstrapErrors = append(bootstrapErrors, err)
-			}
+	// Use gonvml for NVML initialization
+	if err := initNVML(); err != nil {
+		slog.Warn("failed to initialize NVML via gonvml", "error", err)
+	} else {
+		count, err := getDeviceCount()
+		if err != nil {
+			slog.Warn("failed to get NVIDIA device count via gonvml", "error", err)
+		} else {
+			cHandles.deviceCount = int(count)
+			cHandles.nvml = nil    // Optional, since gonvml handles NVML
+			nvmlLibPath = "gonvml" // Placeholder, not used directly
 		}
 	}
 
@@ -153,6 +149,21 @@ func initOneAPIHandles() *oneapiHandles {
 	// Disabled for Windows/NVIDIA setup since no Intel GPUs are present.
 	slog.Warn("oneAPI GPU discovery disabled on Windows (no Intel GPUs detected)")
 	return nil
+}
+
+// initNVML initializes NVML using gonvml.
+func initNVML() error {
+	return gonvml.Initialize()
+}
+
+// getDeviceCount returns the number of NVIDIA devices using gonvml.
+func getDeviceCount() (uint, error) {
+	return gonvml.DeviceCount()
+}
+
+// shutdownNVML shuts down NVML using gonvml (call in defer or cleanup).
+func shutdownNVML() {
+	gonvml.Shutdown()
 }
 
 // GetCPUInfo returns basic CPU info as GpuInfoList.
@@ -223,7 +234,7 @@ func GetGPUInfo() GpuInfoList {
 			},
 		}
 
-		// Load ALL libraries (CUDA/NVML only, oneAPI disabled).
+		// Load ALL libraries (CUDA/gonvml only, oneAPI disabled).
 		cHandles = initCudaHandles()
 
 		// NVIDIA GPUs
@@ -278,26 +289,28 @@ func GetGPUInfo() GpuInfoList {
 					continue
 				}
 
-				// Query the management library to record overhead.
-				if cHandles.nvml != nil {
-					uuid := C.CString(gpuInfo.ID)
-					defer C.free(unsafe.Pointer(uuid))
-					C.nvml_get_free(*cHandles.nvml, uuid, &memInfo.free, &memInfo.total, &memInfo.used)
-					if memInfo.err != nil {
-						slog.Warn("error looking up nvidia GPU memory", "error", C.GoString(memInfo.err))
-						C.free(unsafe.Pointer(memInfo.err))
+				// Query the management library to record overhead (using gonvml).
+				if cHandles.deviceCount > 0 {
+					nvmlDev, err := gonvml.DeviceHandleByIndex(uint(i))
+					if err != nil {
+						slog.Warn("failed to get NVIDIA device handle via gonvml", "index", i, "error", err)
+						continue
+					}
+					memory, err := nvmlDev.MemoryInfo()
+					if err != nil {
+						slog.Warn("failed to get NVIDIA device memory via gonvml", "index", i, "error", err)
 					} else {
-						if memInfo.free != 0 && uint64(memInfo.free) > gpuInfo.FreeMemory {
-							gpuInfo.OSOverhead = uint64(memInfo.free) - gpuInfo.FreeMemory
-							slog.Info("detected OS VRAM overhead",
-								"id", gpuInfo.ID,
-								"library", gpuInfo.Library,
-								"compute", gpuInfo.Compute,
-								"driver", fmt.Sprintf("%d.%d", gpuInfo.DriverMajor, gpuInfo.DriverMinor),
-								"name", gpuInfo.Name,
-								"overhead", format.HumanBytes2(gpuInfo.OSOverhead),
-							)
-						}
+						gpuInfo.FreeMemory = uint64(memory.Free)
+						gpuInfo.TotalMemory = uint64(memory.Total)
+						gpuInfo.OSOverhead = 0 // Adjust if needed based on OS overhead logic
+						slog.Info("detected OS VRAM overhead",
+							"id", gpuInfo.ID,
+							"library", gpuInfo.Library,
+							"compute", gpuInfo.Compute,
+							"driver", fmt.Sprintf("%d.%d", gpuInfo.DriverMajor, gpuInfo.DriverMinor),
+							"name", gpuInfo.Name,
+							"overhead", format.HumanBytes2(gpuInfo.OSOverhead),
+						)
 					}
 				}
 
@@ -573,25 +586,10 @@ func loadNVCUDAMgmt(nvcudaLibPaths []string) (int, *C.nvcuda_handle_t, string, e
 	return 0, nil, "", err
 }
 
-// loadNVMLMgmt bootstraps the NVIDIA NVML management library.
+// loadNVMLMgmt bootstraps the NVIDIA NVML management library (disabled for gonvml).
 func loadNVMLMgmt(nvmlLibPaths []string) (*C.nvml_handle_t, string, error) {
-	var resp C.nvml_init_resp_t
-	resp.ch.verbose = getVerboseState()
-	var err error
-	for _, libPath := range nvmlLibPaths {
-		lib := C.CString(libPath)
-		defer C.free(unsafe.Pointer(lib))
-		C.nvml_init(lib, &resp)
-		if resp.err != nil {
-			err = fmt.Errorf("Unable to load NVML management library %s: %s", libPath, C.GoString(resp.err))
-			slog.Info(err.Error())
-			C.free(unsafe.Pointer(resp.err))
-		} else {
-			err = nil
-			return &resp.ch, libPath, err
-		}
-	}
-	return nil, "", err
+	slog.Warn("NVML management library loading disabled, using gonvml instead")
+	return nil, "", nil
 }
 
 // loadOneapiMgmt bootstraps the Intel oneAPI management library (disabled).
