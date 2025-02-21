@@ -2,6 +2,7 @@
 #ifndef __GPU_INFO_NVCUDA_H__
 #define __GPU_INFO_NVCUDA_H__
 #include "gpu_info.h"
+#include <cuda_driver_api.h>  // For driver API symbols like CUresult
 
 // Just enough typedef's to dlopen/dlsym for memory information
 typedef enum cudaError_enum {

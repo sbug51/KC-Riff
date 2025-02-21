@@ -2,6 +2,7 @@
 #ifndef __GPU_INFO_NVML_H__
 #define __GPU_INFO_NVML_H__
 #include "gpu_info.h"
+#include <nvidia-ml.h>  // For NVML symbols like nvmlReturn_t
 
 // Just enough typedef's to dlopen/dlsym for memory information
 typedef enum nvmlReturn_enum {
